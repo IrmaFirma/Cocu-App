@@ -10,6 +10,9 @@ import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/view/todo/todo_page.dart';
 import 'package:working_project/app/view/welcome_page.dart';
 
+import 'app/utils/shared_preferences.dart';
+import 'app/utils/shared_preferences.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -23,7 +26,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool isLogged = false;
-  String userID = '';
+
+  SharedPrefs sharedPrefs = SharedPrefs();
 
   @override
   void initState() {
@@ -33,13 +37,10 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> autoLogin() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String userId =  prefs.getString('userID');
-    if (userId != null) {
-      setState(() {
-        isLogged = true;
-        userID = userId;
-      });
+    final String userId =  await sharedPrefs.readUserID();
+    if (userId.isNotEmpty) {
+      sharedPrefs.setIsLoggedTrue();
+      isLogged = await sharedPrefs.readIsLogged();
       return;
     }
   }

@@ -2,36 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefs {
-  Future<void> setFirstRun() async {
+
+
+  // call on logout
+  Future<void> setIsLoggedFalse() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('first_run', false); //it is not first run
+    prefs.setBool('isLogged', false); //it is not first run
   }
 
-  Future<void> setFirstRunTrue() async {
+  // if user is logged || if user id is not empty
+  Future<void> setIsLoggedTrue() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('first_run', true); //It is first run
+    prefs.setBool('isLogged', true); //It is first run
   }
 
-  Future<bool> isFirstRun() async {
+  Future<bool> readIsLogged() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('first_run') ?? true; //check value
+    return prefs.getBool('isLogged') ?? true; //check value
   }
 
   Future<void> clearPrefs() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.remove('first_run'); // clear prefs
+    await prefs.remove('isLogged'); // clear prefs
+    await prefs.remove('userID');
   }
 
   Future<void> logout({@required Function setStates}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('userID', null);
-    setStates(); //set State to false and ''
+    prefs.setString('userID', '');
   }
 
   Future<void> loginUser({@required setStates, @required String uid}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('userID', uid);
-    setStates(); //uid to user model uid and is logged to true
     //clear controller
+  }
+
+  Future<String> readUserID() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('userID') ?? '';
   }
 }

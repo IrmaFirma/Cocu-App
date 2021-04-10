@@ -14,20 +14,20 @@ import 'package:working_project/app/view/journal/journal_page.dart';
 import 'package:working_project/app/view/todo/edit_todo_page.dart';
 import 'package:working_project/app/view/user_info_page.dart';
 
-
+import '../../utils/shared_preferences.dart';
+import '../../utils/shared_preferences.dart';
 import 'add_todo.dart';
 import 'completed_todo.dart';
 
-
 //TODO Fix Scrolling
-bool isLogged = true;
-String userID = '';
+
 class TodoPage extends StatefulWidget {
   @override
   _TodoPageState createState() => _TodoPageState();
 }
 
 class _TodoPageState extends State<TodoPage> {
+  SharedPrefs prefs = SharedPrefs();
 
   //new snackbar
   void showSnackBar(BuildContext context, String text, Color color) {
@@ -39,32 +39,30 @@ class _TodoPageState extends State<TodoPage> {
       ),
     );
   }
-//TODO Save uid to shared preferences uid
-  Future<void> _refreshScreenForChanges() async {
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: false).userModel;
-    Provider.of<TodoProvider>(context, listen: false).readTodo(
-      userID: userModel.userID,
-    );
-  }
-
-  Future<void> setFirstRun() async{
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: false).userModel;
-    await SharedPrefs().loginUser(setStates: () {
-      setState(() {
-        isLogged = true;
-        userID = userModel.userID;
-      });
-      _refreshScreenForChanges();
-    }, uid: userModel.userID);
-  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    setFirstRun();
+    _getInitialData();
+  }
+
+  Future<void> _getInitialData() async {
+    final bool isLogged = await prefs.readIsLogged();
+    if (isLogged) {
+      final String userID = await prefs.readUserID();
+      if (userID.isNotEmpty) {
+        Provider.of<TodoProvider>(context, listen: false).readTodo(
+          userID: userID,
+        );
+      }
+    } else {
+      final UserModel userModel =
+          Provider.of<AuthProvider>(context, listen: false).userModel;
+      Provider.of<TodoProvider>(context, listen: false).readTodo(
+        userID: userModel.userID,
+      );
+    }
   }
 
   @override
@@ -158,7 +156,7 @@ class _TodoPageState extends State<TodoPage> {
         body: WillPopScope(
           onWillPop: null,
           child: RefreshIndicator(
-            onRefresh: () => _refreshScreenForChanges(),
+            onRefresh: () => _getInitialData(),
             child: ListView(
               children: [
                 SizedBox(height: 15),
@@ -205,7 +203,6 @@ class _TodoPageState extends State<TodoPage> {
                               await todoProvider.deleteTodo(
                                   userID: userModel.userID,
                                   todoID: todo.todoID);
-                              _refreshScreenForChanges();
                               showSnackBar(
                                   context, 'Deleted ${todo.title}', Colors.red);
                             },
@@ -222,7 +219,6 @@ class _TodoPageState extends State<TodoPage> {
                                   isCompleted: todo.isCompleted,
                                   userID: userModel.userID,
                                   todoID: todo.todoID);
-                              _refreshScreenForChanges();
                             },
                           ),
                           onTap: () {
