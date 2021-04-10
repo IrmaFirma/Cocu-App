@@ -10,7 +10,7 @@ class SharedPrefs {
     prefs.setBool('isLogged', false); //it is not first run
   }
 
-  // if user is logged || if user id is not empty
+  // if user is logged || if user id is not empty set this to true
   Future<void> setIsLoggedTrue() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('isLogged', true); //It is first run
