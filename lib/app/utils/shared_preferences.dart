@@ -41,5 +41,4 @@ class SharedPrefs {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('userID') ?? '';
   }
-
 }

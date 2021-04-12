@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/goal_provider.dart';
 import 'package:working_project/app/providers/habits_provider.dart';
@@ -11,7 +10,6 @@ import 'package:working_project/app/view/todo/todo_page.dart';
 import 'package:working_project/app/view/welcome_page.dart';
 
 import 'app/utils/shared_preferences.dart';
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

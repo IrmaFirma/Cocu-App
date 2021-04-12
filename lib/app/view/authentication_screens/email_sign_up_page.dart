@@ -40,7 +40,7 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthProvider _authProvider =
-    Provider.of<AuthProvider>(context, listen: true);
+        Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(

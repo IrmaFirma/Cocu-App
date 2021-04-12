@@ -6,8 +6,13 @@ class EmailWidget extends StatelessWidget {
   final Function onSignIn;
   final String buttonText;
 
-  const EmailWidget({Key key, @required this.MyCardWIdget, @required this.MyAvatarWidget, @required this.onSignIn, this.buttonText}) : super(key: key);
-
+  const EmailWidget(
+      {Key key,
+      @required this.MyCardWIdget,
+      @required this.MyAvatarWidget,
+      @required this.onSignIn,
+      this.buttonText})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

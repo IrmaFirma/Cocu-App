@@ -46,7 +46,9 @@ class MyCard extends StatelessWidget {
                       decoration: InputDecoration(
                           labelText: 'Email', hintText: 'cocu@cocu.com'),
                     ),
-                    SizedBox(height: 25,),
+                    SizedBox(
+                      height: 25,
+                    ),
                     TextFormField(
                       obscureText: true,
                       controller: passwordController,
