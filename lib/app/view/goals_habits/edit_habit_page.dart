@@ -5,6 +5,7 @@ import 'package:working_project/app/models/habit_model.dart';
 import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/habits_provider.dart';
+import 'package:working_project/app/utils/shared_preferences.dart';
 
 import 'habit_widgets/habit_form_widget.dart';
 
@@ -23,6 +24,7 @@ class _EditHabitState extends State<EditHabit> {
   final TextEditingController _noteController = TextEditingController();
   final TextEditingController _importanceController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final SharedPrefs prefs = SharedPrefs();
 
   void initializeData() {
     _titleController.text = widget.habit.habitTitle;
@@ -40,8 +42,6 @@ class _EditHabitState extends State<EditHabit> {
   Widget build(BuildContext context) {
     final HabitProvider habitProvider =
         Provider.of<HabitProvider>(context, listen: true);
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: false).userModel;
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit ${widget.habit.habitTitle}'),
@@ -58,6 +58,7 @@ class _EditHabitState extends State<EditHabit> {
                 importanceController: _importanceController,
                 buttonText: 'Update ${widget.habit.habitTitle}',
                 onSaved: () async {
+                  final String userID = await prefs.readUserID();
                   await habitProvider
                       .updateHabit(
                           habitID: widget.habit.habitID,
@@ -65,7 +66,7 @@ class _EditHabitState extends State<EditHabit> {
                           title: _titleController.text,
                           note: _noteController.text,
                           importance: _importanceController.text,
-                          userID: userModel.userID)
+                          userID: userID)
                       .then(
                     (_) {
                       Navigator.of(context).pop();

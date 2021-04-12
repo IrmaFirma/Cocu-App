@@ -7,6 +7,7 @@ import 'package:working_project/app/models/todo_model.dart';
 import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
+import 'package:working_project/app/utils/shared_preferences.dart';
 import 'package:working_project/app/view/todo/edit_todo_page.dart';
 
 //TODO Fix Scrolling
@@ -16,6 +17,8 @@ class CompletedTodo extends StatefulWidget {
 }
 
 class _CompletedTodoState extends State<CompletedTodo> {
+  SharedPrefs prefs = SharedPrefs();
+
   //new snackbar
   void showSnackBar(BuildContext context, String text, Color color) {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
@@ -27,24 +30,32 @@ class _CompletedTodoState extends State<CompletedTodo> {
     );
   }
 
-  Future<void> _refreshScreenForChanges() async {
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: false).userModel;
-    Provider.of<TodoProvider>(context, listen: false).readCompletedTodo(
-      userID: userModel.userID,
-    );
+  Future<void> _getInitialData() async {
+    final bool isLogged = await prefs.readIsLogged();
+    if (isLogged) {
+      final String userID = await prefs.readUserID();
+      if (userID.isNotEmpty) {
+        Provider.of<TodoProvider>(context, listen: false).readCompletedTodo(
+          userID: userID,
+        );
+      }
+    } else {
+      final UserModel userModel =
+          Provider.of<AuthProvider>(context, listen: false).userModel;
+      Provider.of<TodoProvider>(context, listen: false).readCompletedTodo(
+        userID: userModel.userID,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     //refresh every build
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: true).userModel;
     final List<TodoModel> todos =
         Provider.of<TodoProvider>(context, listen: true).completedModels;
     final TodoProvider todoProvider =
         Provider.of<TodoProvider>(context, listen: true);
-    _refreshScreenForChanges();
+    _getInitialData();
     //ui
     return Scaffold(
         appBar: AppBar(
@@ -53,7 +64,7 @@ class _CompletedTodoState extends State<CompletedTodo> {
         body: WillPopScope(
           onWillPop: null,
           child: RefreshIndicator(
-            onRefresh: () => _refreshScreenForChanges(),
+            onRefresh: () => _getInitialData(),
             child: ListView(
               children: [
                 SizedBox(height: 15),
@@ -76,13 +87,14 @@ class _CompletedTodoState extends State<CompletedTodo> {
                           IconSlideAction(
                               color: Colors.deepOrangeAccent,
                               //edit function call
-                              onTap: () {
+                              onTap: () async {
+                                final String userID = await prefs.readUserID();
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute<void>(
                                       builder: (BuildContext context) =>
                                           EditTodo(
-                                            userModel: userModel,
+                                            userID: userID,
                                           ),
                                       fullscreenDialog: true),
                                 );
@@ -96,10 +108,10 @@ class _CompletedTodoState extends State<CompletedTodo> {
                             caption: 'Delete',
                             //delete function call
                             onTap: () async {
+                              final String userID = await prefs.readUserID();
                               await todoProvider.deleteTodo(
-                                  userID: userModel.userID,
-                                  todoID: todo.todoID);
-                              _refreshScreenForChanges();
+                                  userID: userID, todoID: todo.todoID);
+                              _getInitialData();
                               showSnackBar(
                                   context, 'Deleted ${todo.title}', Colors.red);
                             },
@@ -111,19 +123,15 @@ class _CompletedTodoState extends State<CompletedTodo> {
                             activeColor: Colors.green,
                             checkColor: Colors.white,
                             value: todo.isCompleted,
-                            onChanged: (_) {
-                              todoProvider.markAsDone(
-                                  isCompleted: todo.isCompleted,
-                                  userID: userModel.userID,
-                                  todoID: todo.todoID);
-                            },
+                            onChanged: null,
                           ),
-                          onTap: () {
+                          onTap: () async {
+                            final String userID = await prefs.readUserID();
                             Navigator.push(
                               context,
                               MaterialPageRoute<void>(
                                   builder: (BuildContext context) => EditTodo(
-                                        userModel: userModel,
+                                        userID: userID,
                                       ),
                                   fullscreenDialog: true),
                             );

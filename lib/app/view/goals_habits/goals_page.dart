@@ -8,6 +8,7 @@ import 'package:working_project/app/models/goal_model.dart';
 import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/goal_provider.dart';
+import 'package:working_project/app/utils/shared_preferences.dart';
 import 'package:working_project/app/view/goals_habits/edit_goal_page.dart';
 import 'package:working_project/app/view/goals_habits/habits_page.dart';
 import 'package:working_project/app/view/journal/journal_page.dart';
@@ -22,6 +23,8 @@ class GoalPage extends StatefulWidget {
 }
 
 class _GoalPageState extends State<GoalPage> {
+  SharedPrefs prefs = SharedPrefs();
+
   void showSnackBar(BuildContext context, String text, Color color) {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
@@ -32,25 +35,33 @@ class _GoalPageState extends State<GoalPage> {
     );
   }
 
-  Future<void> _refreshScreenForChanges() async {
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: false).userModel;
-    Provider.of<GoalProvider>(context, listen: false).readGoal(
-      userID: userModel.userID,
-    );
+  Future<void> _getInitialData() async {
+    final bool isLogged = await prefs.readIsLogged();
+    if (isLogged) {
+      final String userID = await prefs.readUserID();
+      if (userID.isNotEmpty) {
+        Provider.of<GoalProvider>(context, listen: false).readGoal(
+          userID: userID,
+        );
+      }
+    } else {
+      final UserModel userModel =
+          Provider.of<AuthProvider>(context, listen: false).userModel;
+      Provider.of<GoalProvider>(context, listen: false).readGoal(
+        userID: userModel.userID,
+      );
+    }
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _refreshScreenForChanges();
+    _getInitialData();
   }
 
   @override
   Widget build(BuildContext context) {
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: true).userModel;
     final GoalProvider goalProvider =
         Provider.of<GoalProvider>(context, listen: true);
     final List<GoalModel> goals =
@@ -109,7 +120,7 @@ class _GoalPageState extends State<GoalPage> {
         body: WillPopScope(
           onWillPop: null,
           child: RefreshIndicator(
-            onRefresh: () => _refreshScreenForChanges(),
+            onRefresh: () => _getInitialData(),
             child: ListView(
               children: [
                 ListView.builder(
@@ -146,11 +157,11 @@ class _GoalPageState extends State<GoalPage> {
                             color: Colors.red,
                             caption: 'Delete',
                             //delete function call
-                            onTap: () {
-                              goalProvider.deleteGoal(
-                                  goalID: goal.goalID,
-                                  userID: userModel.userID);
-                              _refreshScreenForChanges();
+                            onTap: () async {
+                              final String userID = await prefs.readUserID();
+                              await goalProvider.deleteGoal(
+                                  goalID: goal.goalID, userID: userID);
+                              _getInitialData();
                               showSnackBar(context, 'Deleted ${goal.goalTitle}',
                                   Colors.red);
                             },

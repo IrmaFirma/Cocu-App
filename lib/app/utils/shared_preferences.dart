@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefs {
-
-
   // call on logout
   Future<void> setIsLoggedFalse() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -25,14 +23,15 @@ class SharedPrefs {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('isLogged'); // clear prefs
     await prefs.remove('userID');
+    await prefs.remove('userName');
   }
 
-  Future<void> logout({@required Function setStates}) async {
+  Future<void> logout() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('userID', '');
   }
 
-  Future<void> loginUser({@required setStates, @required String uid}) async {
+  Future<void> loginUser({@required String uid}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('userID', uid);
     //clear controller
@@ -42,4 +41,5 @@ class SharedPrefs {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('userID') ?? '';
   }
+
 }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/models/journal_model.dart';
-import 'package:working_project/app/models/user_model.dart';
-import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/journal_provider.dart';
+import 'package:working_project/app/utils/shared_preferences.dart';
 
 import '../../models/journal_model.dart';
 import 'journal_widgets/journal_form_widget.dart';
@@ -28,6 +27,8 @@ class _EditJournalState extends State<EditJournal> {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  final SharedPrefs prefs = SharedPrefs();
+
   void initializeData() {
     _titleController.text = widget.journal.title;
     _subtitleController.text = widget.journal.subtitle;
@@ -44,8 +45,6 @@ class _EditJournalState extends State<EditJournal> {
   Widget build(BuildContext context) {
     final JournalProvider journalProvider =
         Provider.of<JournalProvider>(context, listen: true);
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: false).userModel;
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit ${widget.journal.title}'),
@@ -62,6 +61,7 @@ class _EditJournalState extends State<EditJournal> {
                 descriptionController: _descriptionController,
                 buttonText: 'Update ${widget.journal.title}',
                 onSaved: () async {
+                  final String userID = await prefs.readUserID();
                   await journalProvider
                       .updateJournal(
                           journalID: widget.journal.journalID,
@@ -69,7 +69,7 @@ class _EditJournalState extends State<EditJournal> {
                           title: _titleController.text,
                           subtitle: _subtitleController.text,
                           description: _descriptionController.text,
-                          userID: userModel.userID)
+                          userID: userID)
                       .then(
                     (_) {
                       Navigator.of(context).pop();

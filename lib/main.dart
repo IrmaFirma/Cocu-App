@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/goal_provider.dart';
 import 'package:working_project/app/providers/habits_provider.dart';
@@ -11,7 +11,7 @@ import 'package:working_project/app/view/todo/todo_page.dart';
 import 'package:working_project/app/view/welcome_page.dart';
 
 import 'app/utils/shared_preferences.dart';
-import 'app/utils/shared_preferences.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> autoLogin() async {
-    final String userId =  await sharedPrefs.readUserID();
+    final String userId = await sharedPrefs.readUserID();
     if (userId.isNotEmpty) {
       sharedPrefs.setIsLoggedTrue();
       isLogged = await sharedPrefs.readIsLogged();

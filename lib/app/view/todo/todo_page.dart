@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:working_project/app/models/todo_model.dart';
 import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
@@ -15,12 +14,11 @@ import 'package:working_project/app/view/todo/edit_todo_page.dart';
 import 'package:working_project/app/view/user_info_page.dart';
 
 import '../../utils/shared_preferences.dart';
-import '../../utils/shared_preferences.dart';
 import 'add_todo.dart';
 import 'completed_todo.dart';
 
 //TODO Fix Scrolling
-
+//TODO: REFRESH AFTER EDIT
 class TodoPage extends StatefulWidget {
   @override
   _TodoPageState createState() => _TodoPageState();
@@ -68,8 +66,6 @@ class _TodoPageState extends State<TodoPage> {
   @override
   Widget build(BuildContext context) {
     //refresh every build
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: true).userModel;
     final List<TodoModel> todos =
         Provider.of<TodoProvider>(context, listen: true).todoModels;
     final TodoProvider todoProvider =
@@ -92,13 +88,17 @@ class _TodoPageState extends State<TodoPage> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute<void>(
-                builder: (BuildContext context) =>
-                    AddNewTodo(userModel: userModel),
-                fullscreenDialog: true),
-          ),
+          onPressed: () async {
+            final String userID = await prefs.readUserID();
+            Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
+                    return AddNewTodo(userID: userID);
+                  },
+                  fullscreenDialog: true),
+            );
+          },
           child: Icon(Icons.add),
           backgroundColor: Colors.indigo,
         ),
@@ -179,13 +179,14 @@ class _TodoPageState extends State<TodoPage> {
                           IconSlideAction(
                               color: Colors.deepOrangeAccent,
                               //edit function call
-                              onTap: () {
+                              onTap: () async {
+                                final String userID = await prefs.readUserID();
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute<void>(
                                       builder: (BuildContext context) =>
                                           EditTodo(
-                                            userModel: userModel,
+                                            userID: userID,
                                             todo: todo,
                                           ),
                                       fullscreenDialog: true),
@@ -200,11 +201,12 @@ class _TodoPageState extends State<TodoPage> {
                             caption: 'Delete',
                             //delete function call
                             onTap: () async {
+                              final String userID = await prefs.readUserID();
                               await todoProvider.deleteTodo(
-                                  userID: userModel.userID,
-                                  todoID: todo.todoID);
+                                  userID: userID, todoID: todo.todoID);
                               showSnackBar(
                                   context, 'Deleted ${todo.title}', Colors.red);
+                              _getInitialData();
                             },
                             icon: Icons.delete,
                           )
@@ -214,19 +216,22 @@ class _TodoPageState extends State<TodoPage> {
                             activeColor: Colors.green,
                             checkColor: Colors.white,
                             value: todo.isCompleted,
-                            onChanged: (_) {
+                            onChanged: (_) async {
+                              final String userID = await prefs.readUserID();
                               todoProvider.markAsDone(
                                   isCompleted: todo.isCompleted,
-                                  userID: userModel.userID,
+                                  userID: userID,
                                   todoID: todo.todoID);
+                              _getInitialData();
                             },
                           ),
-                          onTap: () {
+                          onTap: () async {
+                            final String userID = await prefs.readUserID();
                             Navigator.push(
                               context,
                               MaterialPageRoute<void>(
                                   builder: (BuildContext context) => EditTodo(
-                                        userModel: userModel,
+                                        userID: userID,
                                         todo: todo,
                                       ),
                                   fullscreenDialog: true),

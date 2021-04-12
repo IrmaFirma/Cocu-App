@@ -9,6 +9,7 @@ import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 
 import 'package:working_project/app/providers/journal_provider.dart';
+import 'package:working_project/app/utils/shared_preferences.dart';
 
 import 'package:working_project/app/utils/strings.dart';
 import 'package:working_project/app/view/goals_habits/goals_page.dart';
@@ -18,13 +19,15 @@ import 'package:working_project/app/view/todo/todo_page.dart';
 import 'add_new_journal_screen.dart';
 
 //TODO Fix Scrolling
-
+//TODO: REFRESH AFTER EDIT
 class JournalPage extends StatefulWidget {
   @override
   _JournalPageState createState() => _JournalPageState();
 }
 
 class _JournalPageState extends State<JournalPage> {
+  final SharedPrefs prefs = SharedPrefs();
+
   //new snackbar
   void showSnackBar(BuildContext context, String text, Color color) {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
@@ -36,26 +39,34 @@ class _JournalPageState extends State<JournalPage> {
     );
   }
 
-  Future<void> _refreshScreenForChanges() async {
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: false).userModel;
-    Provider.of<JournalProvider>(context, listen: false).readJournal(
-      userID: userModel.userID,
-    );
+  Future<void> _getInitialData() async {
+    final bool isLogged = await prefs.readIsLogged();
+    if (isLogged) {
+      final String userID = await prefs.readUserID();
+      if (userID.isNotEmpty) {
+        Provider.of<JournalProvider>(context, listen: false).readJournal(
+          userID: userID,
+        );
+      }
+    } else {
+      final UserModel userModel =
+          Provider.of<AuthProvider>(context, listen: false).userModel;
+      Provider.of<JournalProvider>(context, listen: false).readJournal(
+        userID: userModel.userID,
+      );
+    }
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _refreshScreenForChanges();
+    _getInitialData();
   }
 
   @override
   Widget build(BuildContext context) {
     //refresh every build
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: true).userModel;
     final List<JournalModel> journals =
         Provider.of<JournalProvider>(context, listen: true).journalModels;
     final JournalProvider journalProvider =
@@ -121,7 +132,7 @@ class _JournalPageState extends State<JournalPage> {
         body: WillPopScope(
           onWillPop: null,
           child: RefreshIndicator(
-            onRefresh: () => _refreshScreenForChanges(),
+            onRefresh: () => _getInitialData(),
             child: ListView(
               children: [
                 ListView.builder(
@@ -160,11 +171,10 @@ class _JournalPageState extends State<JournalPage> {
                             caption: 'Delete',
                             //delete function call
                             onTap: () async {
-                              //on Tap call journal provider method and delete
+                              final String userID = await prefs.readUserID();
                               await journalProvider.deleteJournal(
-                                  userID: userModel.userID,
-                                  journalID: journal.journalID);
-                              _refreshScreenForChanges();
+                                  userID: userID, journalID: journal.journalID);
+                              _getInitialData();
                               showSnackBar(context, 'Deleted ${journal.title}',
                                   Colors.red);
                             },

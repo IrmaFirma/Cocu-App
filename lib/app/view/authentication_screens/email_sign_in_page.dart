@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
+import 'package:working_project/app/view/authentication_screens/auth_widgets/email_widget.dart';
 import 'package:working_project/app/view/todo/todo_page.dart';
 
+import 'auth_widgets/email_avatar.dart';
+import 'auth_widgets/email_form_card.dart';
+
+//shared preferences
 bool isLogged = false;
 String userID = '';
 
@@ -14,37 +19,24 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  final TextEditingController emailController = TextEditingController();
-
-  final TextEditingController passwordController = TextEditingController();
-
+  //authentication
   void login({BuildContext context, AuthProvider authProvider}) async {
     try {
       final FormState _formState = _formKey.currentState;
       if (_formState.validate()) {
         await authProvider
             .loginWithEmailAndPassword(
-            email: emailController.text,
-            password: passwordController.text,
-            context: context)
+                email: emailController.text,
+                password: passwordController.text,
+                context: context)
             .then((_) async {
           Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => TodoPage(),
-              ),
-             );
+            MaterialPageRoute(
+              builder: (context) => TodoPage(),
+            ),
+          );
           //change instead of in direct onPressed called here
-          await SharedPrefs().loginUser(
-              setStates: () {
-                setState(() {
-                  userID = authProvider.userModel.userID;
-                  isLogged = true;
-                });
-              },
-              uid: authProvider.userModel.userID);
+          await SharedPrefs().loginUser(uid: authProvider.userModel.userID);
         });
       }
     } on FirebaseAuthException catch (e) {
@@ -53,42 +45,36 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  //form control
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final AuthProvider _authProvider =
-    Provider.of<AuthProvider>(context, listen: true);
-
+        Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign In with Email and Password'),
-      ),
+      resizeToAvoidBottomInset: false,
       body: Container(
-        child: Column(
-          children: [
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                        labelText: 'Email', hintText: 'cocu@cocu.com'),
-                  ),
-                  TextFormField(
-                    obscureText: true,
-                    controller: passwordController,
-                    decoration: InputDecoration(labelText: 'Password'),
-                  ),
-                  ElevatedButton(
-                    child: Text('Sign In'),
-                    onPressed: () async {
-                      login(context: context, authProvider: _authProvider);
-                    },
-                  ),
-                ],
-              ),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/signInBack.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Container(
+          child: EmailWidget(
+            buttonText: 'SIGN IN',
+            MyAvatarWidget: EmailAvatar(),
+            MyCardWIdget: MyCard(
+              emailController: emailController,
+              passwordController: passwordController,
+              formKey: _formKey,
             ),
-          ],
+            onSignIn: () =>
+                login(context: context, authProvider: _authProvider),
+          ),
         ),
       ),
     );

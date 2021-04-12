@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
+import 'package:working_project/app/utils/shared_preferences.dart';
 import 'package:working_project/app/view/todo/todo_page.dart';
+
+import 'auth_widgets/email_avatar.dart';
+import 'auth_widgets/email_form_card.dart';
+import 'auth_widgets/email_widget.dart';
 
 class RegisterScreen extends StatelessWidget {
   //form key
@@ -20,12 +25,13 @@ class RegisterScreen extends StatelessWidget {
               password: passwordController.text,
               context: context)
           .then(
-        (_) {
+        (_) async {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => TodoPage(),
             ),
           );
+          await SharedPrefs().loginUser(uid: authProvider.userModel.userID);
         },
       );
     }
@@ -34,40 +40,28 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthProvider _authProvider =
-        Provider.of<AuthProvider>(context, listen: true);
+    Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Register with Email and Password'),
-      ),
+      resizeToAvoidBottomInset: false,
       body: Container(
-        child: Column(
-          children: [
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                        labelText: 'Email', hintText: 'cocu@cocu.com'),
-                  ),
-                  TextFormField(
-                    obscureText: true,
-                    controller: passwordController,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                    ),
-                  ),
-                  ElevatedButton(
-                      child: Text('Register'),
-                      onPressed: () {
-                        return register(
-                            context: context, authProvider: _authProvider);
-                      })
-                ],
-              ),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/signInBack.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Container(
+          child: EmailWidget(
+            buttonText: 'REGISTER',
+            MyAvatarWidget: EmailAvatar(),
+            MyCardWIdget: MyCard(
+              emailController: emailController,
+              passwordController: passwordController,
+              formKey: _formKey,
             ),
-          ],
+            onSignIn: () =>
+                register(context: context, authProvider: _authProvider),
+          ),
         ),
       ),
     );

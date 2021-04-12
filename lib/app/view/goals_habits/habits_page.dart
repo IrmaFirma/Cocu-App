@@ -5,6 +5,7 @@ import 'package:working_project/app/models/habit_model.dart';
 import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/habits_provider.dart';
+import 'package:working_project/app/utils/shared_preferences.dart';
 
 import '../../models/goal_model.dart';
 import 'add_habit_page.dart';
@@ -21,11 +22,22 @@ class HabitsPage extends StatefulWidget {
 }
 
 class _HabitsPageState extends State<HabitsPage> {
-  Future<void> _refreshScreenForChanges() async {
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: false).userModel;
-    Provider.of<HabitProvider>(context, listen: false)
-        .readHabits(userID: userModel.userID, goalID: widget.goal.goalID);
+  SharedPrefs prefs = SharedPrefs();
+
+  Future<void> _getInitialData() async {
+    final bool isLogged = await prefs.readIsLogged();
+    if (isLogged) {
+      final String userID = await prefs.readUserID();
+      if (userID.isNotEmpty) {
+        Provider.of<HabitProvider>(context, listen: false)
+            .readHabits(userID: userID, goalID: widget.goal.goalID);
+      }
+    } else {
+      final UserModel userModel =
+          Provider.of<AuthProvider>(context, listen: false).userModel;
+      Provider.of<HabitProvider>(context, listen: false)
+          .readHabits(userID: userModel.userID, goalID: widget.goal.goalID);
+    }
   }
 
   void showSnackBar(BuildContext context, String text, Color color) {
@@ -42,13 +54,11 @@ class _HabitsPageState extends State<HabitsPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _refreshScreenForChanges();
+    _getInitialData();
   }
 
   @override
   Widget build(BuildContext context) {
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: true).userModel;
     final HabitProvider habitProvider =
         Provider.of<HabitProvider>(context, listen: true);
     final List<HabitModel> habits =
@@ -70,7 +80,7 @@ class _HabitsPageState extends State<HabitsPage> {
       body: WillPopScope(
         onWillPop: null,
         child: RefreshIndicator(
-          onRefresh: () => _refreshScreenForChanges(),
+          onRefresh: () => _getInitialData(),
           child: ListView(
             children: [
               ListView.builder(
@@ -94,6 +104,7 @@ class _HabitsPageState extends State<HabitsPage> {
                                 MaterialPageRoute(
                                   builder: (context) => EditHabit(
                                     goal: widget.goal,
+                                    habit: habit,
                                   ),
                                 ),
                               );
@@ -106,12 +117,13 @@ class _HabitsPageState extends State<HabitsPage> {
                           color: Colors.red,
                           caption: 'Delete',
                           //delete function call
-                          onTap: () {
-                            habitProvider.deleteHabit(
-                                userID: userModel.userID,
+                          onTap: () async {
+                            final String userID = await prefs.readUserID();
+                            await habitProvider.deleteHabit(
+                                userID: userID,
                                 habitID: habit.habitID,
                                 goalID: widget.goal.goalID);
-                            _refreshScreenForChanges();
+                            _getInitialData();
                             showSnackBar(context, 'Deleted ${habit.habitTitle}',
                                 Colors.red);
                           },

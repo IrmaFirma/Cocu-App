@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:working_project/app/models/user_model.dart';
-import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/view/todo/todo_widgets/todo_form_widget.dart';
 
 class AddNewTodo extends StatefulWidget {
-  final UserModel userModel;
+  final String userID;
 
-  const AddNewTodo({Key key, this.userModel}) : super(key: key);
+  const AddNewTodo({Key key, this.userID}) : super(key: key);
 
   @override
   _AddNewTodoState createState() => _AddNewTodoState();
@@ -29,8 +27,6 @@ class _AddNewTodoState extends State<AddNewTodo> {
         '${dateFormat.day}/${dateFormat.month}/${dateFormat.year}';
     final TodoProvider todoProvider =
         Provider.of<TodoProvider>(context, listen: true);
-    final AuthProvider authProvider =
-        Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         title: Text('Add new Todo'),
@@ -60,7 +56,7 @@ class _AddNewTodoState extends State<AddNewTodo> {
                   todoProvider
                       .addTodo(
                           isCompleted: false,
-                          userID: authProvider.userModel.userID,
+                          userID: widget.userID,
                           title: _titleController.text,
                           description: _descriptionController.text,
                           date: date)

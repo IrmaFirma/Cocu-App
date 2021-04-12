@@ -6,10 +6,10 @@ import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/view/todo/todo_widgets/todo_form_widget.dart';
 
 class EditTodo extends StatefulWidget {
-  const EditTodo({this.todo, this.userModel});
+  const EditTodo({this.todo, this.userID});
 
   final TodoModel todo;
-  final UserModel userModel;
+  final String userID;
 
   @override
   _EditTodoState createState() => _EditTodoState();
@@ -71,7 +71,7 @@ class _EditTodoState extends State<EditTodo> {
                   todoProvider
                       .updateTodo(
                           todoID: widget.todo.todoID,
-                          userID: widget.userModel.userID,
+                          userID: widget.userID,
                           title: _titleController.text,
                           description: _descriptionController.text,
                           date: date)

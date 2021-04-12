@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:working_project/app/models/user_model.dart';
-import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/goal_provider.dart';
+import 'package:working_project/app/utils/shared_preferences.dart';
 
 import 'goal_widgets/goal_form_widget.dart';
 
@@ -16,6 +15,7 @@ class _AddNewGoalState extends State<AddNewGoal> {
   String date = DateTime.now().toString();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final SharedPrefs prefs = SharedPrefs();
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,6 @@ class _AddNewGoalState extends State<AddNewGoal> {
         '${dateFormat.day}/${dateFormat.month}/${dateFormat.year}';
     final GoalProvider goalProvider =
         Provider.of<GoalProvider>(context, listen: true);
-    final UserModel userModel =
-        Provider.of<AuthProvider>(context, listen: false).userModel;
     return Scaffold(
       appBar: AppBar(
         title: Text('Add new Goal'),
@@ -52,11 +50,12 @@ class _AddNewGoalState extends State<AddNewGoal> {
                       }));
                 },
                 onSaved: () async {
+                  final String userID = await prefs.readUserID();
                   await goalProvider
                       .addGoal(
                           date: date,
                           title: _titleController.text,
-                          userID: userModel.userID)
+                          userID: userID)
                       .then((_) {
                     Navigator.of(context).pop();
                   });
