@@ -7,15 +7,14 @@ import 'package:provider/provider.dart';
 import 'package:working_project/app/models/journal_model.dart';
 import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
-
 import 'package:working_project/app/providers/journal_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
-
 import 'package:working_project/app/utils/strings.dart';
 import 'package:working_project/app/view/goals_habits/goals_page.dart';
 import 'package:working_project/app/view/journal/edit_journal_page.dart';
 import 'package:working_project/app/view/todo/todo_page.dart';
 
+import '../user_info_page.dart';
 import 'add_new_journal_screen.dart';
 
 //TODO Fix Scrolling
@@ -98,7 +97,7 @@ class _JournalPageState extends State<JournalPage> {
             children: <Widget>[
               DrawerHeader(
                 child: Text(
-                  'Providers App',
+                  'Cocu',
                   style: TextStyle(color: Colors.white),
                 ),
                 decoration: BoxDecoration(
@@ -106,12 +105,21 @@ class _JournalPageState extends State<JournalPage> {
                 ),
               ),
               ListTile(
-                title: Text('My Journal',
-                    style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold)),
+                title: Text(
+                  'Home Page',
+                  style: TextStyle(
+                      color: Colors.orange, fontWeight: FontWeight.bold),
+                ),
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                        builder: (BuildContext context) => HomePage(),
+                        fullscreenDialog: true)),
               ),
               ListTile(
-                title: Text('My todo'),
+                title: Text(
+                  'Todo',
+                ),
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute<void>(
@@ -119,7 +127,10 @@ class _JournalPageState extends State<JournalPage> {
                         fullscreenDialog: true)),
               ),
               ListTile(
-                title: Text('My goals and habits'),
+                title: Text('Journal'),
+              ),
+              ListTile(
+                title: Text('Goals and Habits'),
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute<void>(

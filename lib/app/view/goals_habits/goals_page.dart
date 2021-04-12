@@ -14,6 +14,7 @@ import 'package:working_project/app/view/goals_habits/habits_page.dart';
 import 'package:working_project/app/view/journal/journal_page.dart';
 import 'package:working_project/app/view/todo/todo_page.dart';
 
+import '../user_info_page.dart';
 import 'add_goal_page.dart';
 
 //TODO Fix Scrolling
@@ -87,7 +88,7 @@ class _GoalPageState extends State<GoalPage> {
             children: <Widget>[
               DrawerHeader(
                 child: Text(
-                  'Providers App',
+                  'Cocu',
                   style: TextStyle(color: Colors.white),
                 ),
                 decoration: BoxDecoration(
@@ -96,23 +97,36 @@ class _GoalPageState extends State<GoalPage> {
               ),
               ListTile(
                 title: Text(
-                  'My Goals and Habits',
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                  'Home Page',
+                  style: TextStyle(
+                      color: Colors.orange, fontWeight: FontWeight.bold),
                 ),
-              ),
-              ListTile(
-                title: Text('My todo'),
-                onTap: () => Navigator.push(context,
-                    CupertinoPageRoute(builder: (context) => TodoPage())),
-              ),
-              ListTile(
-                title: Text('My journal'),
                 onTap: () => Navigator.push(
                     context,
-                    CupertinoPageRoute<void>(
+                    MaterialPageRoute<void>(
+                        builder: (BuildContext context) => HomePage(),
+                        fullscreenDialog: true)),
+              ),
+              ListTile(
+                title: Text(
+                  'Todo',
+                ),
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                        builder: (BuildContext context) => TodoPage(),
+                        fullscreenDialog: true)),
+              ),
+              ListTile(
+                title: Text('Journal'),
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
                         builder: (BuildContext context) => JournalPage(),
                         fullscreenDialog: true)),
+              ),
+              ListTile(
+                title: Text('Goals and Habits'),
               ),
             ],
           ),

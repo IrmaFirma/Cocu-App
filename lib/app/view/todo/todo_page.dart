@@ -108,7 +108,7 @@ class _TodoPageState extends State<TodoPage> {
             children: <Widget>[
               DrawerHeader(
                 child: Text(
-                  'Providers App',
+                  'Cocu',
                   style: TextStyle(color: Colors.white),
                 ),
                 decoration: BoxDecoration(
@@ -117,16 +117,9 @@ class _TodoPageState extends State<TodoPage> {
               ),
               ListTile(
                 title: Text(
-                  'Todo Page',
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  'Account',
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                  'Home Page',
+                  style: TextStyle(
+                      color: Colors.orange, fontWeight: FontWeight.bold),
                 ),
                 onTap: () => Navigator.push(
                     context,
@@ -135,7 +128,12 @@ class _TodoPageState extends State<TodoPage> {
                         fullscreenDialog: true)),
               ),
               ListTile(
-                title: Text('My journal'),
+                title: Text(
+                  'Todo',
+                ),
+              ),
+              ListTile(
+                title: Text('Journal'),
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute<void>(
@@ -143,7 +141,7 @@ class _TodoPageState extends State<TodoPage> {
                         fullscreenDialog: true)),
               ),
               ListTile(
-                title: Text('My goals and habits'),
+                title: Text('Goals and Habits'),
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute<void>(
