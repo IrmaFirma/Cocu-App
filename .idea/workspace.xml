@@ -20,19 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69d2bc79-9593-42f6-8e00-1bfc27e08af9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/ellipse_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/ellipse_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/ellipse_6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/userBack.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/F_IRMA.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/F_IRMA.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/view/user_info_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/user_info_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/user_info_widgets/user_info_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/user_info_widgets/user_info_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/authentication_screens/auth_widgets/email_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/authentication_screens/auth_widgets/email_widget.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -322,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618306184408</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="User Info Count">
+      <created>1618318445606</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1618318445606</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -360,7 +357,8 @@
     <MESSAGE value="Reformating" />
     <MESSAGE value="User Info Page" />
     <MESSAGE value="User Info Page counts" />
-    <option name="LAST_COMMIT_MESSAGE" value="User Info Page counts" />
+    <MESSAGE value="User Info Count" />
+    <option name="LAST_COMMIT_MESSAGE" value="User Info Count" />
   </component>
   <component name="WindowStateProjectService">
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1617562407377">
@@ -447,10 +445,10 @@
     </state>
     <state x="461" y="161" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618236960203" />
     <state x="1186" y="-892" key="SettingsEditor/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618043064214" />
-    <state x="431" y="185" key="Vcs.Push.Dialog.v2" timestamp="1618306188767">
+    <state x="431" y="185" key="Vcs.Push.Dialog.v2" timestamp="1618318452179">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="431" y="185" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618306188767" />
+    <state x="431" y="185" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618318452179" />
     <state x="323" y="173" key="Vcs.Push.Dialog.v2/0.25.1440.830@0.25.1440.830" timestamp="1617442962307" />
     <state x="1156" y="-875" key="Vcs.Push.Dialog.v2/0.25.1440.875/725.-1055.1920.1010/-1195.-1055.1920.1055@725.-1055.1920.1010" timestamp="1618044554308" />
     <state x="413" y="179" width="613" height="522" key="find.popup" timestamp="1617442479392">

@@ -58,6 +58,7 @@ class EmailWidget extends StatelessWidget {
                           style: TextStyle(
                               color: Color(0xFF6E6C6C),
                               fontSize: 22,
+                              fontWeight: FontWeight.w600,
                               fontFamily: 'Raleway')),
                     ],
                   )),
