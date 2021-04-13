@@ -124,7 +124,7 @@ class _TodoPageState extends State<TodoPage> {
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute<void>(
-                        builder: (BuildContext context) => HomePage(),
+                        builder: (BuildContext context) => UserInfoPage(),
                         fullscreenDialog: true)),
               ),
               ListTile(

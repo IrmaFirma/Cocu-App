@@ -104,7 +104,7 @@ class _GoalPageState extends State<GoalPage> {
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute<void>(
-                        builder: (BuildContext context) => HomePage(),
+                        builder: (BuildContext context) => UserInfoPage(),
                         fullscreenDialog: true)),
               ),
               ListTile(
