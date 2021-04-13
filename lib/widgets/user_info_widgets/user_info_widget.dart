@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class BuildUserInfo extends StatelessWidget {
+  BuildUserInfo({@required this.todoCount, @required this.goalCount, @required this.journalCount});
+  final String todoCount;
+  final String goalCount;
+  final String journalCount;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -68,6 +73,12 @@ class BuildUserInfo extends StatelessWidget {
             children: <Widget>[
               SizedBox(width: 17),
               Container(
+                child: Column(
+                  children: [
+                    Text('Journal Count'),
+                    Text(journalCount != null ? journalCount : ''),
+                  ],
+                ),
                 width: 157,
                 decoration: BoxDecoration(
                     color: Color(0xFFFBC490),
@@ -75,6 +86,12 @@ class BuildUserInfo extends StatelessWidget {
               ),
               SizedBox(width: 17),
               Container(
+                child: Column(
+                  children: [
+                    Text('Goal Count'),
+                    Text(goalCount != null ? goalCount : ''),
+                  ],
+                ),
                 width: 157,
                 decoration: BoxDecoration(
                     color: Color(0xFF189AB4),
@@ -82,6 +99,12 @@ class BuildUserInfo extends StatelessWidget {
               ),
               SizedBox(width: 17),
               Container(
+                child: Column(
+                  children: [
+                    Text('Not Completed TODO Count'),
+                    Text(todoCount != null ? todoCount : ''),
+                  ],
+                ),
                 width: 157,
                 decoration: BoxDecoration(
                     color: Color(0xFFFEAF68),
@@ -91,14 +114,6 @@ class BuildUserInfo extends StatelessWidget {
           ),
         ),
         SizedBox(height: 17),
-        Container(
-          height: 133,
-          width: 370,
-          decoration: BoxDecoration(
-              color: Color(0xFFD4F1F4),
-              borderRadius: BorderRadius.all(Radius.circular(25))),
-        ),
-        SizedBox(height: 13),
         Container(
           child: Text(
             '\"Opportunities don\'t happen. You create them.\"',

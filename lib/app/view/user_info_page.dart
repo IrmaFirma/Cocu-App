@@ -3,11 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/models/goal_model.dart';
-import 'package:working_project/app/models/habit_model.dart';
+import 'package:working_project/app/models/journal_model.dart';
 import 'package:working_project/app/models/todo_model.dart';
+import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/goal_provider.dart';
-import 'package:working_project/app/providers/habits_provider.dart';
+import 'package:working_project/app/providers/journal_provider.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
 import 'package:working_project/app/view/welcome_page.dart';
@@ -21,6 +22,8 @@ class UserInfoPage extends StatefulWidget {
 }
 
 class _UserInfoPageState extends State<UserInfoPage> {
+  SharedPrefs prefs = SharedPrefs();
+
   //authentication method
   Future<void> _signOut(BuildContext context) async {
     try {
@@ -35,12 +38,54 @@ class _UserInfoPageState extends State<UserInfoPage> {
     }
   }
 
+  //getting goalCount live
+  Future<void> _getGoalCount() async {
+    final bool isLogged = await prefs.readIsLogged();
+    if (isLogged) {
+      final String userID = await prefs.readUserID();
+      if (userID.isNotEmpty) {
+        Provider.of<GoalProvider>(context, listen: false)
+            .readGoal(userID: userID);
+      }
+    } else {
+      final UserModel userModel =
+          Provider.of<AuthProvider>(context, listen: false).userModel;
+      Provider.of<GoalProvider>(context, listen: false)
+          .readGoal(userID: userModel.userID);
+    }
+  }
+
+  //getting JournalCount live
+  Future<void> _getJournalCount() async {
+    final bool isLogged = await prefs.readIsLogged();
+    if (isLogged) {
+      final String userID = await prefs.readUserID();
+      if (userID.isNotEmpty) {
+        Provider.of<JournalProvider>(context, listen: false)
+            .readJournal(userID: userID);
+      }
+    } else {
+      final UserModel userModel =
+          Provider.of<AuthProvider>(context, listen: false).userModel;
+      Provider.of<JournalProvider>(context, listen: false)
+          .readJournal(userID: userModel.userID);
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getJournalCount();
+    _getGoalCount();
+  }
+
   //ui
   @override
   Widget build(BuildContext context) {
-    //habits count
-    final List<HabitModel> habits =
-        Provider.of<HabitProvider>(context, listen: true).habitModels;
+    // journals count
+    final List<JournalModel> journals =
+        Provider.of<JournalProvider>(context, listen: true).journalModels;
     //goals count
     final List<GoalModel> goals =
         Provider.of<GoalProvider>(context, listen: true).goalModels;
@@ -63,7 +108,11 @@ class _UserInfoPageState extends State<UserInfoPage> {
       ),
       drawer: UserInfoDrawer(),
       body: Container(
-        child: BuildUserInfo(),
+        child: BuildUserInfo(
+          todoCount: todos.length.toString(),
+          journalCount: journals.length.toString(),
+          goalCount: goals.length.toString(),
+        ),
       ),
     );
   }
