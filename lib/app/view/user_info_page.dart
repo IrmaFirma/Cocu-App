@@ -12,9 +12,9 @@ import 'package:working_project/app/providers/journal_provider.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
 import 'package:working_project/app/view/welcome_page.dart';
+import 'package:working_project/widgets/user_info_widgets/user_info_widget.dart';
 
 import 'file:///C:/Users/F-IRMA/AndroidStudioProjects/CocuApp/lib/widgets/user_info_widgets/user_info_drawer_widget.dart';
-import 'file:///C:/Users/F-IRMA/AndroidStudioProjects/CocuApp/lib/widgets/user_info_widgets/user_info_widget.dart';
 
 class UserInfoPage extends StatefulWidget {
   @override
@@ -108,10 +108,24 @@ class _UserInfoPageState extends State<UserInfoPage> {
       ),
       drawer: UserInfoDrawer(),
       body: Container(
-        child: BuildUserInfo(
-          todoCount: todos.length.toString(),
-          journalCount: journals.length.toString(),
-          goalCount: goals.length.toString(),
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/userBack.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 250.0),
+              child: BuildUserInfo(
+                todoCount: todos.length.toString(),
+                journalCount: journals.length.toString(),
+                goalCount: goals.length.toString(),
+              ),
+            ),
+          ),
         ),
       ),
     );

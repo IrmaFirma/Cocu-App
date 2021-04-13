@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class BuildUserInfo extends StatelessWidget {
-  BuildUserInfo({@required this.todoCount, @required this.goalCount, @required this.journalCount});
+  BuildUserInfo(
+      {@required this.todoCount,
+      @required this.goalCount,
+      @required this.journalCount});
+
   final String todoCount;
   final String goalCount;
   final String journalCount;
@@ -10,62 +14,6 @@ class BuildUserInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(width: 15),
-              Container(
-                height: 127,
-                width: 132,
-                child: Image.asset('assets/circleAvatar.png'),
-              ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 58),
-                    child: Text(
-                      'Hi there,',
-                      style: TextStyle(
-                          color: Color(0xFF707070),
-                          fontSize: 27,
-                          fontFamily: 'Segoe',
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text(
-                      'have fun with Cocu',
-                      style: TextStyle(
-                          color: Color(0xFF707070),
-                          fontSize: 21,
-                          fontFamily: 'Segoe',
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 20, left: 20),
-          child: Container(
-            alignment: Alignment.topLeft,
-            child: Text(
-              'Your Records',
-              style: TextStyle(
-                  color: Color(0xFF707070),
-                  fontSize: 25,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Segoe'),
-            ),
-          ),
-        ),
-        SizedBox(height: 15),
         Container(
           height: 216,
           child: ListView(
@@ -73,23 +21,93 @@ class BuildUserInfo extends StatelessWidget {
             children: <Widget>[
               SizedBox(width: 17),
               Container(
-                child: Column(
-                  children: [
-                    Text('Journal Count'),
-                    Text(journalCount != null ? journalCount : ''),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 25, left: 33),
+                      child: Container(
+                        child: Text(
+                          'Journal',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Segoe',
+                              fontSize: 28),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 76, right: 38, left: 38),
+                      child: Image(
+                        image: AssetImage('assets/ellipse_2.png'),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 53,
+                      left: 70,
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            journalCount,
+                            style: TextStyle(
+                                fontFamily: 'Segoe',
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 width: 157,
                 decoration: BoxDecoration(
-                    color: Color(0xFFFBC490),
+                    color: Color(0xFFFEAF68),
                     borderRadius: BorderRadius.all(Radius.circular(25))),
               ),
               SizedBox(width: 17),
               Container(
-                child: Column(
-                  children: [
-                    Text('Goal Count'),
-                    Text(goalCount != null ? goalCount : ''),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 25, left: 42),
+                      child: Container(
+                        child: Text(
+                          'Goals',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Segoe',
+                              fontSize: 28),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 76, right: 38, left: 38),
+                      child: Image(
+                        image: AssetImage('assets/ellipse_3.png'),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 53,
+                      left: 70,
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            goalCount,
+                            style: TextStyle(
+                                fontFamily: 'Segoe',
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 width: 157,
@@ -99,10 +117,45 @@ class BuildUserInfo extends StatelessWidget {
               ),
               SizedBox(width: 17),
               Container(
-                child: Column(
-                  children: [
-                    Text('Not Completed TODO\'s'),
-                    Text(todoCount != null ? todoCount : ''),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 25, left: 45),
+                      child: Container(
+                        child: Text(
+                          'ToDo',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Segoe',
+                              fontSize: 28),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 76, right: 38, left: 38),
+                      child: Image(
+                        image: AssetImage('assets/ellipse_6.png'),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 53,
+                      left: 70,
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            todoCount,
+                            style: TextStyle(
+                                fontFamily: 'Segoe',
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 width: 157,
@@ -111,25 +164,6 @@ class BuildUserInfo extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(25))),
               ),
             ],
-          ),
-        ),
-        SizedBox(height: 17),
-        Container(
-          child: Text(
-            '\"Opportunities don\'t happen. You create them.\"',
-            style: TextStyle(
-                color: Color(0xFF707070),
-                fontFamily: 'Segoe',
-                fontSize: 15),
-          ),
-        ),
-        Container(
-          child: Text(
-            'Chris Grosser',
-            style: TextStyle(
-                color: Color(0xFF707070),
-                fontFamily: 'Segoe',
-                fontSize: 15),
           ),
         ),
       ],
