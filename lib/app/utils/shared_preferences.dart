@@ -31,7 +31,7 @@ class SharedPrefs {
     prefs.setString('userID', '');
   }
 
-  Future<void> loginUser({@required String uid}) async {
+  Future<void> setUserID({@required String uid}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('userID', uid);
     //clear controller

@@ -31,7 +31,7 @@ class RegisterScreen extends StatelessWidget {
               builder: (context) => TodoPage(),
             ),
           );
-          await SharedPrefs().loginUser(uid: authProvider.userModel.userID);
+          await SharedPrefs().setUserID(uid: authProvider.userModel.userID);
         },
       );
     }

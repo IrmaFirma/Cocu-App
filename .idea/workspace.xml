@@ -20,9 +20,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69d2bc79-9593-42f6-8e00-1bfc27e08af9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/F_IRMA.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/F_IRMA.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/view/authentication_screens/auth_widgets/email_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/authentication_screens/auth_widgets/email_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Generated.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/utils/shared_preferences.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/utils/shared_preferences.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/authentication_screens/email_sign_in_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/authentication_screens/email_sign_in_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/authentication_screens/email_sign_up_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/authentication_screens/email_sign_up_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/user_info_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/user_info_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/welcome_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/welcome_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +73,7 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="flutter.settings" />
+    <property name="settings.editor.selected.configurable" value="dart.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -380,71 +400,71 @@
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1617786816198" />
     <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617629291739" />
-    <state width="1877" height="196" key="GridCell.Tab.0.bottom" timestamp="1618316143880">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1498" height="271" key="GridCell.Tab.0.bottom" timestamp="1618339227709">
+      <screen x="725" y="-1055" width="1920" height="1055" />
     </state>
     <state width="1877" height="196" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618316143880" />
     <state width="1877" height="333" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617965831206" />
     <state width="1877" height="459" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1618042482010" />
-    <state width="1508" height="345" key="GridCell.Tab.0.bottom/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618045340645" />
+    <state width="1498" height="271" key="GridCell.Tab.0.bottom/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618339227709" />
     <state width="1405" height="171" key="GridCell.Tab.0.bottom/0.25.1440.830@0.25.1440.830" timestamp="1617442915583" />
-    <state width="1877" height="196" key="GridCell.Tab.0.center" timestamp="1618316143880">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1498" height="271" key="GridCell.Tab.0.center" timestamp="1618339227708">
+      <screen x="725" y="-1055" width="1920" height="1055" />
     </state>
     <state width="1877" height="196" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618316143880" />
     <state width="1877" height="333" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617965831206" />
     <state width="1877" height="459" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1618042482010" />
-    <state width="1508" height="345" key="GridCell.Tab.0.center/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618045340644" />
+    <state width="1498" height="271" key="GridCell.Tab.0.center/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618339227708" />
     <state width="1405" height="171" key="GridCell.Tab.0.center/0.25.1440.830@0.25.1440.830" timestamp="1617442915582" />
-    <state width="1877" height="196" key="GridCell.Tab.0.left" timestamp="1618316143880">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1498" height="271" key="GridCell.Tab.0.left" timestamp="1618339227707">
+      <screen x="725" y="-1055" width="1920" height="1055" />
     </state>
     <state width="1877" height="196" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618316143880" />
     <state width="1877" height="333" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617965831206" />
     <state width="1877" height="459" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1618042482010" />
-    <state width="1508" height="345" key="GridCell.Tab.0.left/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618045340644" />
+    <state width="1498" height="271" key="GridCell.Tab.0.left/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618339227707" />
     <state width="1405" height="171" key="GridCell.Tab.0.left/0.25.1440.830@0.25.1440.830" timestamp="1617442915581" />
-    <state width="1877" height="196" key="GridCell.Tab.0.right" timestamp="1618316143880">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1498" height="271" key="GridCell.Tab.0.right" timestamp="1618339227709">
+      <screen x="725" y="-1055" width="1920" height="1055" />
     </state>
     <state width="1877" height="196" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618316143880" />
     <state width="1877" height="333" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617965831206" />
     <state width="1877" height="459" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1618042482010" />
-    <state width="1508" height="345" key="GridCell.Tab.0.right/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618045340645" />
+    <state width="1498" height="271" key="GridCell.Tab.0.right/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618339227709" />
     <state width="1405" height="171" key="GridCell.Tab.0.right/0.25.1440.830@0.25.1440.830" timestamp="1617442915582" />
-    <state width="1877" height="196" key="GridCell.Tab.1.bottom" timestamp="1618316143673">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1498" height="271" key="GridCell.Tab.1.bottom" timestamp="1618339228590">
+      <screen x="725" y="-1055" width="1920" height="1055" />
     </state>
     <state width="1877" height="196" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618316143673" />
     <state width="1877" height="333" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617965831206" />
     <state width="1877" height="459" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1618042482010" />
-    <state width="1508" height="345" key="GridCell.Tab.1.bottom/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618045340646" />
-    <state width="1877" height="196" key="GridCell.Tab.1.center" timestamp="1618316143672">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1498" height="271" key="GridCell.Tab.1.bottom/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618339228590" />
+    <state width="1498" height="271" key="GridCell.Tab.1.center" timestamp="1618339228589">
+      <screen x="725" y="-1055" width="1920" height="1055" />
     </state>
     <state width="1877" height="196" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618316143672" />
     <state width="1877" height="333" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617965831206" />
     <state width="1877" height="459" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1618042482010" />
-    <state width="1508" height="345" key="GridCell.Tab.1.center/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618045340645" />
-    <state width="1877" height="196" key="GridCell.Tab.1.left" timestamp="1618316143672">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1498" height="271" key="GridCell.Tab.1.center/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618339228589" />
+    <state width="1498" height="271" key="GridCell.Tab.1.left" timestamp="1618339228589">
+      <screen x="725" y="-1055" width="1920" height="1055" />
     </state>
     <state width="1877" height="196" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618316143672" />
     <state width="1877" height="333" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617965831206" />
     <state width="1877" height="459" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1618042482010" />
-    <state width="1508" height="345" key="GridCell.Tab.1.left/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618045340645" />
-    <state width="1877" height="196" key="GridCell.Tab.1.right" timestamp="1618316143672">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1498" height="271" key="GridCell.Tab.1.left/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618339228589" />
+    <state width="1498" height="271" key="GridCell.Tab.1.right" timestamp="1618339228590">
+      <screen x="725" y="-1055" width="1920" height="1055" />
     </state>
     <state width="1877" height="196" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618316143672" />
     <state width="1877" height="333" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617965831206" />
     <state width="1877" height="459" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1618042482010" />
-    <state width="1508" height="345" key="GridCell.Tab.1.right/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618045340646" />
-    <state x="461" y="161" key="SettingsEditor" timestamp="1618236960203">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1498" height="271" key="GridCell.Tab.1.right/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618339228590" />
+    <state x="1186" y="-892" key="SettingsEditor" timestamp="1618338355967">
+      <screen x="725" y="-1055" width="1920" height="1055" />
     </state>
     <state x="461" y="161" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618236960203" />
-    <state x="1186" y="-892" key="SettingsEditor/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618043064214" />
+    <state x="1186" y="-892" key="SettingsEditor/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618338355967" />
     <state x="431" y="185" key="Vcs.Push.Dialog.v2" timestamp="1618318452179">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -471,6 +491,51 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/app/view/welcome_page.dart</url>
           <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/main.dart</url>
+          <line>33</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/main.dart</url>
+          <line>37</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/main.dart</url>
+          <line>38</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/main.dart</url>
+          <line>39</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/main.dart</url>
+          <line>40</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/main.dart</url>
+          <line>41</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/main.dart</url>
+          <line>61</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/main.dart</url>
+          <line>62</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/main.dart</url>
+          <line>63</line>
+          <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

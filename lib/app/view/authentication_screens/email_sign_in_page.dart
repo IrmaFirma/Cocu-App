@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           );
           //change instead of in direct onPressed called here
-          await SharedPrefs().loginUser(uid: authProvider.userModel.userID);
+          await SharedPrefs().setUserID(uid: authProvider.userModel.userID);
         });
       }
     } on FirebaseAuthException catch (e) {
