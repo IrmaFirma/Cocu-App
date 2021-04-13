@@ -101,7 +101,7 @@ class BuildUserInfo extends StatelessWidget {
               Container(
                 child: Column(
                   children: [
-                    Text('Not Completed TODO Count'),
+                    Text('Not Completed TODO\'s'),
                     Text(todoCount != null ? todoCount : ''),
                   ],
                 ),
