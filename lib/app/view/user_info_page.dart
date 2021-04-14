@@ -12,9 +12,9 @@ import 'package:working_project/app/providers/journal_provider.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
 import 'package:working_project/app/view/welcome_page.dart';
+import 'package:working_project/widgets/user_info_widgets/user_info_drawer_widget.dart';
 import 'package:working_project/widgets/user_info_widgets/user_info_widget.dart';
 
-import 'file:///C:/Users/F-IRMA/AndroidStudioProjects/CocuApp/lib/widgets/user_info_widgets/user_info_drawer_widget.dart';
 
 class UserInfoPage extends StatefulWidget {
   @override
@@ -30,7 +30,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
       await SharedPrefs().setIsLoggedFalse();
       await SharedPrefs().logout();
       final AuthProvider auth =
-          Provider.of<AuthProvider>(context, listen: false);
+      Provider.of<AuthProvider>(context, listen: false);
       await auth.logout().then((_) => Navigator.push(context,
           MaterialPageRoute(builder: (context) => WelcomePageBuilder())));
     } catch (e) {

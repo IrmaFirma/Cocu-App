@@ -21,17 +21,17 @@ class RegisterScreen extends StatelessWidget {
     if (_formState.validate()) {
       authProvider
           .registerWithEmailAndPassword(
-              email: emailController.text,
-              password: passwordController.text,
-              context: context)
+          email: emailController.text,
+          password: passwordController.text,
+          context: context)
           .then(
-        (_) async {
+            (_) async {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => TodoPage(),
             ),
           );
-          await SharedPrefs().loginUser(uid: authProvider.userModel.userID);
+          await SharedPrefs().setUserID(uid: authProvider.userModel.userID);
         },
       );
     }
@@ -40,7 +40,7 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthProvider _authProvider =
-        Provider.of<AuthProvider>(context, listen: true);
+    Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
