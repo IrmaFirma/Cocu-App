@@ -13,7 +13,6 @@ import '../../utils/shared_preferences.dart';
 import 'add_todo.dart';
 import 'completed_todo.dart';
 
-//TODO Fix Scrolling
 //TODO: REFRESH AFTER EDIT
 class TodoPage extends StatefulWidget {
   @override
@@ -23,6 +22,9 @@ class TodoPage extends StatefulWidget {
 class _TodoPageState extends State<TodoPage> {
   //authentication and data fetch functions
   SharedPrefs prefs = SharedPrefs();
+
+  //preload image
+  AssetImage todoBack;
 
   Future<void> _getInitialData() async {
     final bool isLogged = await prefs.readIsLogged();
@@ -47,6 +49,14 @@ class _TodoPageState extends State<TodoPage> {
     // TODO: implement initState
     super.initState();
     _getInitialData();
+    todoBack = AssetImage('assets/todoBack.png');
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    precacheImage(todoBack, context);
   }
 
   @override
@@ -91,10 +101,12 @@ class _TodoPageState extends State<TodoPage> {
         drawer: TodoDrawer(),
         body: Container(
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/todoBack.png'),
-              fit: BoxFit.cover,
-            ),
+            image: todoBack != null
+                ? DecorationImage(
+                    image: todoBack,
+                    fit: BoxFit.cover,
+                  )
+                : null,
           ),
           child: WillPopScope(
             onWillPop: null,
