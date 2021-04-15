@@ -2,26 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/models/goal_model.dart';
-import 'package:working_project/app/providers/goal_provider.dart';
+import 'package:working_project/app/models/habit_model.dart';
+import 'package:working_project/app/providers/habits_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
 import 'package:working_project/app/utils/snack_bar.dart';
-import 'package:working_project/app/view/goals_habits/edit_goal_page.dart';
-import 'package:working_project/app/view/goals_habits/habits_page.dart';
+import 'package:working_project/app/view/goals_habits/edit_habit_page.dart';
 
 //TODO: Remove Slidable
 //TODO: Empty Screen
-class BuildGoalWidget extends StatelessWidget {
+class BuildHabitWidget extends StatelessWidget {
+  final GoalModel goal;
   final Function getInitialData;
 
-  const BuildGoalWidget({Key key, this.getInitialData}) : super(key: key);
+  const BuildHabitWidget({Key key, this.goal, this.getInitialData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SharedPrefs prefs = SharedPrefs();
-    final GoalProvider goalProvider =
-        Provider.of<GoalProvider>(context, listen: true);
-    final List<GoalModel> goals =
-        Provider.of<GoalProvider>(context, listen: true).goalModels;
+    final HabitProvider habitProvider =
+        Provider.of<HabitProvider>(context, listen: true);
+    final List<HabitModel> habits =
+        Provider.of<HabitProvider>(context, listen: true).habitModels;
     return ListView(
       children: [
         ListView.builder(
@@ -29,15 +31,14 @@ class BuildGoalWidget extends StatelessWidget {
           physics: ScrollPhysics(),
           shrinkWrap: true,
           primary: true,
-          itemCount: goals.length,
+          itemCount: habits.length,
           itemBuilder: (context, int index) {
-            final GoalModel goal = goals[index];
-            var date = DateTime.parse(goal.date);
-            var formattedDate = '${date.day}/${date.month}/${date.year}';
+            final HabitModel habit = habits[index];
+            //slidable widget for delete and edit
             return ClipRRect(
               child: Slidable(
                 actionPane: SlidableDrawerActionPane(),
-                key: Key(goal.goalID.toString()),
+                key: Key(habit.habitID.toString()),
                 actions: [
                   IconSlideAction(
                       color: Colors.deepOrangeAccent,
@@ -46,13 +47,12 @@ class BuildGoalWidget extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => EditGoal(
+                            builder: (context) => EditHabit(
                               goal: goal,
+                              habit: habit,
                             ),
                           ),
-                        ).then((_) {
-                          getInitialData();
-                        });
+                        ).then((_) => getInitialData());
                       },
                       caption: 'Edit',
                       icon: Icons.edit)
@@ -64,12 +64,15 @@ class BuildGoalWidget extends StatelessWidget {
                     //delete function call
                     onTap: () async {
                       final String userID = await prefs.readUserID();
-                      await goalProvider
-                          .deleteGoal(goalID: goal.goalID, userID: userID)
-                          .then((value) {
+                      await habitProvider
+                          .deleteHabit(
+                              userID: userID,
+                              habitID: habit.habitID,
+                              goalID: goal.goalID)
+                          .then((_) {
                         getInitialData();
                         showSnackBar(
-                            context, 'Deleted ${goal.goalTitle}', Colors.red);
+                            context, 'Deleted ${habit.habitTitle}', Colors.red);
                       });
                     },
                     icon: Icons.delete,
@@ -80,18 +83,19 @@ class BuildGoalWidget extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HabitsPage(
+                        builder: (context) => EditHabit(
                           goal: goal,
+                          habit: habit,
                         ),
                       ),
-                    );
+                    ).then((_) => getInitialData());
                   },
-                  title: Text(goal.goalTitle,
+                  title: Text(habit.habitTitle,
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                           color: Colors.indigo)),
-                  subtitle: Text('Due date: $formattedDate'),
+                  subtitle: Text(habit.habitNote),
                   trailing: Icon(Icons.arrow_forward_ios),
                 ),
               ),

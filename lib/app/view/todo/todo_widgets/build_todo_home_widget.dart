@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:working_project/app/models/todo_model.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
+import 'package:working_project/app/utils/snack_bar.dart';
 import 'package:working_project/app/view/authentication_screens/auth_widgets/email_avatar.dart';
 import 'package:working_project/app/view/todo/todo_widgets/congratulations_dialog.dart';
 import 'package:working_project/widgets/error_dialog.dart';
@@ -15,20 +16,7 @@ import '../edit_todo_page.dart';
 class BuildTodoHome extends StatelessWidget {
   final Function getInitialData;
 
-  //TODO ERROR
-  //TODO COMPLETED
-
   const BuildTodoHome({@required this.getInitialData});
-
-  void showSnackBar(BuildContext context, String text, Color color) {
-    ScaffoldMessenger.of(context).removeCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(text),
-        backgroundColor: color,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -269,7 +257,6 @@ class BuildTodoHome extends StatelessWidget {
                                                           context,
                                                           'Deleted ${todo.title}',
                                                           Colors.red);
-
                                                     },
                                                   );
                                                 },

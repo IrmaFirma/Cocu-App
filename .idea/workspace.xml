@@ -20,47 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69d2bc79-9593-42f6-8e00-1bfc27e08af9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/congratulationsIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/errorIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/app/view/goals_habits/goal_widgets/build_goal_widget.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/app/view/goals_habits/goal_widgets/goal_drawer.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/app/view/goals_habits/habit_widgets/habit_drawer.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/app/view/journal/journal_widgets/build_journal_widget.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/widgets/app_bar_widget.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/widgets/drawer_widget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/F_IRMA.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/F_IRMA.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/app/utils/snack_bar.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/app/view/goals_habits/habit_widgets/build_habit_widget.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/6.7/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fb-logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/go-logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/mainFrame.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/more.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/user.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/providers/auth_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/providers/auth_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/view/authentication_screens/auth_widgets/email_avatar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/authentication_screens/auth_widgets/email_avatar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/view/authentication_screens/email_sign_in_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/authentication_screens/email_sign_in_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/view/authentication_screens/email_sign_up_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/authentication_screens/email_sign_up_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/utils/keys.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/utils/strings.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/utils/validator.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/goals_habits/goal_widgets/build_goal_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/goals_habits/goal_widgets/build_goal_widget.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/app/view/goals_habits/goals_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/goals_habits/goals_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/app/view/goals_habits/habits_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/goals_habits/habits_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/view/journal/journal_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/journal/journal_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/view/todo/add_todo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/todo/add_todo.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/view/todo/edit_todo_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/todo/edit_todo_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/view/todo/todo_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/todo/todo_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/view/todo/todo_widgets/build_completed_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/todo/todo_widgets/build_completed_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/journal/journal_widgets/build_journal_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/journal/journal_widgets/build_journal_widget.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/app/view/todo/todo_widgets/build_todo_home_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/todo/todo_widgets/build_todo_home_widget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/view/todo/todo_widgets/congratulations_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/todo/todo_widgets/congratulations_dialog.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/view/todo/todo_widgets/todo_form_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/todo/todo_widgets/todo_form_widget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/avatar_widget.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/button_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/button_widget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/custom_raised_button_widget.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/error_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/error_dialog.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/form_submit_button_widget.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/segmented_control_widget.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/aware_dialog_widgets/platform_alert_dialog_widget.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/aware_dialog_widgets/platform_exception_dialog.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/aware_dialog_widgets/platform_widget.dart" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -421,7 +394,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618511163730</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Code Refactoring">
+      <created>1618526008806</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1618526008807</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -437,7 +417,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Auth Implementation" />
     <MESSAGE value="Auth Email and Password refactoring" />
     <MESSAGE value="Fixing refresh and reload" />
     <MESSAGE value="Google SIgn in and Logout" />
@@ -462,7 +441,8 @@
     <MESSAGE value="Before Todo Design" />
     <MESSAGE value="Todo Page design" />
     <MESSAGE value="Todo Design" />
-    <option name="LAST_COMMIT_MESSAGE" value="Todo Design" />
+    <MESSAGE value="Code Refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code Refactoring" />
   </component>
   <component name="WindowStateProjectService">
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1618520161899">
@@ -557,10 +537,10 @@
     </state>
     <state x="461" y="161" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618394429303" />
     <state x="1186" y="-892" key="SettingsEditor/0.25.1440.830/725.-1055.1920.1055/-1195.-1055.1920.1055@725.-1055.1920.1055" timestamp="1618043064214" />
-    <state x="431" y="185" key="Vcs.Push.Dialog.v2" timestamp="1618511249312">
+    <state x="431" y="185" key="Vcs.Push.Dialog.v2" timestamp="1618526014538">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="431" y="185" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618511249312" />
+    <state x="431" y="185" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618526014538" />
     <state x="323" y="173" key="Vcs.Push.Dialog.v2/0.25.1440.830@0.25.1440.830" timestamp="1617442962307" />
     <state x="1156" y="-875" key="Vcs.Push.Dialog.v2/0.25.1440.875/725.-1055.1920.1010/-1195.-1055.1920.1055@725.-1055.1920.1010" timestamp="1618044554308" />
     <state x="413" y="179" width="613" height="522" key="find.popup" timestamp="1617442479392">

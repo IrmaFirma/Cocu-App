@@ -4,23 +4,15 @@ import 'package:provider/provider.dart';
 import 'package:working_project/app/models/journal_model.dart';
 import 'package:working_project/app/providers/journal_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
+import 'package:working_project/app/utils/snack_bar.dart';
 import 'package:working_project/app/view/journal/edit_journal_page.dart';
 
+//TODO: Remove Slidable
+//TODO: Empty Screen
 class BuildJournal extends StatelessWidget {
   final Function getInitialData;
 
   const BuildJournal({Key key, this.getInitialData}) : super(key: key);
-
-  //new snackbar
-  void showSnackBar(BuildContext context, String text, Color color) {
-    ScaffoldMessenger.of(context).removeCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(text),
-        backgroundColor: color,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +50,9 @@ class BuildJournal extends StatelessWidget {
                                 journal: journal,
                               ),
                             ),
-                          ),
+                          ).then((_) {
+                            getInitialData();
+                          }),
                       caption: 'Edit',
                       icon: Icons.edit)
                 ],
@@ -91,7 +85,9 @@ class BuildJournal extends StatelessWidget {
                           journal: journal,
                         ),
                       ),
-                    );
+                    ).then((_) {
+                      getInitialData();
+                    });
                   },
                   title: Text(journal.title,
                       style: TextStyle(
