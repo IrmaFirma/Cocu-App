@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:working_project/widgets/button_widget.dart';
 
 class GoalFormWidget extends StatelessWidget {
   final String dateText;
@@ -18,23 +19,69 @@ class GoalFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      ElevatedButton(
-          child: Text(dateText),
-          onPressed: () async {
-            return dateFunc();
-          }),
-      TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-            labelText: 'Goal title', hintText: 'Be healthy and happy!'),
+    return Expanded(
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 50),
+            child: TextFormField(
+              controller: controller,
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black12, width: 1),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black12, width: 1),
+                ),
+                hintText: 'Goal Title',
+              ),
+              maxLength: 25,
+            ),
+          ),
+          TextButton(
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 4),
+                  child: Text(
+                    'Due',
+                    style: TextStyle(
+                        fontFamily: 'Varela',
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 4),
+                  child: Icon(Icons.calendar_today_sharp,
+                      color: Color(0xFFF67B50)),
+                ),
+                SizedBox(
+                  width: 2,
+                ),
+                Text(
+                  dateText,
+                  style: TextStyle(
+                      fontFamily: 'Varela',
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black),
+                ),
+              ],
+            ),
+            onPressed: () {
+              return dateFunc();
+            },
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          ButtonWidget(
+            onSaved: () => onSaved(),
+            buttonText: buttonText,
+          ),
+        ],
       ),
-      SizedBox(height: 15),
-      ElevatedButton(
-          child: Text(buttonText),
-          onPressed: () async {
-            return onSaved();
-          }),
-    ]);
+    );
   }
 }

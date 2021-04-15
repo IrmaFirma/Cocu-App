@@ -22,8 +22,8 @@ class UserInfoDrawer extends StatelessWidget {
           ListTile(
             title: Text(
               'Home Page',
-              style: TextStyle(
-                  color: Colors.orange, fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
             ),
           ),
           ListTile(

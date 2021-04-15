@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//TODO: Due date
 class GoalModel {
   final String goalTitle;
   final String userID;

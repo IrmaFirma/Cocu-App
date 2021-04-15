@@ -24,6 +24,8 @@ class GoalPage extends StatefulWidget {
 class _GoalPageState extends State<GoalPage> {
   SharedPrefs prefs = SharedPrefs();
 
+  AssetImage goalBack;
+
   Future<void> _getInitialData() async {
     final bool isLogged = await prefs.readIsLogged();
     if (isLogged) {
@@ -47,16 +49,25 @@ class _GoalPageState extends State<GoalPage> {
     // TODO: implement initState
     super.initState();
     _getInitialData();
+    goalBack = AssetImage('assets/todoBack.png');
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    precacheImage(goalBack, context);
   }
 
   @override
   Widget build(BuildContext context) {
     //ui
     return Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: commonAppBar(
             barText: 'Goal Station',
             addNew: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => AddNewGoal()))),
+                CupertinoPageRoute(builder: (context) => AddNewGoal()))),
         drawer: CommonDrawer(
           firstElementTitle: 'Home Page',
           secondElementTitle: 'ToDo',
@@ -79,15 +90,25 @@ class _GoalPageState extends State<GoalPage> {
                   builder: (BuildContext context) => JournalPage(),
                   fullscreenDialog: true)),
         ),
-        body: WillPopScope(
-          onWillPop: null,
-          child: RefreshIndicator(
-              onRefresh: () => _getInitialData(),
-              child: BuildGoalWidget(
-                getInitialData: () async {
-                  await _getInitialData();
-                },
-              )),
+        body: Container(
+          decoration: BoxDecoration(
+            image: goalBack != null
+                ? DecorationImage(
+                    image: goalBack,
+                    fit: BoxFit.cover,
+                  )
+                : null,
+          ),
+          child: WillPopScope(
+            onWillPop: null,
+            child: RefreshIndicator(
+                onRefresh: () => _getInitialData(),
+                child: BuildGoalWidget(
+                  getInitialData: () async {
+                    await _getInitialData();
+                  },
+                )),
+          ),
         ));
   }
 }

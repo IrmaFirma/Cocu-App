@@ -78,7 +78,6 @@ class AuthProvider extends ChangeNotifier {
               );
             });
       });
-      //TODO When saved in user model save id in shared preferences from user model
       _userModel = UserModel.fromDocument(userCredential);
       print('This is your id: ${_userModel.userID}');
       print('This is your email: ${_userModel.email}');

@@ -47,8 +47,13 @@ class _EditJournalState extends State<EditJournal> {
         Provider.of<JournalProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit ${widget.journal.title}'),
-        backgroundColor: Colors.indigo,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text('Update ${widget.journal.title}'),
+        backgroundColor: Color(0xFFFBC490),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Container(
         child: Column(
@@ -59,7 +64,7 @@ class _EditJournalState extends State<EditJournal> {
                 titleController: _titleController,
                 subtitleController: _subtitleController,
                 descriptionController: _descriptionController,
-                buttonText: 'Update ${widget.journal.title}',
+                buttonText: 'UPDATE',
                 onSaved: () async {
                   final String userID = await prefs.readUserID();
                   await journalProvider

@@ -4,7 +4,9 @@ class ButtonWidget extends StatelessWidget {
   final Function onSaved;
   final String buttonText;
 
-  const ButtonWidget({Key key, this.onSaved, this.buttonText}) : super(key: key);
+  const ButtonWidget({Key key, this.onSaved, this.buttonText})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

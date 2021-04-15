@@ -18,8 +18,13 @@ class AddNewJournal extends StatelessWidget {
         Provider.of<JournalProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add new Journal'),
-        backgroundColor: Colors.indigo,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text('Add Page'),
+        backgroundColor: Color(0xFFFBC490),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Container(
         child: Column(
@@ -30,7 +35,7 @@ class AddNewJournal extends StatelessWidget {
                 titleController: _titleController,
                 subtitleController: _subtitleController,
                 descriptionController: _descriptionController,
-                buttonText: 'Save',
+                buttonText: 'ADD',
                 onSaved: () async {
                   final String userID = await prefs.readUserID();
                   await journalProvider

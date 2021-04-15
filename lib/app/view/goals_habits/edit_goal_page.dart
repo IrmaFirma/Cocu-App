@@ -43,8 +43,13 @@ class _EditGoalState extends State<EditGoal> {
         Provider.of<GoalProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit ${widget.goal.goalTitle}'),
-        backgroundColor: Colors.indigo,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text('Update ${widget.goal.goalTitle}'),
+        backgroundColor: Color(0xFFFBC490),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Container(
         child: Column(
@@ -53,7 +58,7 @@ class _EditGoalState extends State<EditGoal> {
               key: formKey,
               child: GoalFormWidget(
                 controller: _titleController,
-                buttonText: 'Update ${widget.goal.goalTitle}',
+                buttonText: 'UPDATE',
                 dateText: '$formattedDate',
                 dateFunc: () {
                   return showDatePicker(

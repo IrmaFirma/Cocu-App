@@ -24,6 +24,8 @@ class JournalPage extends StatefulWidget {
 class _JournalPageState extends State<JournalPage> {
   final SharedPrefs prefs = SharedPrefs();
 
+  AssetImage journalBack;
+
   Future<void> _getInitialData() async {
     final bool isLogged = await prefs.readIsLogged();
     if (isLogged) {
@@ -47,16 +49,25 @@ class _JournalPageState extends State<JournalPage> {
     // TODO: implement initState
     super.initState();
     _getInitialData();
+    journalBack = AssetImage('assets/todoBack.png');
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    precacheImage(journalBack, context);
   }
 
   @override
   Widget build(BuildContext context) {
     //ui
     return Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: commonAppBar(
           barText: 'Journal Station',
           addNew: () => Navigator.of(context).push(
-            MaterialPageRoute(
+            CupertinoPageRoute(
               builder: (context) => AddNewJournal(),
             ),
           ),
@@ -82,14 +93,24 @@ class _JournalPageState extends State<JournalPage> {
                     builder: (BuildContext context) => GoalPage(),
                     fullscreenDialog: true)),
             fourthEFunction: null),
-        body: WillPopScope(
-          onWillPop: null,
-          child: RefreshIndicator(
-            onRefresh: () => _getInitialData(),
-            child: BuildJournal(
-              getInitialData: () async {
-                await _getInitialData();
-              },
+        body: Container(
+          decoration: BoxDecoration(
+            image: journalBack != null
+                ? DecorationImage(
+                    image: journalBack,
+                    fit: BoxFit.cover,
+                  )
+                : null,
+          ),
+          child: WillPopScope(
+            onWillPop: null,
+            child: RefreshIndicator(
+              onRefresh: () => _getInitialData(),
+              child: BuildJournal(
+                getInitialData: () async {
+                  await _getInitialData();
+                },
+              ),
             ),
           ),
         ));

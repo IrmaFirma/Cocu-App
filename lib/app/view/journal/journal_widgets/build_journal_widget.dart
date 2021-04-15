@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +46,7 @@ class BuildJournal extends StatelessWidget {
                       //edit function call
                       onTap: () => Navigator.push(
                             context,
-                            MaterialPageRoute(
+                            CupertinoPageRoute(
                               builder: (context) => EditJournal(
                                 journal: journal,
                               ),
@@ -76,15 +77,14 @@ class BuildJournal extends StatelessWidget {
                   )
                 ],
                 child: ListTile(
-                  //onTap showing edit page(details)
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => EditJournal(
-                          journal: journal,
-                        ),
-                      ),
+                      CupertinoPageRoute(
+                          builder: (context) => EditJournal(
+                                journal: journal,
+                              ),
+                          fullscreenDialog: true),
                     ).then((_) {
                       getInitialData();
                     });

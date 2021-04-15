@@ -37,7 +37,7 @@ class WelcomePage extends StatelessWidget {
       BuildContext context, AuthProvider authProvider) async {
     try {
       await authProvider.signInWithGoogle(context: context).then(
-            (_) async {
+        (_) async {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => TodoPage(),
@@ -55,16 +55,16 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthProvider _authProvider =
-    Provider.of<AuthProvider>(context, listen: true);
+        Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       body: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/welcomeBack.png'),
-                fit: BoxFit.cover,
-              )),
+            image: AssetImage('assets/welcomeBack.png'),
+            fit: BoxFit.cover,
+          )),
           child: Container(
               padding: EdgeInsets.only(top: 430),
               child: BuildSignIn(

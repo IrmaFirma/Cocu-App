@@ -17,7 +17,6 @@ class _CocuSplashState extends State<CocuSplash> {
 
   SharedPrefs sharedPrefs = SharedPrefs();
 
-
   Future<void> autoLogin() async {
     final String userId = await sharedPrefs.readUserID();
     if (userId.isNotEmpty) {
@@ -35,15 +34,14 @@ class _CocuSplashState extends State<CocuSplash> {
     autoLogin().then((_) => setState(() {}));
     Timer(
       Duration(seconds: 3),
-          () =>
-      isLogged
+      () => isLogged
           ? Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => TodoPage()))
+              .push(MaterialPageRoute(builder: (context) => TodoPage()))
           : Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => WelcomePageBuilder(),
-        ),
-      ),
+              MaterialPageRoute(
+                builder: (context) => WelcomePageBuilder(),
+              ),
+            ),
     );
   }
 
@@ -58,9 +56,9 @@ class _CocuSplashState extends State<CocuSplash> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          image:
-          cocuBack != null ? DecorationImage(image: cocuBack, fit: BoxFit.cover) : null
-      ),
+          image: cocuBack != null
+              ? DecorationImage(image: cocuBack, fit: BoxFit.cover)
+              : null),
     );
   }
 }

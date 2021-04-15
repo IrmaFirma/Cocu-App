@@ -1,4 +1,3 @@
-//TODO Add required
 import 'package:flutter/material.dart';
 
 class JournalModel {

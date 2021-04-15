@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/models/user_model.dart';
@@ -51,7 +52,7 @@ class _HabitsPageState extends State<HabitsPage> {
       appBar: commonAppBar(
         barText: 'Habits for ${widget.goal.goalTitle}',
         addNew: () => Navigator.of(context).push(
-          MaterialPageRoute(
+          CupertinoPageRoute(
             builder: (context) => AddNewHabit(
               goal: widget.goal,
             ),

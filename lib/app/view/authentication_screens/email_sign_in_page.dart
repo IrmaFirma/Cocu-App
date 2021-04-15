@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,9 +26,9 @@ class _LoginScreenState extends State<LoginScreen> {
       if (_formState.validate()) {
         await authProvider
             .loginWithEmailAndPassword(
-            email: emailController.text,
-            password: passwordController.text,
-            context: context)
+                email: emailController.text,
+                password: passwordController.text,
+                context: context)
             .then((_) async {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -54,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final AuthProvider _authProvider =
-    Provider.of<AuthProvider>(context, listen: true);
+        Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -67,7 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Container(
           child: EmailWidget(
             buttonText: 'SIGN IN',
-            MyAvatarWidget: Avatar(photoURL: 'assets/email.png',),
+            MyAvatarWidget: Avatar(
+              photoURL: 'assets/email.png',
+            ),
             MyCardWIdget: MyCard(
               emailController: emailController,
               passwordController: passwordController,

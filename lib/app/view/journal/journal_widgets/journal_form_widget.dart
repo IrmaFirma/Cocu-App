@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:working_project/widgets/button_widget.dart';
 
 class JournalFormWidget extends StatelessWidget {
   final TextEditingController titleController;
@@ -18,32 +19,66 @@ class JournalFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextFormField(
-          controller: titleController,
-          decoration:
-              InputDecoration(labelText: 'Title', hintText: 'Best trip to NYC'),
-        ),
-        SizedBox(height: 15),
-        TextFormField(
-          controller: subtitleController,
-          decoration: InputDecoration(
-              labelText: 'Subtitle', hintText: 'Great adventure'),
-        ),
-        SizedBox(height: 15),
-        TextFormField(
-          controller: descriptionController,
-          decoration:
-              InputDecoration(labelText: 'Description', hintText: '...'),
-        ),
-        ElevatedButton(
-          child: Text(buttonText),
-          onPressed: () async {
-            return onSaved();
-          },
-        ),
-      ],
+    return Expanded(
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 40),
+            child: TextFormField(
+              controller: titleController,
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black12, width: 1),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black12, width: 1),
+                ),
+                hintText: 'Title',
+              ),
+              maxLength: 25,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
+            child: TextFormField(
+              controller: subtitleController,
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black12, width: 1),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black12, width: 1),
+                ),
+                hintText: 'Subtitle',
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
+            child: TextFormField(
+              controller: descriptionController,
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black12, width: 1),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black12, width: 1),
+                ),
+                hintText: 'Journaling opens the door of our hearts.',
+              ),
+              maxLines: 15,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          ButtonWidget(
+            onSaved: () => onSaved(),
+            buttonText: buttonText,
+          ),
+        ],
+      ),
     );
   }
 }

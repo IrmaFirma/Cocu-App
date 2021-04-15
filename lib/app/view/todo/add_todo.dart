@@ -73,7 +73,6 @@ class _AddNewTodoState extends State<AddNewTodo> {
                           description: _descriptionController.text,
                           date: date)
                       .then((_) => Navigator.of(context).pop());
-
                 },
               ),
             ),

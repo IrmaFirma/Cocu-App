@@ -42,8 +42,13 @@ class _EditHabitState extends State<EditHabit> {
         Provider.of<HabitProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit ${widget.habit.habitTitle}'),
-        backgroundColor: Colors.indigo,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text('Update ${widget.habit.habitTitle}'),
+        backgroundColor: Color(0xFFFBC490),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Container(
         child: Column(
@@ -54,7 +59,7 @@ class _EditHabitState extends State<EditHabit> {
                 titleController: _titleController,
                 subtitleController: _noteController,
                 importanceController: _importanceController,
-                buttonText: 'Update ${widget.habit.habitTitle}',
+                buttonText: 'UPDATE',
                 onSaved: () async {
                   final String userID = await prefs.readUserID();
                   await habitProvider

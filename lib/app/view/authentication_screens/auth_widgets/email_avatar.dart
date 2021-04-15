@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 class Avatar extends StatelessWidget {
   final String photoURL;
 
   const Avatar({Key key, this.photoURL}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(

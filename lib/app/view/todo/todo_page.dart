@@ -138,7 +138,7 @@ class _TodoPageState extends State<TodoPage> {
             onWillPop: null,
             child: RefreshIndicator(
               onRefresh: () => _getInitialData(),
-              child: BuildTodoHome(getInitialData: () async{
+              child: BuildTodoHome(getInitialData: () async {
                 await _getInitialData();
               }),
             ),
