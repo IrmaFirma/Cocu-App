@@ -13,11 +13,12 @@ import 'package:working_project/app/view/goals_habits/edit_goal_page.dart';
 import 'package:working_project/app/view/goals_habits/habits_page.dart';
 import 'package:working_project/app/view/journal/journal_page.dart';
 import 'package:working_project/app/view/todo/todo_page.dart';
+import 'package:working_project/widgets/app_bar_widget.dart';
+import 'package:working_project/widgets/drawer_widget.dart';
 
 import '../user_info_page.dart';
 import 'add_goal_page.dart';
 
-//TODO Fix Scrolling
 class GoalPage extends StatefulWidget {
   @override
   _GoalPageState createState() => _GoalPageState();
@@ -69,67 +70,31 @@ class _GoalPageState extends State<GoalPage> {
         Provider.of<GoalProvider>(context, listen: true).goalModels;
     //ui
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Goal maker'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute<void>(
-                builder: (BuildContext context) => AddNewGoal(),
-                fullscreenDialog: true),
-          ),
-          child: Icon(Icons.add),
-          backgroundColor: Colors.indigo,
-        ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                child: Text(
-                  'Cocu',
-                  style: TextStyle(color: Colors.white),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.indigo,
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  'Home Page',
-                  style: TextStyle(
-                      color: Colors.orange, fontWeight: FontWeight.bold),
-                ),
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                        builder: (BuildContext context) => UserInfoPage(),
-                        fullscreenDialog: true)),
-              ),
-              ListTile(
-                title: Text(
-                  'Todo',
-                ),
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                        builder: (BuildContext context) => TodoPage(),
-                        fullscreenDialog: true)),
-              ),
-              ListTile(
-                title: Text('Journal'),
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                        builder: (BuildContext context) => JournalPage(),
-                        fullscreenDialog: true)),
-              ),
-              ListTile(
-                title: Text('Goals and Habits'),
-              ),
-            ],
-          ),
+        appBar: commonAppBar(
+            barText: 'Goal Station',
+            addNew: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddNewGoal()))),
+        drawer: CommonDrawer(
+          firstElementTitle: 'Home Page',
+          secondElementTitle: 'ToDo',
+          thirdElementTitle: 'Goals and Habits',
+          fourthElementTitle: 'Journal',
+          firstEFunction: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                  builder: (BuildContext context) => UserInfoPage(),
+                  fullscreenDialog: true)),
+          secondEFunction: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                  builder: (BuildContext context) => TodoPage(),
+                  fullscreenDialog: true)),
+          thirdEFunction: null,
+          fourthEFunction: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                  builder: (BuildContext context) => JournalPage(),
+                  fullscreenDialog: true)),
         ),
         body: WillPopScope(
           onWillPop: null,
@@ -139,7 +104,9 @@ class _GoalPageState extends State<GoalPage> {
               children: [
                 ListView.builder(
                   scrollDirection: Axis.vertical,
+                  physics: ScrollPhysics(),
                   shrinkWrap: true,
+                  primary: true,
                   itemCount: goals.length,
                   itemBuilder: (context, int index) {
                     final GoalModel goal = goals[index];

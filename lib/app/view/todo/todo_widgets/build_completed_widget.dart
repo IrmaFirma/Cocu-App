@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:working_project/app/models/todo_model.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
+import 'package:working_project/app/view/authentication_screens/auth_widgets/email_avatar.dart';
+import 'package:working_project/widgets/error_dialog.dart';
 
 import '../edit_todo_page.dart';
 
@@ -133,8 +135,27 @@ class BuildCompletedTodo extends StatelessWidget {
                                                 context,
                                                 'Deleted ${todo.title}',
                                                 Colors.red);
-                                           getInitialData();
-                                          });
+                                            getInitialData();
+                                          }).catchError(
+                                            (_) => Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 50),
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                child: Stack(
+                                                  alignment:
+                                                      Alignment.topCenter,
+                                                  children: [
+                                                    ErrorDialog(),
+                                                    Avatar(
+                                                      photoURL:
+                                                          'assets/errorIcon.png',
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          );
                                         },
                                       ),
                                     ),

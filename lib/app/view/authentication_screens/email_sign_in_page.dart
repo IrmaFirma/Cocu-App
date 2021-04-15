@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Container(
           child: EmailWidget(
             buttonText: 'SIGN IN',
-            MyAvatarWidget: EmailAvatar(),
+            MyAvatarWidget: Avatar(photoURL: 'assets/email.png',),
             MyCardWIdget: MyCard(
               emailController: emailController,
               passwordController: passwordController,

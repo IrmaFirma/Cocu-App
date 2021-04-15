@@ -30,11 +30,11 @@ class AuthProvider extends ChangeNotifier {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text("Error"),
-                content: Text(err.message),
+                title: Text('Ooops, error occurred'),
+                content: Text('Try again!'),
                 actions: [
                   TextButton(
-                    child: Text("Ok"),
+                    child: Text("DISMISS"),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -65,11 +65,11 @@ class AuthProvider extends ChangeNotifier {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text("Error"),
-                content: Text(err.message),
+                title: Text('Ooops, error occurred'),
+                content: Text('Try again!'),
                 actions: [
                   TextButton(
-                    child: Text("Ok"),
+                    child: Text("DISMISS"),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -105,11 +105,11 @@ class AuthProvider extends ChangeNotifier {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  title: Text("Error"),
-                  content: Text(err.message),
+                  title: Text('Ooops, error occurred'),
+                  content: Text('Try again!'),
                   actions: [
                     TextButton(
-                      child: Text("Ok"),
+                      child: Text("DISMISS"),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },

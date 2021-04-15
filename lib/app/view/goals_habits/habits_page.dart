@@ -6,12 +6,12 @@ import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/habits_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
+import 'package:working_project/widgets/app_bar_widget.dart';
 
 import '../../models/goal_model.dart';
 import 'add_habit_page.dart';
 import 'edit_habit_page.dart';
 
-//TODO Fix Scrolling
 class HabitsPage extends StatefulWidget {
   const HabitsPage({this.goal});
 
@@ -64,18 +64,13 @@ class _HabitsPageState extends State<HabitsPage> {
     final List<HabitModel> habits =
         Provider.of<HabitProvider>(context, listen: true).habitModels;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Habit maker'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute<void>(
-              builder: (BuildContext context) => AddNewHabit(goal: widget.goal),
-              fullscreenDialog: true),
+      appBar: commonAppBar(
+        barText: 'Habits for ${widget.goal.goalTitle}',
+        addNew: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => AddNewHabit(),
+          ),
         ),
-        child: Icon(Icons.add),
-        backgroundColor: Colors.indigo,
       ),
       body: WillPopScope(
         onWillPop: null,
@@ -85,7 +80,9 @@ class _HabitsPageState extends State<HabitsPage> {
             children: [
               ListView.builder(
                 scrollDirection: Axis.vertical,
+                physics: ScrollPhysics(),
                 shrinkWrap: true,
+                primary: true,
                 itemCount: habits.length,
                 itemBuilder: (context, int index) {
                   final HabitModel habit = habits[index];

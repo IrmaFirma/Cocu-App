@@ -6,11 +6,15 @@ import 'package:provider/provider.dart';
 import 'package:working_project/app/models/todo_model.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
+import 'package:working_project/app/view/authentication_screens/auth_widgets/email_avatar.dart';
+import 'package:working_project/app/view/todo/todo_widgets/congratulations_dialog.dart';
+import 'package:working_project/widgets/error_dialog.dart';
 
 import '../edit_todo_page.dart';
 
 class BuildTodoHome extends StatelessWidget {
   final Function getInitialData;
+
   //TODO ERROR
   //TODO COMPLETED
 
@@ -137,27 +141,66 @@ class BuildTodoHome extends StatelessWidget {
                                                           context: context,
                                                           builder: (BuildContext
                                                               context) {
-                                                            return AlertDialog(
-                                                              title: Text(
-                                                                  'Congratulations'),
-                                                              content: Text(
-                                                                  'Successfully completed ${todo.title}'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  child: Text(
-                                                                      'DONE'),
-                                                                  onPressed:
-                                                                      () {
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .pop();
-                                                                    getInitialData();
-                                                                  },
+                                                            return Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      top: 50),
+                                                              child: Container(
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                child: Stack(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .topCenter,
+                                                                  children: [
+                                                                    CongratulationsDialog(
+                                                                      todoName:
+                                                                          todo.title,
+                                                                    ),
+                                                                    Avatar(
+                                                                      photoURL:
+                                                                          'assets/congratulationsIcon.png',
+                                                                    )
+                                                                  ],
                                                                 ),
-                                                              ],
+                                                              ),
                                                             );
                                                           },
-                                                        ),
+                                                        )
+                                                            .then(
+                                                              (_) =>
+                                                                  getInitialData(),
+                                                            )
+                                                            .catchError(
+                                                              (error) =>
+                                                                  Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        top:
+                                                                            50),
+                                                                child:
+                                                                    Container(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                  child: Stack(
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .topCenter,
+                                                                    children: [
+                                                                      ErrorDialog(),
+                                                                      Avatar(
+                                                                        photoURL:
+                                                                            'assets/errorIcon.png',
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
                                                       );
                                                 },
                                               ),
@@ -221,11 +264,12 @@ class BuildTodoHome extends StatelessWidget {
                                                           todoID: todo.todoID)
                                                       .then(
                                                     (_) {
+                                                      getInitialData();
                                                       showSnackBar(
                                                           context,
                                                           'Deleted ${todo.title}',
                                                           Colors.red);
-                                                      getInitialData();
+
                                                     },
                                                   );
                                                 },

@@ -53,7 +53,7 @@ class RegisterScreen extends StatelessWidget {
         child: Container(
           child: EmailWidget(
             buttonText: 'REGISTER',
-            MyAvatarWidget: EmailAvatar(),
+            MyAvatarWidget: Avatar(photoURL: 'assets/email.png'),
             MyCardWIdget: MyCard(
               emailController: emailController,
               passwordController: passwordController,

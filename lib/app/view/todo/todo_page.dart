@@ -7,14 +7,17 @@ import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
+import 'package:working_project/app/view/goals_habits/goals_page.dart';
+import 'package:working_project/app/view/journal/journal_page.dart';
 import 'package:working_project/app/view/todo/todo_widgets/build_todo_home_widget.dart';
-import 'package:working_project/app/view/todo/todo_widgets/todo_drawer.dart';
+import 'package:working_project/app/view/user_info_page.dart';
+import 'package:working_project/widgets/drawer_widget.dart';
 
 import '../../utils/shared_preferences.dart';
 import 'add_todo.dart';
 import 'completed_todo.dart';
 
-//TODO ERROR
+//TODO EMPTY TITLE ALERT
 class TodoPage extends StatefulWidget {
   @override
   _TodoPageState createState() => _TodoPageState();
@@ -91,16 +94,37 @@ class _TodoPageState extends State<TodoPage> {
                 Navigator.push(
                   context,
                   CupertinoPageRoute<void>(
-                      builder: (BuildContext context) {
-                        return AddNewTodo(userID: userID);
-                      },
+                    builder: (BuildContext context) {
+                      return AddNewTodo(userID: userID);
+                    },
                   ),
                 );
               },
             ),
           ],
         ),
-        drawer: TodoDrawer(),
+        drawer: CommonDrawer(
+          firstElementTitle: 'Home Page',
+          secondElementTitle: 'ToDo',
+          thirdElementTitle: 'Goals and Habits',
+          fourthElementTitle: 'Journal',
+          firstEFunction: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                  builder: (BuildContext context) => UserInfoPage(),
+                  fullscreenDialog: true)),
+          secondEFunction: null,
+          thirdEFunction: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                  builder: (BuildContext context) => GoalPage(),
+                  fullscreenDialog: true)),
+          fourthEFunction: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                  builder: (BuildContext context) => JournalPage(),
+                  fullscreenDialog: true)),
+        ),
         body: Container(
           decoration: BoxDecoration(
             image: todoBack != null
@@ -114,8 +138,8 @@ class _TodoPageState extends State<TodoPage> {
             onWillPop: null,
             child: RefreshIndicator(
               onRefresh: () => _getInitialData(),
-              child: BuildTodoHome(getInitialData: () {
-                return _getInitialData();
+              child: BuildTodoHome(getInitialData: () async{
+                await _getInitialData();
               }),
             ),
           ),

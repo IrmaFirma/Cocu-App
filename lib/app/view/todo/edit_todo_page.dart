@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/models/todo_model.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
+import 'package:working_project/app/view/authentication_screens/auth_widgets/email_avatar.dart';
 import 'package:working_project/app/view/todo/todo_widgets/todo_form_widget.dart';
+import 'package:working_project/widgets/error_dialog.dart';
 
 class EditTodo extends StatefulWidget {
   const EditTodo({this.todo, this.userID});
@@ -79,7 +81,24 @@ class _EditTodoState extends State<EditTodo> {
                           title: _titleController.text,
                           description: _descriptionController.text,
                           date: date)
-                      .then((_) => Navigator.of(context).pop());
+                      .then((_) => Navigator.of(context).pop())
+                      .catchError(
+                        (_) => Padding(
+                          padding: const EdgeInsets.only(top: 50),
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Stack(
+                              alignment: Alignment.topCenter,
+                              children: [
+                                ErrorDialog(),
+                                Avatar(
+                                  photoURL: 'assets/errorIcon.png',
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
                 },
               ),
             ),
