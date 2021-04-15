@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/models/user_model.dart';
@@ -13,7 +14,7 @@ import '../../utils/shared_preferences.dart';
 import 'add_todo.dart';
 import 'completed_todo.dart';
 
-//TODO: REFRESH AFTER EDIT
+//TODO ERROR
 class TodoPage extends StatefulWidget {
   @override
   _TodoPageState createState() => _TodoPageState();
@@ -63,6 +64,7 @@ class _TodoPageState extends State<TodoPage> {
   Widget build(BuildContext context) {
     //ui
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black87),
           title: const Text(
@@ -88,11 +90,11 @@ class _TodoPageState extends State<TodoPage> {
                 final String userID = await prefs.readUserID();
                 Navigator.push(
                   context,
-                  MaterialPageRoute<void>(
+                  CupertinoPageRoute<void>(
                       builder: (BuildContext context) {
                         return AddNewTodo(userID: userID);
                       },
-                      fullscreenDialog: true),
+                  ),
                 );
               },
             ),

@@ -24,13 +24,19 @@ class _AddNewTodoState extends State<AddNewTodo> {
   Widget build(BuildContext context) {
     var dateFormat = DateTime.parse(date);
     var formattedDate =
-        '${dateFormat.day}/${dateFormat.month}/${dateFormat.year}';
+        '${dateFormat.day} - ${dateFormat.month} - ${dateFormat.year}';
     final TodoProvider todoProvider =
         Provider.of<TodoProvider>(context, listen: true);
     return Scaffold(
+      backgroundColor: Color(0xFFFCFCFC),
       appBar: AppBar(
-        title: Text('Add new Todo'),
-        backgroundColor: Colors.indigo,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text('Add ToDo'),
+        backgroundColor: Color(0xFFFBC490),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Container(
         child: Column(
@@ -39,17 +45,23 @@ class _AddNewTodoState extends State<AddNewTodo> {
               key: formKey,
               child: TodoFormWidget(
                 dateText: '$formattedDate',
-                dateFunc: () {
-                  return showDatePicker(
+                dateFunc: () async {
+                  await showDatePicker(
+                    cancelText: '',
+                    confirmText: 'DONE',
                     context: context,
                     initialDate: DateTime.now(),
                     firstDate: DateTime(2020),
                     lastDate: DateTime(2040),
-                  ).then((value) => setState(() {
+                  ).then((value) {
+                    if (value != null) {
+                      setState(() {
                         date = value.toString();
-                      }));
+                      });
+                    }
+                  });
                 },
-                buttonText: 'Save',
+                buttonText: 'ADD',
                 titleController: _titleController,
                 descriptionController: _descriptionController,
                 onSaved: () {

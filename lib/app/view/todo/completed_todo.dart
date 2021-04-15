@@ -8,7 +8,6 @@ import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
 import 'package:working_project/app/view/todo/todo_widgets/build_completed_widget.dart';
 
-//TODO Fix Scrolling
 class CompletedTodo extends StatefulWidget {
   @override
   _CompletedTodoState createState() => _CompletedTodoState();
@@ -56,6 +55,7 @@ class _CompletedTodoState extends State<CompletedTodo> {
   Widget build(BuildContext context) {
     //ui
     return Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black87),
           title: const Text(
@@ -78,8 +78,8 @@ class _CompletedTodoState extends State<CompletedTodo> {
             onWillPop: null,
             child: RefreshIndicator(
               onRefresh: () => _getInitialData(),
-              child: BuildCompletedTodo(getInitialData: () {
-                return _getInitialData();
+              child: BuildCompletedTodo(getInitialData: () async {
+                await _getInitialData();
               }),
             ),
           ),

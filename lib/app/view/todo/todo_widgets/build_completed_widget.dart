@@ -16,6 +16,7 @@ class BuildCompletedTodo extends StatelessWidget {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        duration: Duration(seconds: 2),
         content: Text(text),
         backgroundColor: color,
       ),
@@ -127,13 +128,13 @@ class BuildCompletedTodo extends StatelessWidget {
                                               .deleteTodo(
                                                   userID: userID,
                                                   todoID: todo.todoID)
-                                              .then(
-                                                (_) => showSnackBar(
-                                                    context,
-                                                    'Deleted ${todo.title}',
-                                                    Colors.red),
-                                              );
-                                          getInitialData();
+                                              .then((_) async {
+                                            showSnackBar(
+                                                context,
+                                                'Deleted ${todo.title}',
+                                                Colors.red);
+                                           getInitialData();
+                                          });
                                         },
                                       ),
                                     ),

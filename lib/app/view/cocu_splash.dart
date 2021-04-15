@@ -13,7 +13,10 @@ class CocuSplash extends StatefulWidget {
 class _CocuSplashState extends State<CocuSplash> {
   bool isLogged = false;
 
+  AssetImage cocuBack;
+
   SharedPrefs sharedPrefs = SharedPrefs();
+
 
   Future<void> autoLogin() async {
     final String userId = await sharedPrefs.readUserID();
@@ -28,27 +31,35 @@ class _CocuSplashState extends State<CocuSplash> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    cocuBack = AssetImage('assets/cocuBack.png');
     autoLogin().then((_) => setState(() {}));
     Timer(
       Duration(seconds: 3),
-      () => isLogged
+          () =>
+      isLogged
           ? Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => TodoPage()))
+          .push(MaterialPageRoute(builder: (context) => TodoPage()))
           : Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => WelcomePageBuilder(),
-              ),
-            ),
+        MaterialPageRoute(
+          builder: (context) => WelcomePageBuilder(),
+        ),
+      ),
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    precacheImage(cocuBack, context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        children: [
-          Text('Loading...'),
-        ],
+      decoration: BoxDecoration(
+          image:
+          cocuBack != null ? DecorationImage(image: cocuBack, fit: BoxFit.cover) : null
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/models/todo_model.dart';
@@ -10,6 +11,8 @@ import '../edit_todo_page.dart';
 
 class BuildTodoHome extends StatelessWidget {
   final Function getInitialData;
+  //TODO ERROR
+  //TODO COMPLETED
 
   const BuildTodoHome({@required this.getInitialData});
 
@@ -51,7 +54,6 @@ class BuildTodoHome extends StatelessWidget {
           child: ListView(
             children: [
               SizedBox(height: 15),
-              //TODO style empty todo screen widget
               todos.isEmpty
                   ? Column(
                       children: [
@@ -93,7 +95,7 @@ class BuildTodoHome extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    top: 16, left: 12, right: 12),
+                                    top: 10, left: 12, right: 12),
                                 child: Text(
                                   leadingDate,
                                   style: TextStyle(
@@ -149,14 +151,14 @@ class BuildTodoHome extends StatelessWidget {
                                                                     Navigator.of(
                                                                             context)
                                                                         .pop();
+                                                                    getInitialData();
                                                                   },
-                                                                )
+                                                                ),
                                                               ],
                                                             );
                                                           },
                                                         ),
                                                       );
-                                                  getInitialData();
                                                 },
                                               ),
                                             ),
@@ -167,14 +169,14 @@ class BuildTodoHome extends StatelessWidget {
                                               await prefs.readUserID();
                                           Navigator.push(
                                             context,
-                                            MaterialPageRoute<void>(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        EditTodo(
-                                                          userID: userID,
-                                                          todo: todo,
-                                                        ),
-                                                fullscreenDialog: true),
+                                            CupertinoPageRoute<void>(
+                                              builder: (BuildContext context) =>
+                                                  EditTodo(
+                                                userID: userID,
+                                                todo: todo,
+                                              ),
+                                              fullscreenDialog: true,
+                                            ),
                                           ).then((_) => getInitialData());
                                         },
                                         title: Wrap(
@@ -186,6 +188,7 @@ class BuildTodoHome extends StatelessWidget {
                                                 todo.title,
                                                 style: TextStyle(
                                                   fontSize: 17,
+                                                  fontFamily: 'Valera',
                                                   fontWeight: FontWeight.w500,
                                                   color: Color(0xFF2B2B2B),
                                                 ),
@@ -217,12 +220,14 @@ class BuildTodoHome extends StatelessWidget {
                                                           userID: userID,
                                                           todoID: todo.todoID)
                                                       .then(
-                                                        (_) => showSnackBar(
-                                                            context,
-                                                            'Deleted ${todo.title}',
-                                                            Colors.red),
-                                                      );
-                                                  getInitialData();
+                                                    (_) {
+                                                      showSnackBar(
+                                                          context,
+                                                          'Deleted ${todo.title}',
+                                                          Colors.red);
+                                                      getInitialData();
+                                                    },
+                                                  );
                                                 },
                                               ),
                                             ),

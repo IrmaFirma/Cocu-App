@@ -43,8 +43,13 @@ class _EditTodoState extends State<EditTodo> {
         Provider.of<TodoProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         title: Text('Update ${widget.todo.title}'),
-        backgroundColor: Colors.indigo,
+        backgroundColor: Color(0xFFFBC490),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Container(
         child: Column(
@@ -63,7 +68,7 @@ class _EditTodoState extends State<EditTodo> {
                         date = value.toString();
                       }));
                 },
-                buttonText: 'Update ${widget.todo.title} ',
+                buttonText: 'SAVE',
                 titleController: _titleController,
                 descriptionController: _descriptionController,
                 onSaved: () {
