@@ -31,6 +31,7 @@ class TodoFormWidget extends StatelessWidget {
           controller: titleController,
           decoration:
               InputDecoration(labelText: 'Title', hintText: 'Go to NYC'),
+          maxLength: 25,
         ),
         SizedBox(height: 15),
         TextFormField(
