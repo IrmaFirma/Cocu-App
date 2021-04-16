@@ -28,7 +28,7 @@ class _AddNewGoalState extends State<AddNewGoal> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: Icon(Icons.close),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text('Add Goal'),
@@ -60,14 +60,16 @@ class _AddNewGoalState extends State<AddNewGoal> {
                 },
                 onSaved: () async {
                   final String userID = await prefs.readUserID();
-                  await goalProvider
-                      .addGoal(
-                          date: date,
-                          title: _titleController.text,
-                          userID: userID)
-                      .then((_) {
-                    Navigator.of(context).pop();
-                  });
+                  if (formKey.currentState.validate()) {
+                    await goalProvider
+                        .addGoal(
+                            date: date,
+                            title: _titleController.text,
+                            userID: userID)
+                        .then((_) {
+                      Navigator.of(context).pop();
+                    });
+                  }
                 },
               ),
             ),

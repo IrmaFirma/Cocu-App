@@ -20,7 +20,7 @@ class ButtonWidget extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(7)),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.shade400.withOpacity(0.3),
+                  color: Colors.grey.withOpacity(0.3),
                   spreadRadius: 5,
                   blurRadius: 7,
                   offset: Offset(0, 3), // changes position of shadow

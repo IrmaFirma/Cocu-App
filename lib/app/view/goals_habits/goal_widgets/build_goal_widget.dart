@@ -1,14 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/models/goal_model.dart';
 import 'package:working_project/app/providers/goal_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
-import 'package:working_project/app/utils/snack_bar.dart';
-import 'package:working_project/app/view/goals_habits/edit_goal_page.dart';
 import 'package:working_project/app/view/goals_habits/habits_page.dart';
 
-//TODO: Remove Slidable
 //TODO: Empty Screen
 class BuildGoalWidget extends StatelessWidget {
   final Function getInitialData;
@@ -24,7 +22,11 @@ class BuildGoalWidget extends StatelessWidget {
         Provider.of<GoalProvider>(context, listen: true).goalModels;
     return ListView(
       children: [
-        ListView.builder(
+        ListView.separated(
+          separatorBuilder: (_, __) => Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15),
+            child: Divider(height: 0.5),
+          ),
           scrollDirection: Axis.vertical,
           physics: ScrollPhysics(),
           shrinkWrap: true,
@@ -35,46 +37,18 @@ class BuildGoalWidget extends StatelessWidget {
             var date = DateTime.parse(goal.date);
             var formattedDate = '${date.day}/${date.month}/${date.year}';
             return ClipRRect(
-              child: Slidable(
-                actionPane: SlidableDrawerActionPane(),
+              child: Dismissible(
                 key: Key(goal.goalID.toString()),
-                actions: [
-                  IconSlideAction(
-                      color: Colors.deepOrangeAccent,
-                      //edit function call
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => EditGoal(
-                              goal: goal,
-                            ),
-                          ),
-                        ).then((_) {
-                          getInitialData();
-                        });
-                      },
-                      caption: 'Edit',
-                      icon: Icons.edit)
-                ],
-                secondaryActions: [
-                  IconSlideAction(
-                    color: Colors.red,
-                    caption: 'Delete',
-                    //delete function call
-                    onTap: () async {
-                      final String userID = await prefs.readUserID();
-                      await goalProvider
-                          .deleteGoal(goalID: goal.goalID, userID: userID)
-                          .then((value) {
-                        getInitialData();
-                        showSnackBar(
-                            context, 'Deleted ${goal.goalTitle}', Colors.red);
-                      });
-                    },
-                    icon: Icons.delete,
-                  )
-                ],
+                onDismissed: (DismissDirection direction) async {
+                  final String userID = await prefs.readUserID();
+                  goals.removeAt(index);
+                  goalProvider.deleteGoal(
+                      goalID: goal.goalID, userID: userID);
+                },
+                background: Container(
+                  margin: const EdgeInsets.only(left: 250),
+                  child: Icon(Icons.delete, color: Colors.red),
+                ),
                 child: ListTile(
                   onTap: () {
                     Navigator.push(
@@ -91,13 +65,11 @@ class BuildGoalWidget extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                           color: Colors.indigo)),
-                  subtitle: Text('Due date: $formattedDate'),
-                  trailing: Icon(Icons.arrow_forward_ios),
                 ),
               ),
             );
           },
-        )
+        ),
       ],
     );
   }

@@ -26,6 +26,12 @@ class HabitFormWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10, top: 50),
             child: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Title must not be empty!';
+                }
+                return null;
+              },
               controller: titleController,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(

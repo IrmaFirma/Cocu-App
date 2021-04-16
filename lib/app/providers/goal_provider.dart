@@ -58,6 +58,18 @@ class GoalProvider extends ChangeNotifier {
           .collection('goals')
           .doc(goalID)
           .delete();
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(userID)
+          .collection('goals')
+          .doc(goalID).collection('habits')
+          .get()
+          .then((value) => {
+                for (DocumentSnapshot ds in value.docs)
+                  {
+                    ds.reference.delete(),
+                  }
+              });
       notifyListeners();
     } catch (e) {
       print(e);

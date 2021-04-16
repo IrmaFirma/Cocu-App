@@ -49,7 +49,9 @@ class EmailWidget extends StatelessWidget {
               padding: const EdgeInsets.only(left: 110, right: 110),
               child: Container(
                   height: 51,
-                  decoration: BoxDecoration(color: Color(0xFFDFF4F6)),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFDFF4F6),
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

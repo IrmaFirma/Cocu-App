@@ -52,6 +52,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(const AssetImage('assets/signInBack.png'), context);
+    precacheImage(const AssetImage('assets/email.png'), context);
     final AuthProvider _authProvider =
         Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(

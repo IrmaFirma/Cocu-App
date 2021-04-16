@@ -27,9 +27,6 @@ class _TodoPageState extends State<TodoPage> {
   //authentication and data fetch functions
   SharedPrefs prefs = SharedPrefs();
 
-  //preload image
-  AssetImage todoBack;
-
   Future<void> _getInitialData() async {
     final bool isLogged = await prefs.readIsLogged();
     if (isLogged) {
@@ -53,19 +50,11 @@ class _TodoPageState extends State<TodoPage> {
     // TODO: implement initState
     super.initState();
     _getInitialData();
-    todoBack = AssetImage('assets/todoBack.png');
-  }
-
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    precacheImage(todoBack, context);
   }
 
   @override
   Widget build(BuildContext context) {
-    //ui
+    precacheImage(const AssetImage('assets/todoBack.png'), context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -113,7 +102,7 @@ class _TodoPageState extends State<TodoPage> {
               MaterialPageRoute<void>(
                   builder: (BuildContext context) => UserInfoPage(),
                   fullscreenDialog: true)),
-          secondEFunction: null,
+          secondEFunction: () => print('Already selected'),
           thirdEFunction: () => Navigator.push(
               context,
               MaterialPageRoute<void>(
@@ -127,9 +116,9 @@ class _TodoPageState extends State<TodoPage> {
         ),
         body: Container(
           decoration: BoxDecoration(
-            image: todoBack != null
+            image: AssetImage('assets/todoBack.png') != null
                 ? DecorationImage(
-                    image: todoBack,
+                    image: AssetImage('assets/todoBack.png'),
                     fit: BoxFit.cover,
                   )
                 : null,

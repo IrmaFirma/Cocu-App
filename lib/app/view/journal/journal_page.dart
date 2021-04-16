@@ -24,8 +24,6 @@ class JournalPage extends StatefulWidget {
 class _JournalPageState extends State<JournalPage> {
   final SharedPrefs prefs = SharedPrefs();
 
-  AssetImage journalBack;
-
   Future<void> _getInitialData() async {
     final bool isLogged = await prefs.readIsLogged();
     if (isLogged) {
@@ -49,19 +47,11 @@ class _JournalPageState extends State<JournalPage> {
     // TODO: implement initState
     super.initState();
     _getInitialData();
-    journalBack = AssetImage('assets/todoBack.png');
-  }
-
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    precacheImage(journalBack, context);
   }
 
   @override
   Widget build(BuildContext context) {
-    //ui
+    precacheImage(const AssetImage('assets/todoBack.png'), context);
     return Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: commonAppBar(
@@ -92,12 +82,12 @@ class _JournalPageState extends State<JournalPage> {
                 MaterialPageRoute<void>(
                     builder: (BuildContext context) => GoalPage(),
                     fullscreenDialog: true)),
-            fourthEFunction: null),
+            fourthEFunction: () => print('Already selected')),
         body: Container(
           decoration: BoxDecoration(
-            image: journalBack != null
+            image: AssetImage('assets/todoBack.png') != null
                 ? DecorationImage(
-                    image: journalBack,
+                    image: AssetImage('assets/todoBack.png'),
                     fit: BoxFit.cover,
                   )
                 : null,

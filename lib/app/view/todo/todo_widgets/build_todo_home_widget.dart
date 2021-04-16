@@ -29,16 +29,17 @@ class BuildTodoHome extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(8.0),
           child: DatePicker(
             DateTime.now(),
             initialSelectedDate: DateTime.now(),
-            selectionColor: Color(0xFF6B9BBB),
+            selectionColor: Color(0xFF6FCED5),
             onDateChange: null,
             dateTextStyle: TextStyle(
                 color: Color(0xFF696b6e),
-                fontSize: 24,
+                fontSize: 22,
                 fontWeight: FontWeight.bold),
+            height: 80,
           ),
         ),
         SizedBox(height: 10),
@@ -50,22 +51,22 @@ class BuildTodoHome extends StatelessWidget {
                   ? Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 80),
+                          padding: const EdgeInsets.only(top: 60),
                           child: Container(
-                              height: 154,
-                              width: 154,
+                              height: 150,
+                              width: 150,
                               child: Image.asset('assets/emptyTodo.png')),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 10,
                         ),
                         Text(
                           'No todos',
-                          style: TextStyle(fontFamily: 'Varela', fontSize: 26),
+                          style: TextStyle(fontFamily: 'Varela', fontSize: 25),
                         ),
                         Text('Start creating and changing your life',
                             style:
-                                TextStyle(fontFamily: 'Varela', fontSize: 16)),
+                                TextStyle(fontFamily: 'Varela', fontSize: 15)),
                       ],
                     )
                   : ListView.builder(
@@ -92,7 +93,7 @@ class BuildTodoHome extends StatelessWidget {
                                   leadingDate,
                                   style: TextStyle(
                                       color: Color(0xFF545557),
-                                      fontSize: 40,
+                                      fontSize: 36,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Lato'),
                                 ),
@@ -101,7 +102,7 @@ class BuildTodoHome extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 10),
                                   child: Container(
-                                    height: 82,
+                                    height: 75,
                                     child: Card(
                                       elevation: 1.5,
                                       shadowColor: Color(0xFFced1d6),
@@ -110,7 +111,7 @@ class BuildTodoHome extends StatelessWidget {
                                           children: [
                                             Padding(
                                               padding:
-                                                  const EdgeInsets.only(top: 5),
+                                                  const EdgeInsets.only(top: 3),
                                               child: CircularCheckBox(
                                                 activeColor: Colors.green,
                                                 checkColor: Colors.white,
@@ -128,6 +129,7 @@ class BuildTodoHome extends StatelessWidget {
                                                         (_) => showDialog(
                                                           context: context,
                                                           builder: (BuildContext
+
                                                               context) {
                                                             return Padding(
                                                               padding:
@@ -214,7 +216,7 @@ class BuildTodoHome extends StatelessWidget {
                                           children: [
                                             Padding(
                                               padding:
-                                                  const EdgeInsets.only(top: 5),
+                                                  const EdgeInsets.only(top: 3),
                                               child: Text(
                                                 todo.title,
                                                 style: TextStyle(
@@ -230,14 +232,14 @@ class BuildTodoHome extends StatelessWidget {
                                         subtitle: Text(
                                           'Due $formattedDate',
                                           style: TextStyle(
-                                              color: Color(0xFF6B9BBB),
+                                              color: Color(0xFF6FCED5),
                                               fontSize: 15),
                                         ),
                                         trailing: Wrap(
                                           children: [
                                             Padding(
                                               padding:
-                                                  const EdgeInsets.only(top: 5),
+                                                  const EdgeInsets.only(top: 3),
                                               child: IconButton(
                                                 icon: Icon(
                                                   Icons.delete,

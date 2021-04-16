@@ -60,7 +60,7 @@ class BuildCompletedTodo extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: Container(
-                            height: 77,
+                            height: 75,
                             child: Card(
                               elevation: 1.5,
                               shadowColor: Color(0xFFced1d6),
@@ -68,7 +68,7 @@ class BuildCompletedTodo extends StatelessWidget {
                                 leading: Wrap(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 5),
+                                      padding: const EdgeInsets.only(top: 3),
                                       child: CircularCheckBox(
                                         activeColor: Colors.green,
                                         checkColor: Colors.white,
@@ -97,7 +97,7 @@ class BuildCompletedTodo extends StatelessWidget {
                                 title: Wrap(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 5),
+                                      padding: const EdgeInsets.only(top: 3),
                                       child: Text(
                                         todo.title,
                                         style: TextStyle(
@@ -112,12 +112,12 @@ class BuildCompletedTodo extends StatelessWidget {
                                 subtitle: Text(
                                   'Due $formattedDate',
                                   style: TextStyle(
-                                      color: Color(0xFF6B9BBB), fontSize: 15),
+                                      color: Color(0xFF6FCED5), fontSize: 15),
                                 ),
                                 trailing: Wrap(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 5),
+                                      padding: const EdgeInsets.only(top: 3),
                                       child: IconButton(
                                         icon: Icon(
                                           Icons.delete,

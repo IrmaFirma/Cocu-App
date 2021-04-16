@@ -16,8 +16,6 @@ class CompletedTodo extends StatefulWidget {
 class _CompletedTodoState extends State<CompletedTodo> {
   SharedPrefs prefs = SharedPrefs();
 
-  AssetImage completedBack;
-
   Future<void> _getInitialData() async {
     final bool isLogged = await prefs.readIsLogged();
     if (isLogged) {
@@ -41,19 +39,11 @@ class _CompletedTodoState extends State<CompletedTodo> {
     // TODO: implement initState
     super.initState();
     _getInitialData();
-    completedBack = AssetImage('assets/completedBack.png');
-  }
-
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    precacheImage(completedBack, context);
   }
 
   @override
   Widget build(BuildContext context) {
-    //ui
+    precacheImage(const AssetImage('assets/completedBack.png'), context);
     return Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
@@ -67,7 +57,7 @@ class _CompletedTodoState extends State<CompletedTodo> {
         ),
         body: Container(
           decoration: BoxDecoration(
-            image: completedBack != null
+            image: AssetImage('assets/completedBack.png') != null
                 ? DecorationImage(
                     image: AssetImage('assets/completedBack.png'),
                     fit: BoxFit.cover,

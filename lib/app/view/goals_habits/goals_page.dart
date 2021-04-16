@@ -24,8 +24,6 @@ class GoalPage extends StatefulWidget {
 class _GoalPageState extends State<GoalPage> {
   SharedPrefs prefs = SharedPrefs();
 
-  AssetImage goalBack;
-
   Future<void> _getInitialData() async {
     final bool isLogged = await prefs.readIsLogged();
     if (isLogged) {
@@ -49,25 +47,18 @@ class _GoalPageState extends State<GoalPage> {
     // TODO: implement initState
     super.initState();
     _getInitialData();
-    goalBack = AssetImage('assets/todoBack.png');
-  }
-
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    precacheImage(goalBack, context);
   }
 
   @override
   Widget build(BuildContext context) {
-    //ui
+    precacheImage(const AssetImage('assets/goalBack.png'), context);
     return Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: commonAppBar(
-            barText: 'Goal Station',
-            addNew: () => Navigator.push(context,
-                CupertinoPageRoute(builder: (context) => AddNewGoal()))),
+          barText: 'Goal Station',
+          addNew: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => AddNewGoal())),
+        ),
         drawer: CommonDrawer(
           firstElementTitle: 'Home Page',
           secondElementTitle: 'ToDo',
@@ -83,7 +74,7 @@ class _GoalPageState extends State<GoalPage> {
               MaterialPageRoute<void>(
                   builder: (BuildContext context) => TodoPage(),
                   fullscreenDialog: true)),
-          thirdEFunction: null,
+          thirdEFunction: () => print('Already selected'),
           fourthEFunction: () => Navigator.push(
               context,
               MaterialPageRoute<void>(
@@ -92,9 +83,9 @@ class _GoalPageState extends State<GoalPage> {
         ),
         body: Container(
           decoration: BoxDecoration(
-            image: goalBack != null
+            image: AssetImage('assets/goalBack.png') != null
                 ? DecorationImage(
-                    image: goalBack,
+                    image: AssetImage('assets/goalBack.png'),
                     fit: BoxFit.cover,
                   )
                 : null,
@@ -103,10 +94,13 @@ class _GoalPageState extends State<GoalPage> {
             onWillPop: null,
             child: RefreshIndicator(
                 onRefresh: () => _getInitialData(),
-                child: BuildGoalWidget(
-                  getInitialData: () async {
-                    await _getInitialData();
-                  },
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 180),
+                  child: BuildGoalWidget(
+                    getInitialData: () async {
+                      await _getInitialData();
+                    },
+                  ),
                 )),
           ),
         ));

@@ -64,15 +64,17 @@ class _AddNewTodoState extends State<AddNewTodo> {
                 buttonText: 'ADD',
                 titleController: _titleController,
                 descriptionController: _descriptionController,
-                onSaved: () {
-                  todoProvider
-                      .addTodo(
-                          isCompleted: false,
-                          userID: widget.userID,
-                          title: _titleController.text,
-                          description: _descriptionController.text,
-                          date: date)
-                      .then((_) => Navigator.of(context).pop());
+                onSaved: () async {
+                  if (formKey.currentState.validate()) {
+                    await todoProvider
+                        .addTodo(
+                            isCompleted: false,
+                            userID: widget.userID,
+                            title: _titleController.text,
+                            description: _descriptionController.text,
+                            date: date)
+                        .then((_) => Navigator.of(context).pop());
+                  }
                 },
               ),
             ),
