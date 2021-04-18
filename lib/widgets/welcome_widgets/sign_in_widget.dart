@@ -14,36 +14,34 @@ class BuildWelcome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Column(
-            children: [
-              Text(
-                'Welcome to Cocu',
-                style: TextStyle(
-                    color: Color(0xFF505050),
-                    fontSize: 30,
-                    fontFamily: 'Segoe'),
-              ),
-              Text(
-                'Choose your next step',
-                style: TextStyle(
-                    color: Color(0xFF6E6C6C),
-                    fontFamily: 'Segoe',
-                    fontSize: 20),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 50, right: 50),
-            child: GestureDetector(
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return Padding(
+      padding: EdgeInsets.only(left: width / 7, right: width / 7),
+      child: Container(
+        child: Column(
+          children: [
+            Text(
+              'Welcome to Cocu',
+              style: TextStyle(
+                  color: Color(0xFF505050),
+                  fontSize: height / 25,
+                  fontFamily: 'Segoe'),
+            ),
+            Text(
+              'Choose your next step',
+              style: TextStyle(
+                  color: Color(0xFF6E6C6C),
+                  fontFamily: 'Segoe',
+                  fontSize: height / 40),
+            ),
+            SizedBox(
+              height: height/30,
+            ),
+            GestureDetector(
               onTap: () => onGoogle(),
               child: Container(
-                  height: 51,
+                  height: width / 8,
                   decoration: BoxDecoration(
                     color: Color(0xFF6FCED5),
                     boxShadow: [
@@ -62,10 +60,9 @@ class BuildWelcome extends StatelessWidget {
                       Row(
                         children: [
                           Container(
-                            padding: EdgeInsets.only(left: 15),
-                            child: Image.asset('assets/google.png'),
-                            height: 45,
-                            width: 45,
+                            child: Text(''), //TODO GOOGLE ICON
+                            height: height / 16,
+                            width: width / 16,
                           ),
                           SizedBox(
                             width: 15,
@@ -73,23 +70,20 @@ class BuildWelcome extends StatelessWidget {
                           Text('Get started with Google',
                               style: TextStyle(
                                   color: Color(0xFFf7f5f5),
-                                  fontSize: 18,
+                                  fontSize: height / 45,
                                   fontFamily: 'Segoe')),
                         ],
                       ),
                     ],
                   )),
             ),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 50, right: 50),
-            child: GestureDetector(
+            SizedBox(
+              height: height/45,
+            ),
+            GestureDetector(
               onTap: () => onRegister(),
               child: Container(
-                  height: 51,
+                  height: width / 8,
                   decoration: BoxDecoration(
                     color: Color(0xFF6FCED5),
                     boxShadow: [
@@ -108,10 +102,9 @@ class BuildWelcome extends StatelessWidget {
                       Row(
                         children: [
                           Container(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Image.asset('assets/email.png'),
-                            height: 50,
-                            width: 50,
+                            child: Text(''), //TODO EMAIL ICON SAME SIZE AS GOOGLE
+                            height: height / 16,
+                            width: width / 16,
                           ),
                           SizedBox(
                             width: 10,
@@ -119,22 +112,30 @@ class BuildWelcome extends StatelessWidget {
                           Text('Get started with Email',
                               style: TextStyle(
                                   color: Color(0xFFf7f5f5),
-                                  fontSize: 18,
+                                  fontSize: height / 45,
                                   fontFamily: 'Segoe')),
                         ],
                       ),
                     ],
+
                   )),
             ),
-          ),
-          TextButton(
-            onPressed: () => onSignIn(),
-            child: Text(
-              'Already have an account? Sign In',
-              style: TextStyle(color: Color(0xFF505050), fontFamily: 'Segoe'),
+            Container(
+              child: TextButton(
+                onPressed: () => onSignIn(),
+                child: Container(
+                  child: Text(
+                    'Already have an account? Sign In',
+                    style: TextStyle(
+                        color: Color(0xFF505050),
+                        fontFamily: 'Segoe',
+                        fontSize: height / 55),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

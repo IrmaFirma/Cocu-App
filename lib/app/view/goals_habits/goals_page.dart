@@ -86,7 +86,7 @@ class _GoalPageState extends State<GoalPage> {
             image: AssetImage('assets/goalBack.png') != null
                 ? DecorationImage(
                     image: AssetImage('assets/goalBack.png'),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   )
                 : null,
           ),

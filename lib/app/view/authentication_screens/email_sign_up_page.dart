@@ -41,6 +41,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     precacheImage(const AssetImage('assets/signInBack.png'), context);
     precacheImage(const AssetImage('assets/email.png'), context);
+    double h = MediaQuery.of(context).size.height;
     final AuthProvider _authProvider =
         Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
@@ -49,7 +50,7 @@ class RegisterScreen extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/signInBack.png'),
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         child: Container(

@@ -113,7 +113,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/userBack.png'),
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
             child: Padding(

@@ -88,7 +88,7 @@ class _JournalPageState extends State<JournalPage> {
             image: AssetImage('assets/todoBack.png') != null
                 ? DecorationImage(
                     image: AssetImage('assets/todoBack.png'),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   )
                 : null,
           ),

@@ -32,11 +32,11 @@ class WelcomePage extends StatelessWidget {
             builder: (context) => LoginScreen(), fullscreenDialog: true));
   }
 
-  Future<void> signInWithGoogle(BuildContext context,
-      AuthProvider authProvider) async {
+  Future<void> signInWithGoogle(
+      BuildContext context, AuthProvider authProvider) async {
     try {
       await authProvider.signInWithGoogle(context: context).then(
-            (_) async {
+        (_) async {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => TodoPage(),
@@ -50,23 +50,24 @@ class WelcomePage extends StatelessWidget {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     precacheImage(const AssetImage('assets/welcomeBackk.jpg'), context);
     final AuthProvider _authProvider =
-    Provider.of<AuthProvider>(context, listen: true);
+        Provider.of<AuthProvider>(context, listen: true);
+    //media query height
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       body: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-                image: const AssetImage('assets/welcomeBackk.jpg'),
-                fit: BoxFit.cover,
-              )),
+            image: const AssetImage('assets/welcomeBackk.jpg'),
+            fit: BoxFit.fill,
+          )),
           child: Container(
-              padding: EdgeInsets.only(top: 430),
+            padding: EdgeInsets.only(top: height * 0.55),
               child: BuildWelcome(
                 onSignIn: () => _navigateToLoginWithEmail(context),
                 onGoogle: () => signInWithGoogle(context, _authProvider),

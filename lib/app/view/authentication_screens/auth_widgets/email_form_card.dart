@@ -14,11 +14,13 @@ class MyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Container(
-        width: 332,
-        height: 306,
-        margin: EdgeInsets.all(40.0),
+        width: width*0.9,
+        height: height*0.4,
+        margin: EdgeInsets.all(width/10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
           color: Colors.white,
@@ -31,11 +33,10 @@ class MyCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.all(18.0),
+              padding: EdgeInsets.only(left: width/17, right: width/17, top: width/5),
               child: Form(
                 key: formKey,
                 child: Column(
@@ -47,7 +48,7 @@ class MyCard extends StatelessWidget {
                           labelText: 'Email', hintText: 'cocu@cocu.com'),
                     ),
                     SizedBox(
-                      height: 25,
+                      height: height/25,
                     ),
                     TextFormField(
                       obscureText: true,

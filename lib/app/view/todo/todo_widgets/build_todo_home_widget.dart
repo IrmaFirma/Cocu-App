@@ -25,37 +25,39 @@ class BuildTodoHome extends StatelessWidget {
         Provider.of<TodoProvider>(context, listen: true).todoModels;
     final TodoProvider todoProvider =
         Provider.of<TodoProvider>(context, listen: true);
+    double h = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: DatePicker(
-            DateTime.now(),
-            initialSelectedDate: DateTime.now(),
-            selectionColor: Color(0xFF6FCED5),
-            onDateChange: null,
-            dateTextStyle: TextStyle(
-                color: Color(0xFF696b6e),
-                fontSize: 22,
-                fontWeight: FontWeight.bold),
-            height: 80,
+          padding: EdgeInsets.all(width / 35),
+          child: Container(
+            child: DatePicker(
+              DateTime.now(),
+              initialSelectedDate: DateTime.now(),
+              selectionColor: Color(0xFF6FCED5),
+              onDateChange: null,
+              dateTextStyle: TextStyle(
+                  color: Color(0xFF696b6e),
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
+              height: h / 8,
+            ),
           ),
         ),
-        SizedBox(height: 10),
         Expanded(
           child: ListView(
             children: [
-              SizedBox(height: 15),
               todos.isEmpty
                   ? Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 60),
+                          padding: EdgeInsets.only(top: h / 10),
                           child: Container(
-                              height: 150,
-                              width: 150,
-                              child: Image.asset('assets/emptyTodo.png')),
+                              height: h / 5,
+                              width: width / 2,
+                              child: Image.asset('assets/list.png')),
                         ),
                         SizedBox(
                           height: 10,
@@ -86,9 +88,20 @@ class BuildTodoHome extends StatelessWidget {
                         return ClipRRect(
                           child: Row(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 10, left: 12, right: 12),
+                              Container(
+                                padding: leadingDate == '1' ||
+                                        leadingDate == '2' ||
+                                        leadingDate == '3' ||
+                                        leadingDate == '4' ||
+                                        leadingDate == '5' ||
+                                        leadingDate == '6' ||
+                                        leadingDate == '7' ||
+                                        leadingDate == '8' ||
+                                        leadingDate == '9'
+                                    ? EdgeInsets.only(
+                                        left: width / 19, right: width / 19)
+                                    : EdgeInsets.only(
+                                        left: width / 41, right: width / 41),
                                 child: Text(
                                   leadingDate,
                                   style: TextStyle(
@@ -99,39 +112,69 @@ class BuildTodoHome extends StatelessWidget {
                                 ),
                               ),
                               Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 10),
-                                  child: Container(
-                                    height: 75,
-                                    child: Card(
-                                      elevation: 1.5,
-                                      shadowColor: Color(0xFFced1d6),
-                                      child: ListTile(
-                                        leading: Wrap(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 3),
-                                              child: CircularCheckBox(
-                                                activeColor: Colors.green,
-                                                checkColor: Colors.white,
-                                                value: todo.isCompleted,
-                                                onChanged: (_) async {
-                                                  final String userID =
-                                                      await prefs.readUserID();
-                                                  todoProvider
-                                                      .markAsDone(
-                                                          isCompleted:
-                                                              todo.isCompleted,
-                                                          userID: userID,
-                                                          todoID: todo.todoID)
-                                                      .then(
-                                                        (_) => showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-
-                                                              context) {
-                                                            return Padding(
+                                child: Container(
+                                  height: 75,
+                                  child: Card(
+                                    elevation: 1.5,
+                                    shadowColor: Color(0xFFced1d6),
+                                    child: ListTile(
+                                      leading: Wrap(
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 3),
+                                            child: CircularCheckBox(
+                                              activeColor: Colors.green,
+                                              checkColor: Colors.white,
+                                              value: todo.isCompleted,
+                                              onChanged: (_) async {
+                                                final String userID =
+                                                    await prefs.readUserID();
+                                                todoProvider
+                                                    .markAsDone(
+                                                        isCompleted:
+                                                            todo.isCompleted,
+                                                        userID: userID,
+                                                        todoID: todo.todoID)
+                                                    .then(
+                                                      (_) => showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    top: 50),
+                                                            child: Container(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              child: Stack(
+                                                                alignment:
+                                                                    Alignment
+                                                                        .topCenter,
+                                                                children: [
+                                                                  CongratulationsDialog(
+                                                                    todoName: todo
+                                                                        .title,
+                                                                  ),
+                                                                  Avatar(
+                                                                    photoURL:
+                                                                        'assets/congratulationsIcon.png',
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      )
+                                                          .then(
+                                                            (_) =>
+                                                                getInitialData(),
+                                                          )
+                                                          .catchError(
+                                                            (error) => Padding(
                                                               padding:
                                                                   const EdgeInsets
                                                                           .only(
@@ -145,127 +188,90 @@ class BuildTodoHome extends StatelessWidget {
                                                                       Alignment
                                                                           .topCenter,
                                                                   children: [
-                                                                    CongratulationsDialog(
-                                                                      todoName:
-                                                                          todo.title,
-                                                                    ),
+                                                                    ErrorDialog(),
                                                                     Avatar(
                                                                       photoURL:
-                                                                          'assets/congratulationsIcon.png',
-                                                                    )
+                                                                          'assets/errorIcon.png',
+                                                                    ),
                                                                   ],
                                                                 ),
                                                               ),
-                                                            );
-                                                          },
-                                                        )
-                                                            .then(
-                                                              (_) =>
-                                                                  getInitialData(),
-                                                            )
-                                                            .catchError(
-                                                              (error) =>
-                                                                  Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        top:
-                                                                            50),
-                                                                child:
-                                                                    Container(
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .center,
-                                                                  child: Stack(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .topCenter,
-                                                                    children: [
-                                                                      ErrorDialog(),
-                                                                      Avatar(
-                                                                        photoURL:
-                                                                            'assets/errorIcon.png',
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
                                                             ),
-                                                      );
-                                                },
+                                                          ),
+                                                    );
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      onTap: () async {
+                                        final String userID =
+                                            await prefs.readUserID();
+                                        Navigator.push(
+                                          context,
+                                          CupertinoPageRoute<void>(
+                                            builder: (BuildContext context) =>
+                                                EditTodo(
+                                              userID: userID,
+                                              todo: todo,
+                                            ),
+                                            fullscreenDialog: true,
+                                          ),
+                                        ).then((_) => getInitialData());
+                                      },
+                                      title: Wrap(
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 3),
+                                            child: Text(
+                                              todo.title,
+                                              style: TextStyle(
+                                                fontSize: 17,
+                                                fontFamily: 'Valera',
+                                                fontWeight: FontWeight.w500,
+                                                color: Color(0xFF2B2B2B),
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                        onTap: () async {
-                                          final String userID =
-                                              await prefs.readUserID();
-                                          Navigator.push(
-                                            context,
-                                            CupertinoPageRoute<void>(
-                                              builder: (BuildContext context) =>
-                                                  EditTodo(
-                                                userID: userID,
-                                                todo: todo,
+                                          ),
+                                        ],
+                                      ),
+                                      subtitle: Text(
+                                        'Due $formattedDate',
+                                        style: TextStyle(
+                                            color: Color(0xFF6FCED5),
+                                            fontSize: 15),
+                                      ),
+                                      trailing: Wrap(
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 3),
+                                            child: IconButton(
+                                              icon: Icon(
+                                                Icons.delete,
+                                                color: Color(0xFFf5625d),
                                               ),
-                                              fullscreenDialog: true,
+                                              onPressed: () async {
+                                                final String userID =
+                                                    await prefs.readUserID();
+                                                await todoProvider
+                                                    .deleteTodo(
+                                                        userID: userID,
+                                                        todoID: todo.todoID)
+                                                    .then(
+                                                  (_) {
+                                                    getInitialData();
+                                                    showSnackBar(
+                                                        context,
+                                                        'Deleted ${todo.title}',
+                                                        Colors.red);
+                                                  },
+                                                );
+                                              },
                                             ),
-                                          ).then((_) => getInitialData());
-                                        },
-                                        title: Wrap(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 3),
-                                              child: Text(
-                                                todo.title,
-                                                style: TextStyle(
-                                                  fontSize: 17,
-                                                  fontFamily: 'Valera',
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Color(0xFF2B2B2B),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        subtitle: Text(
-                                          'Due $formattedDate',
-                                          style: TextStyle(
-                                              color: Color(0xFF6FCED5),
-                                              fontSize: 15),
-                                        ),
-                                        trailing: Wrap(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 3),
-                                              child: IconButton(
-                                                icon: Icon(
-                                                  Icons.delete,
-                                                  color: Color(0xFFf5625d),
-                                                ),
-                                                onPressed: () async {
-                                                  final String userID =
-                                                      await prefs.readUserID();
-                                                  await todoProvider
-                                                      .deleteTodo(
-                                                          userID: userID,
-                                                          todoID: todo.todoID)
-                                                      .then(
-                                                    (_) {
-                                                      getInitialData();
-                                                      showSnackBar(
-                                                          context,
-                                                          'Deleted ${todo.title}',
-                                                          Colors.red);
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),

@@ -16,24 +16,25 @@ class EmailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Container(
       child: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 30, right: 310),
-            child: GestureDetector(
-              onTap: () => Navigator.of(context).pop(),
+          GestureDetector(
+            onTap: () => Navigator.of(context).pop(),
+            child: Padding(
+              padding: EdgeInsets.only(right: width*0.7, top: height/25),
               child: Container(
-                height: 36,
-                width: 36,
+                height: height/20,
+                width: width/20,
                 child: Image.asset('assets/arrow.png'),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 50),
+            padding: EdgeInsets.only(top: height/10),
             child: Container(
-              alignment: Alignment.center,
               child: Stack(
                 alignment: Alignment.topCenter,
                 children: [
@@ -46,9 +47,9 @@ class EmailWidget extends StatelessWidget {
           GestureDetector(
             onTap: () => onSignIn(),
             child: Padding(
-              padding: const EdgeInsets.only(left: 110, right: 110),
+              padding: const EdgeInsets.only(left: 90, right: 90),
               child: Container(
-                  height: 51,
+                  height: width/8,
                   decoration: BoxDecoration(
                     color: Color(0xFFDFF4F6),
                   ),
@@ -59,7 +60,7 @@ class EmailWidget extends StatelessWidget {
                       Text(buttonText,
                           style: TextStyle(
                               color: Color(0xFF6E6C6C),
-                              fontSize: 22,
+                              fontSize: height/35,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Raleway')),
                     ],
