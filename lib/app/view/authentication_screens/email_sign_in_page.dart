@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
-import 'package:working_project/app/view/authentication_screens/auth_widgets/email_widget.dart';
 import 'package:working_project/app/view/todo/todo_page.dart';
-
-import 'auth_widgets/email_avatar.dart';
-import 'auth_widgets/email_form_card.dart';
+import 'file:///C:/Users/F-IRMA/AndroidStudioProjects/CocuApp/lib/app/view/authentication_screens/auth_widgets/auth_form_widget.dart';
 
 //shared preferences
 bool isLogged = false;
@@ -52,32 +49,20 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    precacheImage(const AssetImage('assets/signInBack.png'), context);
-    precacheImage(const AssetImage('assets/email.png'), context);
     final AuthProvider _authProvider =
         Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/signInBack.png'),
-            fit: BoxFit.fill,
-          ),
-        ),
         child: Container(
-          child: EmailWidget(
+          child: AuthFormWidget(
+            formKey: _formKey,
+            emailController: emailController,
+            passwordController: passwordController,
             buttonText: 'SIGN IN',
-            MyAvatarWidget: Avatar(
-              photoURL: 'assets/email.png',
-            ),
-            MyCardWIdget: MyCard(
-              emailController: emailController,
-              passwordController: passwordController,
-              formKey: _formKey,
-            ),
-            onSignIn: () =>
-                login(context: context, authProvider: _authProvider),
+            mainMessage: 'Sign In',
+            oppositeMessage: 'Don\'t have an account? Create one',
+            onSaved: () => login(context: context, authProvider: _authProvider),
           ),
         ),
       ),

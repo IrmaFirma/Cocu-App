@@ -7,7 +7,7 @@ import 'package:working_project/app/models/todo_model.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
 import 'package:working_project/app/utils/snack_bar.dart';
-import 'package:working_project/app/view/authentication_screens/auth_widgets/email_avatar.dart';
+import 'package:working_project/app/view/authentication_screens/auth_widgets/avatar.dart';
 import 'package:working_project/app/view/todo/todo_widgets/congratulations_dialog.dart';
 import 'package:working_project/widgets/error_dialog.dart';
 

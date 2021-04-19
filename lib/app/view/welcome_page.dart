@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
+import 'package:working_project/app/view/authentication_screens/email_sign_in_page.dart';
+import 'package:working_project/app/view/authentication_screens/email_sign_up_page.dart';
 import 'package:working_project/app/view/todo/todo_page.dart';
 import 'package:working_project/widgets/welcome_widgets/sign_in_widget.dart';
-
-import 'authentication_screens/email_sign_in_page.dart';
-import 'authentication_screens/email_sign_up_page.dart';
 
 class WelcomePageBuilder extends StatelessWidget {
   @override
@@ -49,6 +48,7 @@ class WelcomePage extends StatelessWidget {
       print(e);
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
