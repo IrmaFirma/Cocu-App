@@ -26,7 +26,7 @@ class SharedPrefs {
     await prefs.remove('userName');
   }
 
-  Future<void> logout() async {
+  Future<void> setEmptyUserID() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('userID', '');
   }

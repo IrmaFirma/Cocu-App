@@ -52,7 +52,7 @@ class BuildCompletedTodo extends StatelessWidget {
                   itemBuilder: (context, int index) {
                     final TodoModel todo = todos[index];
                     //formatting date
-                    var date = DateTime.parse(todo.date);
+                    var date = DateTime.parse(todo.dueDate);
                     var formattedDate =
                         '${date.day}/${date.month}/${date.year}';
                     //slidable widget for delete and edit
@@ -97,7 +97,7 @@ class BuildCompletedTodo extends StatelessWidget {
                                 title: Wrap(
                                   children: [
                                     Text(
-                                      todo.title,
+                                      todo.todoTitle,
                                       style: TextStyle(
                                         fontSize: width / 24,
                                         fontWeight: FontWeight.w500,
@@ -129,7 +129,7 @@ class BuildCompletedTodo extends StatelessWidget {
                                             .then((_) async {
                                           showSnackBar(
                                               context,
-                                              'Deleted ${todo.title}',
+                                              'Deleted ${todo.todoTitle}',
                                               Colors.red);
                                           getInitialData();
                                         }).catchError(

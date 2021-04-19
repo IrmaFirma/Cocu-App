@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 
 class TodoModel {
-  final String title;
-  final String description;
-  final String date;
+  final String todoTitle;
+  final String todoDescription;
+  final String dueDate;
   final bool isCompleted;
   final userID;
   final todoID;
 
   TodoModel(
-      {@required this.title,
-      this.description,
+      {@required this.todoTitle,
+      this.todoDescription,
       this.isCompleted = false,
-      @required this.date,
+      @required this.dueDate,
       @required this.userID,
       @required this.todoID});
 
   factory TodoModel.fromDocument(Map<String, dynamic> data) {
     return TodoModel(
-      title: data['title'],
-      date: data['date'],
-      description: data['description'],
+      todoTitle: data['title'],
+      dueDate: data['date'],
+      todoDescription: data['description'],
       userID: data['user_id'],
       todoID: data['todo_id'],
       isCompleted: data['isCompleted'],

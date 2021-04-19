@@ -34,7 +34,7 @@ class BuildGoalWidget extends StatelessWidget {
           itemCount: goals.length,
           itemBuilder: (context, int index) {
             final GoalModel goal = goals[index];
-            var date = DateTime.parse(goal.date);
+            var date = DateTime.parse(goal.dueDate);
             var formattedDate = '${date.day}/${date.month}/${date.year}';
             return ClipRRect(
               child: Dismissible(
@@ -42,8 +42,7 @@ class BuildGoalWidget extends StatelessWidget {
                 onDismissed: (DismissDirection direction) async {
                   final String userID = await prefs.readUserID();
                   goals.removeAt(index);
-                  goalProvider.deleteGoal(
-                      goalID: goal.goalID, userID: userID);
+                  goalProvider.deleteGoal(goalID: goal.goalID, userID: userID);
                 },
                 background: Container(
                   margin: const EdgeInsets.only(left: 250),

@@ -24,7 +24,7 @@ class _EditGoalState extends State<EditGoal> {
 
   void initializeData() {
     _titleController.text = widget.goal.goalTitle;
-    date = widget.goal.date;
+    date = widget.goal.dueDate;
   }
 
   @override

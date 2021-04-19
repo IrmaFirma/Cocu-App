@@ -69,8 +69,8 @@ class BuildJournal extends StatelessWidget {
                               userID: userID, journalID: journal.journalID)
                           .then((value) {
                         getInitialData();
-                        showSnackBar(
-                            context, 'Deleted ${journal.title}', Colors.red);
+                        showSnackBar(context, 'Deleted ${journal.journalTitle}',
+                            Colors.red);
                       });
                     },
                     icon: Icons.delete,
@@ -89,7 +89,7 @@ class BuildJournal extends StatelessWidget {
                       getInitialData();
                     });
                   },
-                  title: Text(journal.title,
+                  title: Text(journal.journalTitle,
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -99,7 +99,7 @@ class BuildJournal extends StatelessWidget {
                       children: [
                         Container(
                             alignment: Alignment.topLeft,
-                            child: Text(journal.subtitle)),
+                            child: Text(journal.journalSubtitle)),
                         Container(
                             alignment: Alignment.topLeft,
                             child: Text('Created: $formattedDate')),

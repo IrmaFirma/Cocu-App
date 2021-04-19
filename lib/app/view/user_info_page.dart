@@ -27,7 +27,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
   Future<void> _signOut(BuildContext context) async {
     try {
       await SharedPrefs().setIsLoggedFalse();
-      await SharedPrefs().logout();
+      await SharedPrefs().setEmptyUserID();
       final AuthProvider auth =
           Provider.of<AuthProvider>(context, listen: false);
       await auth.logout().then((_) => Navigator.push(context,

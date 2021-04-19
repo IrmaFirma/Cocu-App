@@ -25,9 +25,9 @@ class _EditTodoState extends State<EditTodo> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   void initializeData() {
-    _titleController.text = widget.todo.title;
-    date = widget.todo.date;
-    _descriptionController.text = widget.todo.description;
+    _titleController.text = widget.todo.todoTitle;
+    date = widget.todo.dueDate;
+    _descriptionController.text = widget.todo.todoDescription;
   }
 
   @override
@@ -49,7 +49,7 @@ class _EditTodoState extends State<EditTodo> {
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text('Update ${widget.todo.title}'),
+        title: Text('Update ${widget.todo.todoTitle}'),
         backgroundColor: Color(0xFFFBC490),
         iconTheme: IconThemeData(color: Colors.white),
       ),

@@ -38,16 +38,16 @@ class AddNewJournal extends StatelessWidget {
                 buttonText: 'ADD',
                 onSaved: () async {
                   final String userID = await prefs.readUserID();
-                  if(formKey.currentState.validate()){
+                  if (formKey.currentState.validate()) {
                     await journalProvider
                         .addJournal(
-                        createdDate: createdDate.toString(),
-                        title: _titleController.text,
-                        subtitle: _subtitleController.text,
-                        description: _descriptionController.text,
-                        userID: userID)
+                            createdDate: createdDate.toString(),
+                            title: _titleController.text,
+                            subtitle: _subtitleController.text,
+                            description: _descriptionController.text,
+                            userID: userID)
                         .then(
-                          (_) {
+                      (_) {
                         Navigator.of(context).pop();
                       },
                     );

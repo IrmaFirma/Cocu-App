@@ -93,7 +93,7 @@ class _BuildTodoHomeState extends State<BuildTodoHome> {
                       itemCount: todos.length,
                       itemBuilder: (context, int index) {
                         final TodoModel todo = todos[index];
-                        var date = DateTime.parse(todo.date);
+                        var date = DateTime.parse(todo.dueDate);
                         var formattedDate =
                             '${date.day}/${date.month}/${date.year}';
                         return ClipRRect(
@@ -150,7 +150,7 @@ class _BuildTodoHomeState extends State<BuildTodoHome> {
                                                                 children: [
                                                                   CongratulationsDialog(
                                                                     todoName: todo
-                                                                        .title,
+                                                                        .todoTitle,
                                                                   ),
                                                                   Avatar(
                                                                     photoURL:
@@ -215,7 +215,7 @@ class _BuildTodoHomeState extends State<BuildTodoHome> {
                                         title: Wrap(
                                           children: [
                                             Text(
-                                              todo.title,
+                                              todo.todoTitle,
                                               style: TextStyle(
                                                 fontSize: width / 24,
                                                 fontFamily: 'Valera',
@@ -249,7 +249,7 @@ class _BuildTodoHomeState extends State<BuildTodoHome> {
                                                     widget.getInitialData();
                                                     showSnackBar(
                                                         context,
-                                                        'Deleted ${todo.title}',
+                                                        'Deleted ${todo.todoTitle}',
                                                         Colors.red);
                                                   },
                                                 );

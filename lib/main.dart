@@ -30,8 +30,6 @@ Future<void> main() async {
 //TODO JOURNAL MAKEOVER
 //TODO HABIT MAKEOVER
 //TODO HOME MAKEOVER
-//TODO SIGN IN SIGN UP TOUCH UP
-//TODO PAGE ANOTHER CALENDAR STYLE, LIST TODO FRESH UP
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -82,7 +80,7 @@ class _MyAppState extends State<MyApp> {
             image: Image.asset('assets/cocuBack.png'),
             backgroundColor: Color(0xFF6FCED5),
             styleTextUnderTheLoader: new TextStyle(),
-            photoSize: 200.0,
+            photoSize: 100.0,
             loaderColor: Colors.white),
       ),
     );

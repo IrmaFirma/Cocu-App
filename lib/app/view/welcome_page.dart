@@ -49,10 +49,9 @@ class WelcomePage extends StatelessWidget {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-    precacheImage(const AssetImage('assets/welcomeBackk.jpg'), context);
+    precacheImage(const AssetImage('assets/welcomeBackk.png'), context);
     final AuthProvider _authProvider =
         Provider.of<AuthProvider>(context, listen: true);
     //media query height
@@ -63,11 +62,11 @@ class WelcomePage extends StatelessWidget {
       body: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: const AssetImage('assets/welcomeBackk.jpg'),
+            image: const AssetImage('assets/welcomeBackk.png'),
             fit: BoxFit.fill,
           )),
           child: Container(
-            padding: EdgeInsets.only(top: height * 0.55),
+              padding: EdgeInsets.only(top: height * 0.55),
               child: BuildWelcome(
                 onSignIn: () => _navigateToLoginWithEmail(context),
                 onGoogle: () => signInWithGoogle(context, _authProvider),

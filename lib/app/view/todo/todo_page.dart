@@ -17,7 +17,6 @@ import '../../utils/shared_preferences.dart';
 import 'add_todo.dart';
 import 'completed_todo.dart';
 
-//TODO EMPTY TITLE ALERT
 class TodoPage extends StatefulWidget {
   @override
   _TodoPageState createState() => _TodoPageState();

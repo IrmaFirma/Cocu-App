@@ -30,9 +30,9 @@ class _EditJournalState extends State<EditJournal> {
   final SharedPrefs prefs = SharedPrefs();
 
   void initializeData() {
-    _titleController.text = widget.journal.title;
-    _subtitleController.text = widget.journal.subtitle;
-    _descriptionController.text = widget.journal.description;
+    _titleController.text = widget.journal.journalTitle;
+    _subtitleController.text = widget.journal.journalSubtitle;
+    _descriptionController.text = widget.journal.journalDescription;
   }
 
   @override
@@ -51,7 +51,7 @@ class _EditJournalState extends State<EditJournal> {
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text('Update ${widget.journal.title}'),
+        title: Text('Update ${widget.journal.journalTitle}'),
         backgroundColor: Color(0xFFFBC490),
         iconTheme: IconThemeData(color: Colors.white),
       ),

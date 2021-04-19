@@ -53,16 +53,16 @@ class _AddNewHabitState extends State<AddNewHabit> {
                 buttonText: 'Save',
                 onSaved: () async {
                   final String userID = await prefs.readUserID();
-                  if(formKey.currentState.validate()){
+                  if (formKey.currentState.validate()) {
                     await habitProvider
                         .addHabit(
-                        goalID: widget.goal.goalID,
-                        title: _titleController.text,
-                        note: _noteController.text,
-                        importance: _importanceController.text,
-                        userID: userID)
+                            goalID: widget.goal.goalID,
+                            title: _titleController.text,
+                            note: _noteController.text,
+                            importance: _importanceController.text,
+                            userID: userID)
                         .then(
-                          (_) {
+                      (_) {
                         Navigator.of(context).pop();
                       },
                     );

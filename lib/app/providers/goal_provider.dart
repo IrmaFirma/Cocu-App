@@ -62,7 +62,8 @@ class GoalProvider extends ChangeNotifier {
           .collection('users')
           .doc(userID)
           .collection('goals')
-          .doc(goalID).collection('habits')
+          .doc(goalID)
+          .collection('habits')
           .get()
           .then((value) => {
                 for (DocumentSnapshot ds in value.docs)
