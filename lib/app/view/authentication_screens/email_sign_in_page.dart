@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final AuthProvider _authProvider =
         Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: Container(
         child: Container(
           child: AuthFormWidget(

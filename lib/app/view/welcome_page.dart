@@ -58,7 +58,7 @@ class WelcomePage extends StatelessWidget {
     //media query height
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.grey[200],
       body: Container(
           decoration: BoxDecoration(

@@ -9,11 +9,22 @@ class AuthFormWidget extends StatelessWidget {
   final TextEditingController passwordController;
   final GlobalKey<FormState> formKey;
 
-  const AuthFormWidget({Key key, this.buttonText, this.mainMessage, this.oppositeMessage, this.onSaved, this.emailController, this.passwordController, this.formKey}) : super(key: key);
+  const AuthFormWidget(
+      {Key key,
+      this.buttonText,
+      this.mainMessage,
+      this.oppositeMessage,
+      this.onSaved,
+      this.emailController,
+      this.passwordController,
+      this.formKey})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    //TODO IMPLEMENT MEDIA QUERY
     final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -59,7 +70,7 @@ class AuthFormWidget extends StatelessWidget {
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
-                            color: Color.fromRGBO(135, 192, 198, .3),
+                            color: Color(0xFF6FCED5),
                             blurRadius: 20,
                             offset: Offset(0, 10),
                           )
@@ -76,6 +87,7 @@ class AuthFormWidget extends StatelessWidget {
                                         BorderSide(color: Colors.grey[200]))),
                             child: TextField(
                               controller: emailController,
+                              keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: 'Email',
@@ -85,6 +97,7 @@ class AuthFormWidget extends StatelessWidget {
                           Container(
                             padding: EdgeInsets.all(10),
                             child: TextField(
+                              obscureText: true,
                               controller: passwordController,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
@@ -99,16 +112,22 @@ class AuthFormWidget extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    height: 50,
-                    margin: EdgeInsets.symmetric(horizontal: 60),
-                    decoration: BoxDecoration(
-                      color: Color(0xFF014e4f),
-                    ),
-                    child: Center(
-                      child: Text(
-                       buttonText,
-                        style: TextStyle(color: Colors.white, fontFamily: 'Lato'),
+                  GestureDetector(
+                    onTap: () {
+                      onSaved();
+                    },
+                    child: Container(
+                      height: 50,
+                      margin: EdgeInsets.symmetric(horizontal: 60),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF008f8c),
+                      ),
+                      child: Center(
+                        child: Text(
+                          buttonText,
+                          style: TextStyle(
+                              color: Colors.white, fontFamily: 'Lato'),
+                        ),
                       ),
                     ),
                   ),
@@ -118,7 +137,8 @@ class AuthFormWidget extends StatelessWidget {
                   Center(
                       child: Text(
                     oppositeMessage,
-                    style: TextStyle(color: Color(0xFF274f4d), fontFamily: 'Lato'),
+                    style:
+                        TextStyle(color: Color(0xFF274f4d), fontFamily: 'Lato'),
                   )),
                 ],
               ),
