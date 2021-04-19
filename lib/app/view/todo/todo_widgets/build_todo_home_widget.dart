@@ -1,8 +1,8 @@
 import 'package:circular_check_box/circular_check_box.dart';
-import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:table_calendar/table_calendar.dart';
 import 'package:working_project/app/models/todo_model.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
@@ -13,10 +13,23 @@ import 'package:working_project/widgets/error_dialog.dart';
 
 import '../edit_todo_page.dart';
 
-class BuildTodoHome extends StatelessWidget {
+class BuildTodoHome extends StatefulWidget {
   final Function getInitialData;
 
   const BuildTodoHome({@required this.getInitialData});
+
+  @override
+  _BuildTodoHomeState createState() => _BuildTodoHomeState();
+}
+
+class _BuildTodoHomeState extends State<BuildTodoHome> {
+  CalendarController _calendarController;
+
+  @override
+  void initState() {
+    super.initState();
+    _calendarController = CalendarController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,27 +38,27 @@ class BuildTodoHome extends StatelessWidget {
         Provider.of<TodoProvider>(context, listen: true).todoModels;
     final TodoProvider todoProvider =
         Provider.of<TodoProvider>(context, listen: true);
-    double h = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.all(width / 35),
-          child: Container(
-            child: DatePicker(
-              DateTime.now(),
-              initialSelectedDate: DateTime.now(),
-              selectionColor: Color(0xFF6FCED5),
-              onDateChange: null,
-              dateTextStyle: TextStyle(
-                  color: Color(0xFF696b6e),
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold),
-              height: h / 8,
+        TableCalendar(
+            startingDayOfWeek: StartingDayOfWeek.monday,
+            initialCalendarFormat: CalendarFormat.week,
+            headerStyle: HeaderStyle(
+              formatButtonShowsNext: false,
             ),
-          ),
-        ),
+            calendarStyle: CalendarStyle(
+                weekendStyle: TextStyle(color: Colors.grey.shade700),
+                weekdayStyle: TextStyle(color: Colors.grey.shade700),
+                todayColor: Color(0xFF6FCED5),
+                selectedColor: Color(0xFF6FCED5),
+                todayStyle: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.white)),
+            calendarController: _calendarController),
         Expanded(
           child: ListView(
             children: [
@@ -53,22 +66,23 @@ class BuildTodoHome extends StatelessWidget {
                   ? Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(top: h / 10),
+                          padding: EdgeInsets.only(top: height / 10),
                           child: Container(
-                              height: h / 5,
+                              height: height / 5,
                               width: width / 2,
                               child: Image.asset('assets/list.png')),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: height / 55,
                         ),
                         Text(
                           'No todos',
-                          style: TextStyle(fontFamily: 'Varela', fontSize: 25),
+                          style: TextStyle(
+                              fontFamily: 'Varela', fontSize: width / 15),
                         ),
                         Text('Start creating and changing your life',
-                            style:
-                                TextStyle(fontFamily: 'Varela', fontSize: 15)),
+                            style: TextStyle(
+                                fontFamily: 'Varela', fontSize: width / 25)),
                       ],
                     )
                   : ListView.builder(
@@ -79,51 +93,30 @@ class BuildTodoHome extends StatelessWidget {
                       itemCount: todos.length,
                       itemBuilder: (context, int index) {
                         final TodoModel todo = todos[index];
-                        //formatting date
                         var date = DateTime.parse(todo.date);
                         var formattedDate =
                             '${date.day}/${date.month}/${date.year}';
-                        var leadingDate = '${date.day}';
-                        //slidable widget for delete and edit
                         return ClipRRect(
                           child: Row(
                             children: [
-                              Container(
-                                padding: leadingDate == '1' ||
-                                        leadingDate == '2' ||
-                                        leadingDate == '3' ||
-                                        leadingDate == '4' ||
-                                        leadingDate == '5' ||
-                                        leadingDate == '6' ||
-                                        leadingDate == '7' ||
-                                        leadingDate == '8' ||
-                                        leadingDate == '9'
-                                    ? EdgeInsets.only(
-                                        left: width / 19, right: width / 19)
-                                    : EdgeInsets.only(
-                                        left: width / 41, right: width / 41),
-                                child: Text(
-                                  leadingDate,
-                                  style: TextStyle(
-                                      color: Color(0xFF545557),
-                                      fontSize: 36,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Lato'),
-                                ),
-                              ),
                               Expanded(
-                                child: Container(
-                                  height: 75,
-                                  child: Card(
-                                    elevation: 1.5,
-                                    shadowColor: Color(0xFFced1d6),
-                                    child: ListTile(
-                                      leading: Wrap(
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 3),
-                                            child: CircularCheckBox(
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width / 25, right: width / 25),
+                                  child: Container(
+                                    height: 75,
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15.0),
+                                      ),
+                                      elevation: 1.5,
+                                      shadowColor: Color(0xFFced1d6),
+                                      child: ListTile(
+                                        leading: Wrap(
+                                          children: [
+                                            CircularCheckBox(
+                                              inactiveColor: Color(0xFF6FCED5),
                                               activeColor: Colors.green,
                                               checkColor: Colors.white,
                                               value: todo.isCompleted,
@@ -170,8 +163,8 @@ class BuildTodoHome extends StatelessWidget {
                                                         },
                                                       )
                                                           .then(
-                                                            (_) =>
-                                                                getInitialData(),
+                                                            (_) => widget
+                                                                .getInitialData(),
                                                           )
                                                           .catchError(
                                                             (error) => Padding(
@@ -201,53 +194,45 @@ class BuildTodoHome extends StatelessWidget {
                                                     );
                                               },
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      onTap: () async {
-                                        final String userID =
-                                            await prefs.readUserID();
-                                        Navigator.push(
-                                          context,
-                                          CupertinoPageRoute<void>(
-                                            builder: (BuildContext context) =>
-                                                EditTodo(
-                                              userID: userID,
-                                              todo: todo,
+                                          ],
+                                        ),
+                                        onTap: () async {
+                                          final String userID =
+                                              await prefs.readUserID();
+                                          Navigator.push(
+                                            context,
+                                            CupertinoPageRoute<void>(
+                                              builder: (BuildContext context) =>
+                                                  EditTodo(
+                                                userID: userID,
+                                                todo: todo,
+                                              ),
+                                              fullscreenDialog: true,
                                             ),
-                                            fullscreenDialog: true,
-                                          ),
-                                        ).then((_) => getInitialData());
-                                      },
-                                      title: Wrap(
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 3),
-                                            child: Text(
+                                          ).then(
+                                              (_) => widget.getInitialData());
+                                        },
+                                        title: Wrap(
+                                          children: [
+                                            Text(
                                               todo.title,
                                               style: TextStyle(
-                                                fontSize: 17,
+                                                fontSize: width / 24,
                                                 fontFamily: 'Valera',
                                                 fontWeight: FontWeight.w500,
                                                 color: Color(0xFF2B2B2B),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      subtitle: Text(
-                                        'Due $formattedDate',
-                                        style: TextStyle(
-                                            color: Color(0xFF6FCED5),
-                                            fontSize: 15),
-                                      ),
-                                      trailing: Wrap(
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 3),
-                                            child: IconButton(
+                                          ],
+                                        ),
+                                        subtitle: Text(
+                                          'Due $formattedDate',
+                                          style:
+                                              TextStyle(fontSize: width / 30),
+                                        ),
+                                        trailing: Wrap(
+                                          children: [
+                                            IconButton(
                                               icon: Icon(
                                                 Icons.delete,
                                                 color: Color(0xFFf5625d),
@@ -261,7 +246,7 @@ class BuildTodoHome extends StatelessWidget {
                                                         todoID: todo.todoID)
                                                     .then(
                                                   (_) {
-                                                    getInitialData();
+                                                    widget.getInitialData();
                                                     showSnackBar(
                                                         context,
                                                         'Deleted ${todo.title}',
@@ -270,8 +255,8 @@ class BuildTodoHome extends StatelessWidget {
                                                 );
                                               },
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
