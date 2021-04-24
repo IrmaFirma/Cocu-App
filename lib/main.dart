@@ -5,8 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/category_todo_provider.dart';
-import 'package:working_project/app/providers/goal_provider.dart';
-import 'package:working_project/app/providers/habits_provider.dart';
 import 'package:working_project/app/providers/journal_provider.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
@@ -64,11 +62,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
             create: (BuildContext context) => TodoProvider()),
         ChangeNotifierProvider(
-            create: (BuildContext context) => GoalProvider()),
-        ChangeNotifierProvider(
             create: (BuildContext context) => JournalProvider()),
-        ChangeNotifierProvider(
-            create: (BuildContext context) => HabitProvider()),
       ],
       child: MaterialApp(
         home: SplashScreen(

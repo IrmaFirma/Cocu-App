@@ -2,12 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:working_project/app/models/goal_model.dart';
 import 'package:working_project/app/models/journal_model.dart';
 import 'package:working_project/app/models/todo_model.dart';
 import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
-import 'package:working_project/app/providers/goal_provider.dart';
 import 'package:working_project/app/providers/journal_provider.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
@@ -37,22 +35,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
     }
   }
 
-  //getting goalCount live
-  Future<void> _getGoalCount() async {
-    final bool isLogged = await prefs.readIsLogged();
-    if (isLogged) {
-      final String userID = await prefs.readUserID();
-      if (userID.isNotEmpty) {
-        Provider.of<GoalProvider>(context, listen: false)
-            .readGoal(userID: userID);
-      }
-    } else {
-      final UserModel userModel =
-          Provider.of<AuthProvider>(context, listen: false).userModel;
-      Provider.of<GoalProvider>(context, listen: false)
-          .readGoal(userID: userModel.userID);
-    }
-  }
+
 
   //getting JournalCount live
   Future<void> _getJournalCount() async {
@@ -76,7 +59,6 @@ class _UserInfoPageState extends State<UserInfoPage> {
     // TODO: implement initState
     super.initState();
     _getJournalCount();
-    _getGoalCount();
   }
 
   //ui
@@ -85,9 +67,6 @@ class _UserInfoPageState extends State<UserInfoPage> {
     // journals count
     final List<JournalModel> journals =
         Provider.of<JournalProvider>(context, listen: true).journalModels;
-    //goals count
-    final List<GoalModel> goals =
-        Provider.of<GoalProvider>(context, listen: true).goalModels;
     //todos count
     final List<TodoModel> todos =
         Provider.of<TodoProvider>(context, listen: true).todoModels;
@@ -121,7 +100,6 @@ class _UserInfoPageState extends State<UserInfoPage> {
               child: BuildUserInfo(
                 todoCount: todos.length.toString(),
                 journalCount: journals.length.toString(),
-                goalCount: goals.length.toString(),
               ),
             ),
           ),
