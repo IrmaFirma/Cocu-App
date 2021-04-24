@@ -10,9 +10,11 @@ import 'package:working_project/widgets/error_dialog.dart';
 import '../edit_todo_page.dart';
 
 class BuildCompletedTodo extends StatelessWidget {
+  final String categoryID;
   final Function getInitialData;
 
-  const BuildCompletedTodo({@required this.getInitialData});
+  const BuildCompletedTodo(
+      {@required this.getInitialData, @required this.categoryID});
 
   void showSnackBar(BuildContext context, String text, Color color) {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
@@ -32,7 +34,6 @@ class BuildCompletedTodo extends StatelessWidget {
         Provider.of<TodoProvider>(context, listen: true).completedModels;
     final TodoProvider todoProvider =
         Provider.of<TodoProvider>(context, listen: true);
-    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -124,6 +125,7 @@ class BuildCompletedTodo extends StatelessWidget {
                                             await prefs.readUserID();
                                         await todoProvider
                                             .deleteTodo(
+                                                categoryID: categoryID,
                                                 userID: userID,
                                                 todoID: todo.todoID)
                                             .then((_) async {

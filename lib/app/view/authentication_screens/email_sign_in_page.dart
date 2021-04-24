@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
-import 'package:working_project/app/view/todo/todo_page.dart';
+import 'package:working_project/app/view/todo/category_page.dart';
 import 'file:///C:/Users/F-IRMA/AndroidStudioProjects/CocuApp/lib/app/view/authentication_screens/auth_widgets/auth_form_widget.dart';
 
 //shared preferences
@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
             .then((_) async {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => TodoPage(),
+              builder: (context) => CategoryPage(),
             ),
           );
           //change instead of in direct onPressed called here

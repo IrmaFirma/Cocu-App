@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
-import 'package:working_project/app/view/todo/todo_page.dart';
+import 'package:working_project/app/view/todo/category_page.dart';
 import 'package:working_project/app/view/welcome_page.dart';
 
 class CocuSplash extends StatefulWidget {
@@ -33,7 +33,7 @@ class _CocuSplashState extends State<CocuSplash> {
       Duration(seconds: 3),
       () => isLogged
           ? Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => TodoPage()))
+              .push(MaterialPageRoute(builder: (context) => CategoryPage()))
           : Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => WelcomePageBuilder(),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:working_project/app/view/goals_habits/goals_page.dart';
 import 'package:working_project/app/view/journal/journal_page.dart';
-import 'package:working_project/app/view/todo/todo_page.dart';
+import 'package:working_project/app/view/todo/category_page.dart';
 
 class UserInfoDrawer extends StatelessWidget {
   @override
@@ -33,7 +32,7 @@ class UserInfoDrawer extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute<void>(
-                  builder: (BuildContext context) => TodoPage(),
+                  builder: (BuildContext context) => CategoryPage(),
                   fullscreenDialog: true),
             ),
           ),
@@ -43,15 +42,6 @@ class UserInfoDrawer extends StatelessWidget {
               context,
               MaterialPageRoute<void>(
                   builder: (BuildContext context) => JournalPage(),
-                  fullscreenDialog: true),
-            ),
-          ),
-          ListTile(
-            title: Text('Goals and Habits'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute<void>(
-                  builder: (BuildContext context) => GoalPage(),
                   fullscreenDialog: true),
             ),
           ),

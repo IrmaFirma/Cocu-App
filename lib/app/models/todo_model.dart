@@ -5,13 +5,15 @@ class TodoModel {
   final String todoDescription;
   final String dueDate;
   final bool isCompleted;
-  final userID;
-  final todoID;
+  final String userID;
+  final String todoID;
+  final String currentCategoryID;
 
   TodoModel(
       {@required this.todoTitle,
       this.todoDescription,
       this.isCompleted = false,
+      @required this.currentCategoryID,
       @required this.dueDate,
       @required this.userID,
       @required this.todoID});
@@ -19,6 +21,7 @@ class TodoModel {
   factory TodoModel.fromDocument(Map<String, dynamic> data) {
     return TodoModel(
       todoTitle: data['title'],
+      currentCategoryID: data['category_id'],
       dueDate: data['date'],
       todoDescription: data['description'],
       userID: data['user_id'],

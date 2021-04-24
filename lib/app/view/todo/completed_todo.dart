@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:working_project/app/models/category_todo_model.dart';
 import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
@@ -9,6 +10,10 @@ import 'package:working_project/app/utils/shared_preferences.dart';
 import 'package:working_project/app/view/todo/todo_widgets/build_completed_widget.dart';
 
 class CompletedTodo extends StatefulWidget {
+  final String categoryID;
+
+  const CompletedTodo({Key key, @required this.categoryID}) : super(key: key);
+
   @override
   _CompletedTodoState createState() => _CompletedTodoState();
 }
@@ -21,16 +26,14 @@ class _CompletedTodoState extends State<CompletedTodo> {
     if (isLogged) {
       final String userID = await prefs.readUserID();
       if (userID.isNotEmpty) {
-        Provider.of<TodoProvider>(context, listen: false).readCompletedTodo(
-          userID: userID,
-        );
+        Provider.of<TodoProvider>(context, listen: false)
+            .readCompletedTodo(userID: userID, categoryID: widget.categoryID);
       }
     } else {
       final UserModel userModel =
           Provider.of<AuthProvider>(context, listen: false).userModel;
       Provider.of<TodoProvider>(context, listen: false).readCompletedTodo(
-        userID: userModel.userID,
-      );
+          userID: userModel.userID, categoryID: widget.categoryID);
     }
   }
 
@@ -68,9 +71,12 @@ class _CompletedTodoState extends State<CompletedTodo> {
             onWillPop: null,
             child: RefreshIndicator(
               onRefresh: () => _getInitialData(),
-              child: BuildCompletedTodo(getInitialData: () async {
-                await _getInitialData();
-              }),
+              child: BuildCompletedTodo(
+                getInitialData: () async {
+                  await _getInitialData();
+                },
+                categoryID: widget.categoryID,
+              ),
             ),
           ),
         ));

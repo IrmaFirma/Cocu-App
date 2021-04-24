@@ -2,23 +2,19 @@ import 'package:flutter/material.dart';
 
 class CommonDrawer extends StatelessWidget {
   final String firstElementTitle;
-  final String thirdElementTitle;
   final String secondElementTitle;
   final String fourthElementTitle;
   final Function firstEFunction;
   final Function secondEFunction;
-  final Function thirdEFunction;
   final Function fourthEFunction;
 
   const CommonDrawer(
       {Key key,
       this.firstElementTitle,
-      this.thirdElementTitle,
       this.secondElementTitle,
       this.fourthElementTitle,
       this.firstEFunction,
       this.secondEFunction,
-      this.thirdEFunction,
       this.fourthEFunction})
       : super(key: key);
 
@@ -50,10 +46,6 @@ class CommonDrawer extends StatelessWidget {
               secondElementTitle,
             ),
             onTap: () => secondEFunction(),
-          ),
-          ListTile(
-            title: Text(thirdElementTitle),
-            onTap: () => thirdEFunction(),
           ),
           ListTile(
             title: Text(fourthElementTitle),

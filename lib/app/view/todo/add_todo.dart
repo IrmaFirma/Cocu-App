@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:working_project/app/models/category_todo_model.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/view/todo/todo_widgets/todo_form_widget.dart';
 
 class AddNewTodo extends StatefulWidget {
   final String userID;
+  final String categoryID;
 
-  const AddNewTodo({Key key, this.userID}) : super(key: key);
+  const AddNewTodo({Key key, this.userID, this.categoryID}) : super(key: key);
 
   @override
   _AddNewTodoState createState() => _AddNewTodoState();
@@ -68,6 +70,7 @@ class _AddNewTodoState extends State<AddNewTodo> {
                   if (formKey.currentState.validate()) {
                     await todoProvider
                         .addTodo(
+                            categoryID: widget.categoryID,
                             isCompleted: false,
                             userID: widget.userID,
                             title: _titleController.text,

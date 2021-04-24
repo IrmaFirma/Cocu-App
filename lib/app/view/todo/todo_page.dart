@@ -3,21 +3,22 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:working_project/app/models/category_todo_model.dart';
 import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
-import 'package:working_project/app/view/goals_habits/goals_page.dart';
-import 'package:working_project/app/view/journal/journal_page.dart';
 import 'package:working_project/app/view/todo/todo_widgets/build_todo_home_widget.dart';
-import 'package:working_project/app/view/user_info_page.dart';
-import 'package:working_project/widgets/drawer_widget.dart';
 
 import '../../utils/shared_preferences.dart';
 import 'add_todo.dart';
 import 'completed_todo.dart';
 
 class TodoPage extends StatefulWidget {
+  final String categoryID;
+
+  const TodoPage({Key key, @required this.categoryID}) : super(key: key);
+
   @override
   _TodoPageState createState() => _TodoPageState();
 }
@@ -26,21 +27,20 @@ class _TodoPageState extends State<TodoPage> {
   //authentication and data fetch functions
   SharedPrefs prefs = SharedPrefs();
 
+  //TODO Instead of reading ToDo's read Categories move this logic to Todo Category List
   Future<void> _getInitialData() async {
     final bool isLogged = await prefs.readIsLogged();
     if (isLogged) {
       final String userID = await prefs.readUserID();
       if (userID.isNotEmpty) {
-        Provider.of<TodoProvider>(context, listen: false).readTodo(
-          userID: userID,
-        );
+        Provider.of<TodoProvider>(context, listen: false)
+            .readTodo(userID: userID, categoryID: widget.categoryID);
       }
     } else {
       final UserModel userModel =
           Provider.of<AuthProvider>(context, listen: false).userModel;
-      Provider.of<TodoProvider>(context, listen: false).readTodo(
-        userID: userModel.userID,
-      );
+      Provider.of<TodoProvider>(context, listen: false)
+          .readTodo(userID: userModel.userID, categoryID: widget.categoryID);
     }
   }
 
@@ -71,7 +71,9 @@ class _TodoPageState extends State<TodoPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute<void>(
-                        builder: (BuildContext context) => CompletedTodo(),
+                        builder: (BuildContext context) => CompletedTodo(
+                              categoryID: widget.categoryID,
+                            ),
                         fullscreenDialog: true));
               },
             ),
@@ -83,35 +85,16 @@ class _TodoPageState extends State<TodoPage> {
                   context,
                   CupertinoPageRoute<void>(
                     builder: (BuildContext context) {
-                      return AddNewTodo(userID: userID);
+                      return AddNewTodo(
+                        userID: userID,
+                        categoryID: widget.categoryID,
+                      );
                     },
                   ),
                 );
               },
             ),
           ],
-        ),
-        drawer: CommonDrawer(
-          firstElementTitle: 'Home Page',
-          secondElementTitle: 'ToDo',
-          thirdElementTitle: 'Goals and Habits',
-          fourthElementTitle: 'Journal',
-          firstEFunction: () => Navigator.push(
-              context,
-              MaterialPageRoute<void>(
-                  builder: (BuildContext context) => UserInfoPage(),
-                  fullscreenDialog: true)),
-          secondEFunction: () => print('Already selected'),
-          thirdEFunction: () => Navigator.push(
-              context,
-              MaterialPageRoute<void>(
-                  builder: (BuildContext context) => GoalPage(),
-                  fullscreenDialog: true)),
-          fourthEFunction: () => Navigator.push(
-              context,
-              MaterialPageRoute<void>(
-                  builder: (BuildContext context) => JournalPage(),
-                  fullscreenDialog: true)),
         ),
         body: Container(
           decoration: BoxDecoration(
@@ -126,9 +109,12 @@ class _TodoPageState extends State<TodoPage> {
             onWillPop: null,
             child: RefreshIndicator(
               onRefresh: () => _getInitialData(),
-              child: BuildTodoHome(getInitialData: () async {
-                await _getInitialData();
-              }),
+              child: BuildTodoHome(
+                getInitialData: () async {
+                  await _getInitialData();
+                },
+                categoryID: widget.categoryID,
+              ),
             ),
           ),
         ));

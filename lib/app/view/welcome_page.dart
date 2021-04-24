@@ -6,7 +6,7 @@ import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
 import 'package:working_project/app/view/authentication_screens/email_sign_in_page.dart';
 import 'package:working_project/app/view/authentication_screens/email_sign_up_page.dart';
-import 'package:working_project/app/view/todo/todo_page.dart';
+import 'package:working_project/app/view/todo/category_page.dart';
 import 'package:working_project/widgets/welcome_widgets/sign_in_widget.dart';
 
 class WelcomePageBuilder extends StatelessWidget {
@@ -38,7 +38,7 @@ class WelcomePage extends StatelessWidget {
         (_) async {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => TodoPage(),
+              builder: (context) => CategoryPage(),
             ),
           );
           await SharedPrefs().setUserID(uid: authProvider.userModel.userID);

@@ -7,9 +7,8 @@ import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
 import 'package:working_project/app/providers/journal_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
-import 'package:working_project/app/view/goals_habits/goals_page.dart';
 import 'package:working_project/app/view/journal/journal_widgets/build_journal_widget.dart';
-import 'package:working_project/app/view/todo/todo_page.dart';
+import 'package:working_project/app/view/todo/category_page.dart';
 import 'package:working_project/widgets/app_bar_widget.dart';
 import 'package:working_project/widgets/drawer_widget.dart';
 
@@ -65,7 +64,6 @@ class _JournalPageState extends State<JournalPage> {
         drawer: CommonDrawer(
             firstElementTitle: 'Home Page',
             secondElementTitle: 'ToDo',
-            thirdElementTitle: 'Goals and Habits',
             fourthElementTitle: 'Journal',
             firstEFunction: () => Navigator.push(
                 context,
@@ -75,12 +73,7 @@ class _JournalPageState extends State<JournalPage> {
             secondEFunction: () => Navigator.push(
                 context,
                 MaterialPageRoute<void>(
-                    builder: (BuildContext context) => TodoPage(),
-                    fullscreenDialog: true)),
-            thirdEFunction: () => Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                    builder: (BuildContext context) => GoalPage(),
+                    builder: (BuildContext context) => CategoryPage(),
                     fullscreenDialog: true)),
             fourthEFunction: () => print('Already selected')),
         body: Container(

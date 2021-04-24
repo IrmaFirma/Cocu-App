@@ -4,13 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
+import 'package:working_project/app/providers/category_todo_provider.dart';
 import 'package:working_project/app/providers/goal_provider.dart';
 import 'package:working_project/app/providers/habits_provider.dart';
 import 'package:working_project/app/providers/journal_provider.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
+import 'package:working_project/app/view/todo/category_page.dart';
 
-import 'app/view/todo/todo_page.dart';
 import 'app/view/welcome_page.dart';
 
 Future<void> main() async {
@@ -24,11 +25,7 @@ Future<void> main() async {
 }
 
 //TODO QUERY TOUCH UPS
-//TODO RENAME APP FILES AND NAMES
-//TODO REFACTOR DESIGN AND LOGIC
-//TODO GOAL MAKEOVER
 //TODO JOURNAL MAKEOVER
-//TODO HABIT MAKEOVER
 //TODO HOME MAKEOVER
 class MyApp extends StatefulWidget {
   @override
@@ -61,6 +58,8 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
+            create: (BuildContext context) => CategoryTodoProvider()),
+        ChangeNotifierProvider(
             create: (BuildContext context) => AuthProvider()),
         ChangeNotifierProvider(
             create: (BuildContext context) => TodoProvider()),
@@ -74,9 +73,8 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         home: SplashScreen(
             seconds: 3,
-            navigateAfterSeconds: isLogged
-                ? TodoPage()
-                :  WelcomePageBuilder(),
+            navigateAfterSeconds:
+                isLogged ? CategoryPage() : WelcomePageBuilder(),
             image: Image.asset('assets/cocuBack.png'),
             backgroundColor: Color(0xFF6FCED5),
             styleTextUnderTheLoader: new TextStyle(),

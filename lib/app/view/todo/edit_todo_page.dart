@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:working_project/app/models/category_todo_model.dart';
 import 'package:working_project/app/models/todo_model.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/view/authentication_screens/auth_widgets/avatar.dart';
@@ -7,10 +8,11 @@ import 'package:working_project/app/view/todo/todo_widgets/todo_form_widget.dart
 import 'package:working_project/widgets/error_dialog.dart';
 
 class EditTodo extends StatefulWidget {
-  const EditTodo({this.todo, this.userID});
+  const EditTodo({this.todo, this.userID, this.categoryID});
 
   final TodoModel todo;
   final String userID;
+  final String categoryID;
 
   @override
   _EditTodoState createState() => _EditTodoState();
@@ -76,6 +78,7 @@ class _EditTodoState extends State<EditTodo> {
                 onSaved: () {
                   todoProvider
                       .updateTodo(
+                          categoryID: widget.categoryID,
                           todoID: widget.todo.todoID,
                           userID: widget.userID,
                           title: _titleController.text,

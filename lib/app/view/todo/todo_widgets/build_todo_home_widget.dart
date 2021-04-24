@@ -1,8 +1,8 @@
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:table_calendar/table_calendar.dart';
 import 'package:working_project/app/models/todo_model.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
@@ -15,22 +15,16 @@ import '../edit_todo_page.dart';
 
 class BuildTodoHome extends StatefulWidget {
   final Function getInitialData;
+  final String categoryID;
 
-  const BuildTodoHome({@required this.getInitialData});
+  const BuildTodoHome(
+      {@required this.getInitialData, @required this.categoryID});
 
   @override
   _BuildTodoHomeState createState() => _BuildTodoHomeState();
 }
 
 class _BuildTodoHomeState extends State<BuildTodoHome> {
-  CalendarController _calendarController;
-
-  @override
-  void initState() {
-    super.initState();
-    _calendarController = CalendarController();
-  }
-
   @override
   Widget build(BuildContext context) {
     SharedPrefs prefs = SharedPrefs();
@@ -43,22 +37,6 @@ class _BuildTodoHomeState extends State<BuildTodoHome> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        TableCalendar(
-            startingDayOfWeek: StartingDayOfWeek.monday,
-            initialCalendarFormat: CalendarFormat.week,
-            headerStyle: HeaderStyle(
-              formatButtonShowsNext: false,
-            ),
-            calendarStyle: CalendarStyle(
-                weekendStyle: TextStyle(color: Colors.grey.shade700),
-                weekdayStyle: TextStyle(color: Colors.grey.shade700),
-                todayColor: Color(0xFF6FCED5),
-                selectedColor: Color(0xFF6FCED5),
-                todayStyle: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Colors.white)),
-            calendarController: _calendarController),
         Expanded(
           child: ListView(
             children: [
@@ -125,6 +103,8 @@ class _BuildTodoHomeState extends State<BuildTodoHome> {
                                                     await prefs.readUserID();
                                                 todoProvider
                                                     .markAsDone(
+                                                        categoryID:
+                                                            widget.categoryID,
                                                         isCompleted:
                                                             todo.isCompleted,
                                                         userID: userID,
@@ -204,6 +184,7 @@ class _BuildTodoHomeState extends State<BuildTodoHome> {
                                             CupertinoPageRoute<void>(
                                               builder: (BuildContext context) =>
                                                   EditTodo(
+                                                categoryID: widget.categoryID,
                                                 userID: userID,
                                                 todo: todo,
                                               ),
@@ -242,6 +223,8 @@ class _BuildTodoHomeState extends State<BuildTodoHome> {
                                                     await prefs.readUserID();
                                                 await todoProvider
                                                     .deleteTodo(
+                                                        categoryID:
+                                                            widget.categoryID,
                                                         userID: userID,
                                                         todoID: todo.todoID)
                                                     .then(
