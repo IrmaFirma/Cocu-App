@@ -10,7 +10,6 @@ import 'package:working_project/app/utils/shared_preferences.dart';
 import 'package:working_project/app/view/journal/journal_page.dart';
 import 'package:working_project/app/view/todo/add_category.dart';
 import 'package:working_project/app/view/todo/todo_widgets/build_category_home_widget.dart';
-import 'package:working_project/app/view/user_info_page.dart';
 import 'package:working_project/widgets/drawer_widget.dart';
 
 import '../../utils/shared_preferences.dart';
@@ -81,14 +80,8 @@ class _CategoryPageState extends State<CategoryPage> {
           ],
         ),
         drawer: CommonDrawer(
-          firstElementTitle: 'Home Page',
           secondElementTitle: 'ToDo',
           fourthElementTitle: 'Journal',
-          firstEFunction: () => Navigator.push(
-              context,
-              MaterialPageRoute<void>(
-                  builder: (BuildContext context) => UserInfoPage(),
-                  fullscreenDialog: true)),
           secondEFunction: () => print('Already selected'),
           fourthEFunction: () => Navigator.push(
               context,

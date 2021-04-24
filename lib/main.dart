@@ -24,7 +24,6 @@ Future<void> main() async {
 
 //TODO QUERY TOUCH UPS
 //TODO JOURNAL MAKEOVER
-//TODO HOME MAKEOVER
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -72,7 +71,7 @@ class _MyAppState extends State<MyApp> {
             image: Image.asset('assets/cocuBack.png'),
             backgroundColor: Color(0xFF6FCED5),
             styleTextUnderTheLoader: new TextStyle(),
-            photoSize: 100.0,
+            photoSize: 125.0,
             loaderColor: Colors.white),
       ),
     );

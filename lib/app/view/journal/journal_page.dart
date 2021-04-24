@@ -11,8 +11,6 @@ import 'package:working_project/app/view/journal/journal_widgets/build_journal_w
 import 'package:working_project/app/view/todo/category_page.dart';
 import 'package:working_project/widgets/app_bar_widget.dart';
 import 'package:working_project/widgets/drawer_widget.dart';
-
-import '../user_info_page.dart';
 import 'add_new_journal_screen.dart';
 
 class JournalPage extends StatefulWidget {
@@ -62,14 +60,8 @@ class _JournalPageState extends State<JournalPage> {
           ),
         ),
         drawer: CommonDrawer(
-            firstElementTitle: 'Home Page',
             secondElementTitle: 'ToDo',
             fourthElementTitle: 'Journal',
-            firstEFunction: () => Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                    builder: (BuildContext context) => UserInfoPage(),
-                    fullscreenDialog: true)),
             secondEFunction: () => Navigator.push(
                 context,
                 MaterialPageRoute<void>(

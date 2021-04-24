@@ -7,7 +7,7 @@ import 'package:working_project/app/utils/shared_preferences.dart';
 import 'package:working_project/app/view/authentication_screens/email_sign_in_page.dart';
 import 'package:working_project/app/view/authentication_screens/email_sign_up_page.dart';
 import 'package:working_project/app/view/todo/category_page.dart';
-import 'package:working_project/widgets/welcome_widgets/sign_in_widget.dart';
+import 'package:working_project/widgets/welcome_widgets/welcome_widget.dart';
 
 class WelcomePageBuilder extends StatelessWidget {
   @override
