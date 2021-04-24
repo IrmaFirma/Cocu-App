@@ -29,11 +29,8 @@ class _BuildCategoryHomeState extends State<BuildCategoryHome> {
 
   @override
   Widget build(BuildContext context) {
-    SharedPrefs prefs = SharedPrefs();
     final List<CategoryTodoModel> categories =
         Provider.of<CategoryTodoProvider>(context, listen: true).categoryModels;
-    final CategoryTodoProvider categoryTodoProvider =
-        Provider.of<CategoryTodoProvider>(context, listen: true);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Column(
@@ -55,6 +52,23 @@ class _BuildCategoryHomeState extends State<BuildCategoryHome> {
                     fontSize: 18,
                     color: Colors.white)),
             calendarController: _calendarController),
+        Padding(
+          padding: EdgeInsets.only(left: width / 25, right: width / 25),
+          child: Container(
+            height: 75,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              elevation: 1.5,
+              child: ListTile(
+                title: Text('Today\'s Tasks'),
+                subtitle: Text('For today 8'),
+                trailing: Icon(Icons.arrow_forward_ios),
+              ),
+            ),
+          ),
+        ),
         Expanded(
           child: ListView(
             children: [
@@ -106,62 +120,34 @@ class _BuildCategoryHomeState extends State<BuildCategoryHome> {
                                       elevation: 1.5,
                                       shadowColor: Color(0xFFced1d6),
                                       child: ListTile(
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      TodoPage(
-                                                          categoryID: category
-                                                              .categoryID)));
-                                        },
-                                        title: Wrap(
-                                          children: [
-                                            Text(
-                                              category.categoryTitle,
-                                              style: TextStyle(
-                                                fontSize: width / 24,
-                                                fontFamily: 'Valera',
-                                                fontWeight: FontWeight.w500,
-                                                color: Color(0xFF2B2B2B),
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        TodoPage(
+                                                            categoryID: category
+                                                                .categoryID)));
+                                          },
+                                          title: Wrap(
+                                            children: [
+                                              Text(
+                                                category.categoryTitle,
+                                                style: TextStyle(
+                                                  fontSize: width / 24,
+                                                  fontFamily: 'Valera',
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color(0xFF2B2B2B),
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        subtitle: Text(
-                                          category.categoryNote,
-                                          style:
-                                              TextStyle(fontSize: width / 30),
-                                        ),
-                                        trailing: Wrap(
-                                          children: [
-                                            IconButton(
-                                              icon: Icon(
-                                                Icons.delete,
-                                                color: Color(0xFFf5625d),
-                                              ),
-                                              onPressed: () async {
-                                                final String userID =
-                                                    await prefs.readUserID();
-                                                await categoryTodoProvider
-                                                    .deleteCategory(
-                                                  categoryID:
-                                                      category.categoryID,
-                                                  userID: userID,
-                                                )
-                                                    .then(
-                                                  (_) {
-                                                    widget.getInitialData();
-                                                    showSnackBar(
-                                                        context,
-                                                        'Deleted ${category.categoryTitle}',
-                                                        Colors.red);
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+                                            ],
+                                          ),
+                                          subtitle: Text(
+                                            category.categoryNote,
+                                            style:
+                                                TextStyle(fontSize: width / 30),
+                                          ),
+                                          trailing:
+                                              Icon(Icons.arrow_forward_ios)),
                                     ),
                                   ),
                                 ),

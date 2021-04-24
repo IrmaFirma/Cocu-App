@@ -44,7 +44,7 @@ class _BuildTodoHomeState extends State<BuildTodoHome> {
                   ? Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(top: height / 10),
+                          padding: EdgeInsets.only(top: height / 5),
                           child: Container(
                               height: height / 5,
                               width: width / 2,

@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:working_project/app/models/user_model.dart';
 import 'package:working_project/app/providers/auth_provider.dart';
+import 'package:working_project/app/providers/category_todo_provider.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/utils/shared_preferences.dart';
+import 'package:working_project/app/view/todo/category_page.dart';
 import 'package:working_project/app/view/todo/todo_widgets/build_todo_home_widget.dart';
 
 import '../../utils/shared_preferences.dart';
@@ -52,6 +54,8 @@ class _TodoPageState extends State<TodoPage> {
 
   @override
   Widget build(BuildContext context) {
+    final CategoryTodoProvider categoryTodoProvider =
+        Provider.of<CategoryTodoProvider>(context, listen: true);
     precacheImage(const AssetImage('assets/todoBack.png'), context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -65,6 +69,25 @@ class _TodoPageState extends State<TodoPage> {
           backgroundColor: Color(0xFFFCFCFC),
           actions: [
             IconButton(
+              icon: Icon(
+                Icons.delete,
+                color: Color(0xFFf5625d),
+              ),
+              onPressed: () async {
+                final String userID = await prefs.readUserID();
+                await categoryTodoProvider
+                    .deleteCategory(
+                        userID: userID, categoryID: widget.categoryID)
+                    .then((value) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => CategoryPage(),
+                    ),
+                  );
+                });
+              },
+            ),
+            IconButton(
               icon: Icon(Icons.done),
               onPressed: () {
                 Navigator.push(
@@ -76,24 +99,25 @@ class _TodoPageState extends State<TodoPage> {
                         fullscreenDialog: true));
               },
             ),
-            IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () async {
-                final String userID = await prefs.readUserID();
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute<void>(
-                    builder: (BuildContext context) {
-                      return AddNewTodo(
-                        userID: userID,
-                        categoryID: widget.categoryID,
-                      );
-                    },
-                  ),
-                );
-              },
-            ),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Color(0xFF6FCED5),
+          child: Icon(Icons.add),
+          onPressed: () async {
+            final String userID = await prefs.readUserID();
+            Navigator.push(
+              context,
+              CupertinoPageRoute<void>(
+                builder: (BuildContext context) {
+                  return AddNewTodo(
+                    userID: userID,
+                    categoryID: widget.categoryID,
+                  );
+                },
+              ),
+            );
+          },
         ),
         body: Container(
           decoration: BoxDecoration(
