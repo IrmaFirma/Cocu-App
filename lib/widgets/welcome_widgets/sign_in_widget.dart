@@ -36,7 +36,7 @@ class BuildWelcome extends StatelessWidget {
                   fontSize: height / 40),
             ),
             SizedBox(
-              height: height/30,
+              height: height / 30,
             ),
             GestureDetector(
               onTap: () => onGoogle(),
@@ -78,7 +78,7 @@ class BuildWelcome extends StatelessWidget {
                   )),
             ),
             SizedBox(
-              height: height/45,
+              height: height / 45,
             ),
             GestureDetector(
               onTap: () => onRegister(),
@@ -102,7 +102,8 @@ class BuildWelcome extends StatelessWidget {
                       Row(
                         children: [
                           Container(
-                            child: Text(''), //TODO EMAIL ICON SAME SIZE AS GOOGLE
+                            child: Text(''),
+                            //TODO EMAIL ICON SAME SIZE AS GOOGLE
                             height: height / 16,
                             width: width / 16,
                           ),
@@ -117,7 +118,6 @@ class BuildWelcome extends StatelessWidget {
                         ],
                       ),
                     ],
-
                   )),
             ),
             Container(

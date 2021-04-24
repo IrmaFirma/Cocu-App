@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:working_project/app/models/category_todo_model.dart';
 import 'package:working_project/app/models/todo_model.dart';
 import 'package:working_project/app/providers/todo_provider.dart';
 import 'package:working_project/app/view/authentication_screens/auth_widgets/avatar.dart';
