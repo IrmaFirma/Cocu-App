@@ -5,8 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:working_project/app/models/category_todo_model.dart';
 import 'package:working_project/app/providers/category_todo_provider.dart';
-import 'package:working_project/app/utils/shared_preferences.dart';
-import 'package:working_project/app/utils/snack_bar.dart';
 import 'package:working_project/app/view/todo/todo_page.dart';
 
 class BuildCategoryHome extends StatefulWidget {
